@@ -33,7 +33,7 @@ import argparse
 import json
 import math
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Callable, Optional, Sequence, Union
 
@@ -59,10 +59,14 @@ class Scenario:
     days: float = 7.0
     contaminates_calibration: bool = False
 
-    def build(self, world_cfg: WorldConfig = WorldConfig(), days: Optional[float] = None) -> "BuiltScenario":
+    def build(self, world_cfg: WorldConfig = WorldConfig(), days: Optional[float] = None,
+              strength: float = 1.0) -> "BuiltScenario":
+        if strength <= 0:
+            raise ValueError("strength must be > 0")
         start_h = world_cfg.start_hour
         at: At = lambda day, hour: day * DAY_S + (hour - start_h) * 3600.0
         changes, attacks = self.factory(at)
+        changes, attacks = _scaled(changes, attacks, strength)
         total = (self.days if days is None else days) * DAY_S
         calib = self.calibration_days * DAY_S
         if calib >= total:
@@ -75,7 +79,7 @@ class Scenario:
                 raise ValueError(f"{self.name}: attack starts during calibration but the scenario is not a calibration attack")
             if a.start_s >= total:
                 raise ValueError(f"{self.name}: attack {a.tag!r} starts after the run ends; increase days")
-        return BuiltScenario(self, calib, total, tuple(changes), tuple(attacks), world_cfg)
+        return BuiltScenario(self, calib, total, tuple(changes), tuple(attacks), world_cfg, strength)
 
 
 @dataclass(frozen=True)
@@ -86,6 +90,20 @@ class BuiltScenario:
     changes: tuple[LegitChange, ...]
     attacks: tuple[Attack, ...]
     world_cfg: WorldConfig
+    strength: float = 1.0
+
+
+def _scaled(changes, attacks, strength: float):
+    """
+    Scale how strong a scenario is. offset attacks: size x strength. force/replay attacks: the
+    fraction of samples affected (peak) x strength, capped at 1 (so 'stuck' attacks become
+    intermittent below 1). Legitimate changes: magnitude x strength. Timing never changes.
+    """
+    if strength == 1.0:
+        return list(changes), list(attacks)
+    atk = [replace(a, magnitude=a.magnitude * strength) if a.kind == "offset"
+           else replace(a, peak=min(1.0, a.peak * strength)) for a in attacks]
+    return [replace(c, magnitude=c.magnitude * strength) for c in changes], atk
 
 
 # ---------------------------------------------------------------------------
@@ -243,9 +261,10 @@ class ScenarioSource(SimulatorSource):
     """A SimulatorSource built from a named scenario. Carries calibration_s and a manifest."""
 
     def __init__(self, scenario: Union[str, Scenario], seed: int = 0, *, days: Optional[float] = None,
-                 world_cfg: WorldConfig = WorldConfig(), sensors: SensorConfig = SensorConfig()) -> None:
+                 world_cfg: WorldConfig = WorldConfig(), sensors: SensorConfig = SensorConfig(),
+                 strength: float = 1.0) -> None:
         sc = get_scenario(scenario) if isinstance(scenario, str) else scenario
-        built = sc.build(world_cfg, days)
+        built = sc.build(world_cfg, days, strength)
         super().__init__(World(seed, world_cfg, built.changes), built.duration_s, sensors, built.attacks, seed=seed)
         self.scenario, self.built, self.calibration_s = sc, built, built.calibration_s
 
@@ -256,7 +275,7 @@ class ScenarioSource(SimulatorSource):
         return {
             "scenario": self.scenario.name, "title": self.scenario.title,
             "experiment": self.scenario.experiment, "expect": self.scenario.expect,
-            "seed": self.seed, "sample_period_s": b.world_cfg.sample_period_s,
+            "seed": self.seed, "strength": b.strength, "sample_period_s": b.world_cfg.sample_period_s,
             "start_hour": b.world_cfg.start_hour, "start_day_of_week": b.world_cfg.start_day_of_week,
             "calibration_s": b.calibration_s, "duration_s": b.duration_s,
             "contaminates_calibration": self.scenario.contaminates_calibration,

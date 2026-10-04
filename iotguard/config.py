@@ -126,12 +126,15 @@ class CalibrationConfig:
 @dataclass(frozen=True)
 class OnlineStatsConfig:
     # Learning rate per consensus decision. Rates are per WINDOW, not per second: with 30 s
-    # windows, alpha 0.05 is a time constant of ~20 windows (10 minutes), alpha 0.01 ~50 minutes.
+    # windows, alpha 0.002 is a time constant of ~4 hours and 0.0004 ~21 hours.
     #   d = x - mu;   mu += alpha * d;   Sigma = (1 - alpha) * (Sigma + alpha * d d^T)
-    # These are placeholders to be tuned in the experiments (they set how fast the baseline can
-    # follow, and therefore also how fast an unguarded baseline can be dragged).
-    alpha_trusted: float = 0.05
-    alpha_uncertain: float = 0.01
+    # Why slow: with alpha 0.05 (10-minute time constant) the baseline tracks the daily cycle, so
+    # freezing it for a few hours (after an attack) leaves it stale and the suspicion hold then
+    # keeps it frozen: measured 2.4% false SUSPICIOUS windows after a 2 h attack, versus 0.1%
+    # at alpha <= 0.002. Zero false alarms on normal data at every rate tested; adaptation to a
+    # legitimate +4 C change still completed within days. Placeholders to be tuned by the experiments.
+    alpha_trusted: float = 0.002
+    alpha_uncertain: float = 0.0004
     alpha_suspicious: float = 0.0       # frozen: no update at all
 
     # Covariance shrinkage toward its own diagonal: Sigma_used = (1-shrinkage)*Sigma
@@ -188,33 +191,94 @@ class AnomalyConfig:
 
 
 # ---------------------------------------------------------------------------
-# Cross-sensor consensus (must NOT depend on mu/Sigma - see note below)
+# Cross-sensor consensus and the trust gate (must NOT depend on mu/Sigma)
 # ---------------------------------------------------------------------------
 @dataclass(frozen=True)
 class ConsensusConfig:
     """
-    Consensus answers "do the sensors corroborate each other", independent of
-    whether the learned baseline currently thinks the window is anomalous.
-    It must be computed from fixed physical relationships only (not from
-    mu/Sigma), or an attacker who has already dragged the baseline also
-    drags the gate that is supposed to resist them.
+    Consensus asks "do the sensors corroborate each other?" from FIXED physical relationships
+    only, never from the learned mu/Sigma. Otherwise an attacker who has dragged the baseline
+    also drags the gate meant to resist them.
+
+    Relationships checked per window (each yields positive or negative evidence):
+      door -> PIR     a confirmed door opening is followed by motion (someone passed through)
+      door -> light   an opening lets corridor light in, so the LDR steps up
+      PIR  <- person  motion in a room believed EMPTY, with no door opening to explain it, is
+                      contradictory ("motion with no entry"). Occupancy is tracked from door
+                      openings + PIR; motion at a desk while someone is inside is NORMAL.
+      PIR  continuity the PIR cannot stay continuously high for minutes
+      temp <-> hum    a sudden temperature step must come with a humidity response
+      light steps     an abrupt light step in an empty room needs a door opening to explain it
+    All numbers below are starting points; several (especially door->light) depend on the real
+    installation and must be re-checked on real data.
     """
 
-    # A door event is corroborated if PIR motion also occurred within this
-    # many seconds of the door state change (either side).
-    door_pir_corroboration_window_s: float = 5.0
+    # door -> PIR: PIR must be high within [t_door - pre, t_door + post] of the confirmed opening.
+    # (A confirmed opening trails the real one by the door debounce time, so motion can start
+    # slightly BEFORE the confirmation.)
+    door_pir_pre_s: float = 2.0
+    door_pir_post_s: float = 5.0
 
-    # LDR is considered to have "changed" within a window if it moved by at
-    # least this many raw ADC counts from the window's starting value.
-    ldr_change_threshold_adc: int = 150
+    # door -> light: compare median raw LDR over [t-4.0, t-1.5] with [t, t+3.0] around the opening.
+    #   "off"            ignore light
+    #   "positive_only"  a step counts as corroboration, its absence costs nothing (use this if
+    #                    the corridor outside the real door is dark)
+    #   "full"           a missing step counts as weak contradiction
+    light_check: str = "full"
+    door_light_step_adc: float = 150.0
 
-    # Scoring: start at 0, add 1 for each corroborating relationship that
-    # holds, subtract 1 for each that is violated (e.g. PIR fires while door
-    # stayed closed AND light stayed flat). agreement_score is then compared
-    # against the two thresholds below.
-    trusted_min_score: int = 1          # score >= this AND mahalanobis below threshold -> TRUSTED
-    suspicious_max_score: int = -1      # score <= this (regardless of mahalanobis) -> SUSPICIOUS
-    # anything in between -> UNCERTAIN
+    # PIR motion that no door opening (and no believed occupant) explains: contradictory only if
+    # at least this many seconds of it occur in one window. (A single false trigger lasts ~3 s.)
+    pir_unexplained_min_s: float = 4.0
+
+    # A PIR continuously high for this long is physically implausible. Longest seen in normal
+    # simulated data: ~94 s.
+    pir_max_continuous_s: float = 300.0
+
+    # Occupancy: after an exit-like door passage, the room is believed EMPTY once the PIR has
+    # been silent this long. Shorter = faster to arm but more false alarms when someone sits still.
+    vacancy_timeout_s: float = 600.0
+    exit_clear_s: float = 30.0          # motion this long after a passage means someone stayed
+
+    # temp <-> hum: only checked when a window's mean temperature OR humidity moves by at least
+    # this much from the previous window (normal drift is ~0.05 C per window). The response is
+    # consistent if humidity moves the OPPOSITE way by between ratio_min and ratio_max % per C.
+    temp_step_c: float = 1.0
+    hum_step_pct: float = 4.0
+    hum_per_c_range: tuple[float, float] = (0.5, 8.0)
+
+    # Abrupt raw LDR step (counts between consecutive samples) that needs explaining.
+    abrupt_light_step_adc: float = 250.0
+    abrupt_light_post_s: float = 4.0
+
+    # Evidence weights.
+    w_door_pir: float = 1.0
+    w_light: float = 0.5
+    w_pir_unexplained: float = 1.0
+    w_pir_stuck: float = 1.0
+    w_temp_hum: float = 1.0
+    w_abrupt_light: float = 1.0
+
+    # --- trust classification (the gate) -------------------------------------------------
+    # SUSPICIOUS: negative evidence sums to <= -suspicious_neg. Any weaker contradiction -> UNCERTAIN.
+    # No contradiction: TRUSTED if the Mahalanobis score is within the anomaly threshold, or
+    # if the window is a corroborated event (positive evidence >= corroborated_min) whose score
+    # is not absurd (<= corroborated_max_d). Otherwise UNCERTAIN.
+    suspicious_neg: float = 1.0
+    corroborated_min: float = 1.0
+    corroborated_max_d: float = 15.0
+
+    # Suspicion memory: contradictions raise a level that decays by suspicion_decay per window.
+    # While the level is >= suspicion_hold, any otherwise-UNCERTAIN window that is still anomalous
+    # is treated as SUSPICIOUS (so a sustained attack is not slowly learned after one detection),
+    # and refreshes the level by suspicion_refresh. After suspicion_max_hold_windows of this with
+    # no fresh contradiction the gate relents (UNCERTAIN again), so one false alarm can never
+    # freeze learning forever. 360 windows = 3 h.
+    suspicion_decay: float = 0.98
+    suspicion_hold: float = 0.5
+    suspicion_refresh: float = 0.05
+    suspicion_cap: float = 5.0
+    suspicion_max_hold_windows: int = 360
 
 
 # ---------------------------------------------------------------------------
