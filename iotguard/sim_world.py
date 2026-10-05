@@ -131,6 +131,15 @@ class WorldConfig:
     rh_corridor: float = 58.0
     rh_noise: float = 0.02             # % RH per sqrt(second)
 
+    # --- abrupt natural light changes (a cloud edge, a reflection, a curtain moving) ---------------
+    # Off by default. Each event multiplies the DAYLIGHT reaching the sensor by a factor drawn from
+    # cloud_drop_range for a duration drawn from cloud_duration_range_s, switching instantly at both
+    # ends. The occupant's lamp decisions ignore it. Used to test that benign lighting changes do
+    # not look like attacks.
+    cloud_events_per_h: float = 0.0
+    cloud_drop_range: tuple[float, float] = (0.3, 0.7)
+    cloud_duration_range_s: tuple[float, float] = (60.0, 600.0)
+
     def __post_init__(self) -> None:
         if self.sample_period_s <= 0:
             raise ValueError("sample_period_s must be > 0")
@@ -421,6 +430,21 @@ class World:
             for a, b, thr in ev.lamp:
                 lamp_windows.append((max(0, _idx(a, start_s, dt)), min(n, _idx(b, start_s, dt)), thr))
 
+        # 1b. abrupt natural light changes, per-day seeded so a longer run extends a shorter one
+        abrupt = None
+        if c.cloud_events_per_h > 0.0:
+            abrupt = np.ones(n)
+            for day in range(n_days):
+                rng_c = np.random.default_rng([self.seed, 4, day])
+                day_h = c.sunset_h - c.sunrise_h
+                for _ in range(int(rng_c.poisson(c.cloud_events_per_h * day_h))):
+                    a = day * DAY_S + (c.sunrise_h + rng_c.uniform(0.0, day_h)) * 3600.0
+                    b = a + rng_c.uniform(*c.cloud_duration_range_s)
+                    f = rng_c.uniform(*c.cloud_drop_range)
+                    i0, i1 = max(0, _idx(a, start_s, dt)), min(n, _idx(b, start_s, dt))
+                    if i1 > i0:
+                        abrupt[i0:i1] = np.minimum(abrupt[i0:i1], f)
+
         # 2. slow weather and cloud processes on a 5-minute grid (clock-based, prefix-stable)
         step = 300.0
         m = int(n_days * DAY_S / step) + 2
@@ -462,7 +486,8 @@ class World:
             dr = door[i0:i1]
             rng = np.random.default_rng([self.seed, 3, ci])
             mo = motion[i0:i1] | (occ & (rng.random(nc) < c.fidget_p))
-            light = env0 * cloud + c.lamp_level * lamp + c.corridor_level * dr
+            day_light = env0 * cloud if abrupt is None else env0 * cloud * abrupt[i0:i1]
+            light = day_light + c.lamp_level * lamp + c.corridor_level * dr
 
             # outdoor temperature drives the room
             warm = self._sum_ramps("warmer", t)

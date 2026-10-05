@@ -255,6 +255,27 @@ def list_scenarios() -> str:
 
 
 # ---------------------------------------------------------------------------
+# room profiles: different environments to test robustness in
+# ---------------------------------------------------------------------------
+PROFILES: dict[str, tuple[WorldConfig, SensorConfig]] = {
+    "default": (WorldConfig(), SensorConfig()),
+    # the corridor outside the door is dark: opening the door adds no light
+    "dark_corridor": (WorldConfig(corridor_level=0.0), SensorConfig()),
+    # sun and clouds: abrupt benign light changes while the room is lit by daylight
+    "flickery_light": (WorldConfig(cloud_events_per_h=2.0, cloud_drop_range=(0.3, 0.7)), SensorConfig()),
+    # a cheap or badly placed PIR: twelve times the false triggers, and misses more motion
+    "noisy_pir": (WorldConfig(), SensorConfig(pir_false_per_h=6.0, pir_detect_p=0.6)),
+}
+
+
+def profile_configs(name: str) -> tuple[WorldConfig, SensorConfig]:
+    try:
+        return PROFILES[name]
+    except KeyError:
+        raise KeyError(f"unknown profile {name!r}; available: {', '.join(PROFILES)}") from None
+
+
+# ---------------------------------------------------------------------------
 # the source
 # ---------------------------------------------------------------------------
 class ScenarioSource(SimulatorSource):

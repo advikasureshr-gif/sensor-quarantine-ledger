@@ -13,6 +13,7 @@ Grouped to match the pipeline stages in the flow diagram:
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Optional
 
 
 # ---------------------------------------------------------------------------
@@ -191,6 +192,91 @@ class AnomalyConfig:
 
 
 # ---------------------------------------------------------------------------
+# Occupancy confidence (used by the consensus engine when ConsensusConfig.occupancy is set)
+# ---------------------------------------------------------------------------
+@dataclass(frozen=True)
+class OccupancyConfig:
+    """
+    Tracks CONFIDENCE that someone is in the room, separately from the label derived from it.
+    The point is to stop motion from reinforcing itself: PIR triggers alone must not keep the
+    belief "occupied" alive indefinitely (a spoofed PIR would then explain away all later motion).
+
+      independent evidence   a corroborated door passage. Only this moves the room from
+                             empty/unsure to occupied, and only this restarts the horizon clock.
+      PIR-only evidence      lifts confidence at most to `pir_cap`, and only while the last
+                             independent evidence is no older than `pir_horizon_s`.
+      decay                  after an exit-like passage with silence, confidence falls with time
+                             constant `exit_decay_tau_s`; once the horizon has expired it falls
+                             with `expired_decay_tau_s` however much motion arrives.
+    Label: OCCUPIED if confidence >= occupied_threshold, EMPTY if <= empty_threshold, else UNSURE.
+    Motion while UNSURE with no door explanation is only WEAK evidence (`w_pir_unverified`), so a
+    legitimate stay longer than the horizon costs a mild UNCERTAIN, not a freeze.
+    The horizon is the key trade-off: short = more false alarms for long stays, long = a spoofed
+    PIR is believed for longer. It is meant to be swept in the experiments, not trusted as given.
+    """
+    pir_horizon_s: float = 4 * 3600.0
+    pir_cap: float = 0.8
+    occupied_threshold: float = 0.6
+    empty_threshold: float = 0.2
+    exit_conf: float = 0.5               # confidence right after an exit-like passage
+    exit_decay_tau_s: float = 650.0      # 0.5 -> 0.2 in ~10 min of silence, like the old vacancy timeout
+    expired_decay_tau_s: float = 1800.0  # 0.8 -> UNSURE in ~9 min, -> EMPTY in ~42 min
+    w_pir_unverified: float = 0.5
+    # An ENTRY into a room believed not occupied must be preceded by this much PIR silence. A person
+    # leaving has been moving just before the door; if the belief had already decayed during a long
+    # stay, that exit must not be mistaken for an arrival. Must stay below the engine's 80 s history.
+    entry_silence_s: float = 60.0
+
+    def __post_init__(self) -> None:
+        if not 0.0 < self.entry_silence_s <= 80.0:
+            raise ValueError("entry_silence_s must be in (0, 80]")
+        if not 0.0 < self.empty_threshold < self.occupied_threshold < self.pir_cap <= 1.0:
+            raise ValueError("need 0 < empty_threshold < occupied_threshold < pir_cap <= 1")
+        if not 0.0 < self.exit_conf < self.occupied_threshold:
+            raise ValueError("exit_conf must be positive and below occupied_threshold")
+        if min(self.pir_horizon_s, self.exit_decay_tau_s, self.expired_decay_tau_s) <= 0:
+            raise ValueError("horizon and decay time constants must be > 0")
+
+
+# ---------------------------------------------------------------------------
+# Evidence model (used by the consensus engine and gate when ConsensusConfig.evidence is set)
+# ---------------------------------------------------------------------------
+@dataclass(frozen=True)
+class EvidenceConfig:
+    """
+    Makes the gate depend on independent evidence instead of any single physical relationship.
+
+      families           Contradictions are grouped into families (door->PIR, light, occupancy,
+                         PIR shape, DHT). A window is SUSPICIOUS on ONE strong contradiction, or on
+                         weak contradictions from TWO DIFFERENT families. Light evidence is weak, so
+                         it can never freeze learning on its own, however often it fails.
+      auto_light         The door->light relationship is enforced only if calibration showed it
+                         holds in THIS room: at least `light_reliable_min` of at least
+                         `light_min_events` door openings were followed by a light step. Otherwise a
+                         missing light response counts for nothing (a dark corridor, a bright room).
+      temporal_bucket    Unexplained PIR seconds in a room believed EMPTY accumulate in a leaky
+                         bucket (time constant `bucket_tau_s`). A contradiction is raised when it
+                         exceeds max(bucket_threshold_s, bucket_background_k x the level calibration's
+                         own false triggers would sustain), so a noisy PIR is not punished and sparse
+                         but persistent noise is not ignored.
+    """
+    families: bool = True
+    auto_light: bool = True
+    light_reliable_min: float = 0.8
+    light_min_events: int = 8
+    temporal_bucket: bool = True
+    bucket_tau_s: float = 600.0
+    bucket_threshold_s: float = 8.0
+    bucket_background_k: float = 10.0   # measured: k=4 raised benign false SUSPICIOUS 4x in a noisy-PIR room; k=10 keeps most of the protection
+
+    def __post_init__(self) -> None:
+        if not 0.0 < self.light_reliable_min <= 1.0 or self.light_min_events < 1:
+            raise ValueError("light_reliable_min must be in (0, 1] and light_min_events >= 1")
+        if min(self.bucket_tau_s, self.bucket_threshold_s, self.bucket_background_k) <= 0:
+            raise ValueError("bucket parameters must be > 0")
+
+
+# ---------------------------------------------------------------------------
 # Cross-sensor consensus and the trust gate (must NOT depend on mu/Sigma)
 # ---------------------------------------------------------------------------
 @dataclass(frozen=True)
@@ -279,6 +365,13 @@ class ConsensusConfig:
     suspicion_refresh: float = 0.05
     suspicion_cap: float = 5.0
     suspicion_max_hold_windows: int = 360
+
+    # Occupancy model. None = the original tracker (kept as the baseline); an OccupancyConfig
+    # switches to the confidence-based tracker described above.
+    occupancy: Optional[OccupancyConfig] = None
+
+    # Evidence model. None = the original rules (a sum of contradictions); an EvidenceConfig switches to families.
+    evidence: Optional[EvidenceConfig] = None
 
 
 # ---------------------------------------------------------------------------
