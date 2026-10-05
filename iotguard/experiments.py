@@ -923,6 +923,99 @@ def format_robustness(res: dict) -> str:
 
 
 # ---------------------------------------------------------------------------
+# the final comparison: original system vs the full new system, scenario by scenario, paired by seed
+# ---------------------------------------------------------------------------
+def comparison_systems(horizon_h: float = 12.0) -> dict[str, ConsensusConfig]:
+    """'original' = the first design; 'new' = confidence occupancy tracker + evidence model (families, auto-light, bucket)."""
+    from .config import EvidenceConfig, OccupancyConfig
+    return {"original": ConsensusConfig(),
+            "new": ConsensusConfig(occupancy=OccupancyConfig(pir_horizon_s=horizon_h * 3600.0), evidence=EvidenceConfig())}
+
+
+def comparison_experiment(systems: dict, scenarios: Sequence[str], seeds: Sequence[int], cache_dir,
+                          params: ReplayParams = ReplayParams(), days: Optional[float] = None, workers: int = 1,
+                          budget_s: Optional[float] = None, verbose: bool = True) -> dict:
+    """Run every scenario under every system, each with its matched benign run, and collect per-seed metrics."""
+    spec = lambda sc, sd, cfg: RunSpec(sc, sd, days=days, cons=cfg)
+    specs = [spec(sc, sd, cfg) for sc in ["normal", *[x for x in scenarios if x != "normal"]] for sd in seeds for cfg in systems.values()]
+    prepared = prepare_many(specs, cache_dir, workers, budget_s, verbose)
+    rows = []
+    for sc in scenarios:
+        for sd in seeds:
+            for label, cfg in systems.items():
+                prep, ben = prepared.get(spec(sc, sd, cfg)), prepared.get(spec("normal", sd, cfg))
+                if prep is None or ben is None:
+                    continue
+                rep, rb = replay_cached(prep, params, cache_dir), replay_cached(ben, params, cache_dir)
+                m, om = metrics(rep), occupancy_metrics(prep)
+                row = {"scenario": sc, "seed": sd, "system": label, "false_susp": m["false_susp"], "uncertain": m["frac_uncertain"],
+                       "trusted": m["frac_trusted"], "detected": m.get("detected"), "latency_min": m.get("latency_min", math.nan),
+                       "frozen_attack": m.get("frozen_attack", math.nan), "occ_false_occupied_empty": om["false_occupied_empty"],
+                       "occ_false_empty_occupied": om["false_empty_occupied"]}
+                if sc != "normal":
+                    ex = excess(rep, rb)
+                    row.update({"sep_gated": ex["sep_gated"], "sep_naive": ex["sep_naive"], "sep_protection": ex["sep_protection"]})
+                if prep.legit_iv:                                   # legitimate change: extra flagging versus the matched benign run
+                    start = min(a for a, _ in prep.legit_iv)
+                    post = rep.t >= start
+                    th = params.d_threshold
+                    row["legit_excess_flag"] = float((rep.D[post] > th).mean() - (rb.D[post] > th).mean())
+                rows.append(row)
+    return {"rows": rows, "systems": list(systems), "scenarios": list(scenarios), "seeds": list(seeds),
+            "missing": sum(1 for v in prepared.values() if v is None)}
+
+
+def _seed_verdict(rows: list, system_a: str, system_b: str, key: str, higher_is_better: bool, tol: float = 0.0) -> str:
+    """Seed-by-seed: in how many seeds is system_b better / worse / equal on `key`? e.g. '3 better' or '1 better 2 same'."""
+    by = {}
+    for r in rows:
+        by.setdefault(r["seed"], {})[r["system"]] = r.get(key, math.nan)
+    better = worse = same = 0
+    for v in by.values():
+        a, b = v.get(system_a, math.nan), v.get(system_b, math.nan)
+        if math.isnan(a) or math.isnan(b):
+            continue
+        d = (b - a) if higher_is_better else (a - b)
+        better += d > tol; worse += d < -tol; same += abs(d) <= tol
+    parts = [f"{n} {w}" for n, w in ((better, "better"), (worse, "worse"), (same, "same")) if n]
+    return ", ".join(parts) if parts else "n/a"
+
+
+def format_comparison(res: dict, a: str = "original", b: str = "new") -> str:
+    rows = res["rows"]
+    pct = lambda x: "n/a" if math.isnan(x) else f"{x:.1%}"
+    lat = lambda x: "never" if math.isnan(x) else (f"{x:.0f}m" if x < 600 else f"{x / 60:.1f}h")
+    mean = lambda rs, k: float(np.nanmean([r[k] for r in rs])) if any(not math.isnan(r.get(k, math.nan)) for r in rs) else math.nan
+    out = []
+    atk = [sc for sc in res["scenarios"] if any(r["scenario"] == sc and r.get("detected") is not None for r in rows)]
+    out.append(f"ATTACK SCENARIOS ({a} -> {b}; mean over seeds). found = seeds detected; latency = mean over seeds that detected; frozen = share of attack windows frozen")
+    out.append(f"{'scenario':<22} {'n':>2} | {'found':>9} | {'latency':>13} | {'frozen':>15} | {'false SUSP (non-attack)':>25} | {'baseline separation':>21} | seed-by-seed on frozen / separation")
+    for sc in atk:
+        ra = [r for r in rows if r["scenario"] == sc and r["system"] == a]; rb = [r for r in rows if r["scenario"] == sc and r["system"] == b]
+        if not ra or not rb:
+            continue
+        both = [r for r in rows if r["scenario"] == sc]
+        fa, fb = sum(bool(r["detected"]) for r in ra), sum(bool(r["detected"]) for r in rb)
+        sepa, sepb = mean(ra, "sep_gated"), mean(rb, "sep_gated")
+        out.append(f"{sc:<22} {len(ra):>2} | {f'{fa}/{len(ra)} -> {fb}/{len(rb)}':>9} | {lat(mean(ra, 'latency_min')) + ' -> ' + lat(mean(rb, 'latency_min')):>13} | "
+                   f"{pct(mean(ra, 'frozen_attack')) + ' -> ' + pct(mean(rb, 'frozen_attack')):>15} | {pct(mean(ra, 'false_susp')) + ' -> ' + pct(mean(rb, 'false_susp')):>25} | "
+                   f"{f'{sepa:.2f} -> {sepb:.2f}':>21} | frozen: {_seed_verdict(both, a, b, 'frozen_attack', True, 0.02)}; separation: {_seed_verdict(both, a, b, 'sep_gated', False, 0.1)}")
+    out.append("")
+    out.append(f"BENIGN AND LEGITIMATE-CHANGE SCENARIOS ({a} -> {b}): false alarms and, for changes, extra flagged windows versus the matched benign run")
+    out.append(f"{'scenario':<22} {'n':>2} | {'false SUSP':>17} | {'UNCERTAIN':>17} | {'extra flagged (D>th)':>22} | {'empty room believed OCC':>25} | {'occupied believed EMPTY':>25}")
+    for sc in [x for x in res["scenarios"] if x not in atk]:
+        ra = [r for r in rows if r["scenario"] == sc and r["system"] == a]; rb = [r for r in rows if r["scenario"] == sc and r["system"] == b]
+        if not ra or not rb:
+            continue
+        ex = (f"{pct(mean(ra, 'legit_excess_flag'))} -> {pct(mean(rb, 'legit_excess_flag'))}" if any("legit_excess_flag" in r for r in ra) else "-")
+        out.append(f"{sc:<22} {len(ra):>2} | {pct(mean(ra, 'false_susp')) + ' -> ' + pct(mean(rb, 'false_susp')):>17} | {pct(mean(ra, 'uncertain')) + ' -> ' + pct(mean(rb, 'uncertain')):>17} | {ex:>22} | "
+                   f"{pct(mean(ra, 'occ_false_occupied_empty')) + ' -> ' + pct(mean(rb, 'occ_false_occupied_empty')):>25} | {pct(mean(ra, 'occ_false_empty_occupied')) + ' -> ' + pct(mean(rb, 'occ_false_empty_occupied')):>25}")
+    if res["missing"]:
+        out.append(f"\n[{res['missing']} run(s) not finished yet; run again to continue from the cache]")
+    return "\n".join(out)
+
+
+# ---------------------------------------------------------------------------
 # command line
 # ---------------------------------------------------------------------------
 def _parse_seeds(text: str) -> list[int]:
@@ -989,7 +1082,18 @@ def _main(argv: Optional[list[str]] = None) -> int:
     rb.add_argument("--workers", type=int, default=max(1, os.cpu_count() or 1))
     rb.add_argument("--cache", default="runs_cache")
     rb.add_argument("--budget", type=float, default=None)
+    cp = sub.add_parser("compare", help="final comparison: original system vs the full new system on every scenario")
+    cp.add_argument("--scenarios", default="all")
+    cp.add_argument("--seeds", default="0-2")
+    cp.add_argument("--workers", type=int, default=max(1, os.cpu_count() or 1))
+    cp.add_argument("--cache", default="runs_cache")
+    cp.add_argument("--budget", type=float, default=None)
     a = ap.parse_args(argv)
+    if a.cmd == "compare":
+        from .scenarios import SCENARIOS
+        scen = list(SCENARIOS) if a.scenarios == "all" else a.scenarios.split(",")
+        print(format_comparison(comparison_experiment(comparison_systems(), scen, _parse_seeds(a.seeds), a.cache, workers=a.workers, budget_s=a.budget)))
+        return 0
     if a.cmd == "robustness":
         from .config import OccupancyConfig
         occ = OccupancyConfig(pir_horizon_s=a.horizon * 3600.0) if a.horizon > 0 else None

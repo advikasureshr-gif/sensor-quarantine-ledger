@@ -214,7 +214,7 @@ class OccupancyConfig:
     The horizon is the key trade-off: short = more false alarms for long stays, long = a spoofed
     PIR is believed for longer. It is meant to be swept in the experiments, not trusted as given.
     """
-    pir_horizon_s: float = 4 * 3600.0
+    pir_horizon_s: float = 12 * 3600.0   # measured (21-day benign runs, 2 seeds): 8 h falsely emptied the room during 9-hour stays (0.56% false SUSPICIOUS vs 0.22% original); 12 h gives 0.32% and keeps nearly all the poisoning protection
     pir_cap: float = 0.8
     occupied_threshold: float = 0.6
     empty_threshold: float = 0.2
