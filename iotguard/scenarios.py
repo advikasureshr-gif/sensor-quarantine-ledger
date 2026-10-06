@@ -265,6 +265,8 @@ PROFILES: dict[str, tuple[WorldConfig, SensorConfig]] = {
     "flickery_light": (WorldConfig(cloud_events_per_h=2.0, cloud_drop_range=(0.3, 0.7)), SensorConfig()),
     # a cheap or badly placed PIR: twelve times the false triggers, and misses more motion
     "noisy_pir": (WorldConfig(), SensorConfig(pir_false_per_h=6.0, pir_detect_p=0.6)),
+    # the sensor you actually have: a DHT11 (whole-degree / whole-percent steps, +-2 C and +-5 %RH class accuracy)
+    "dht11": (WorldConfig(), SensorConfig.dht11()),
 }
 
 
