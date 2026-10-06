@@ -7,6 +7,8 @@ run.py - run the whole system on live data, a recorded log, or a simulated scena
 
 Options:  --demo FACTOR   shorten the long timers (calibration etc.) by FACTOR for a tabletop demo (UNVALIDATED, see presets.py)
           --ledger FILE   write the tamper-evident ledger there      --quiet   print only non-TRUSTED windows and events
+          --state FILE    save the whole system state there (autosaved, and on exit) and RESUME from it if it exists, so a
+                          restart does not cost a calibration or clear a quarantine. Use the same --ledger so edits are detected.
           --admin-env VAR read the admin secret from environment variable VAR (enables authentication)
 While running, type "release <sensor>" (dht, pir, door or ldr) to start probation for a quarantined sensor, or
 "recalibrate", using the admin secret from --admin-env.
@@ -19,9 +21,11 @@ import sys
 import threading
 from typing import Callable, Iterable, Optional
 
+from pathlib import Path
+
 from .config import Config
 from .consensus import Trust
-from .pipeline import Phase, Pipeline, WindowOutcome
+from .pipeline import Phase, Pipeline, StateIntegrityError, StateMismatchError, WindowOutcome
 from .presets import demo_setup, room_setup
 from .security import AdminAuth, AuthError, Ledger
 from .sources import ReplaySource, SerialSource, Source, strip_labels
@@ -37,7 +41,7 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
     ap.add_argument("--days", type=float, default=None, help="length of a simulated scenario")
     ap.add_argument("--speed", type=float, default=None, help="replay pacing (1 = real time); default: as fast as possible")
     ap.add_argument("--demo", type=float, default=None, metavar="FACTOR")
-    ap.add_argument("--ledger"); ap.add_argument("--quiet", action="store_true"); ap.add_argument("--admin-env")
+    ap.add_argument("--ledger"); ap.add_argument("--quiet", action="store_true"); ap.add_argument("--admin-env"); ap.add_argument("--state")
     a = ap.parse_args(argv)
 
     cfg, cons = demo_setup(a.demo) if a.demo else room_setup()
@@ -52,7 +56,20 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
         echo("note: no --admin-env given, so admin actions are not authenticated (fine for simulation and testing)")
     if a.demo:
         echo(f"DEMO preset x{a.demo:g}: long timers shortened; this preset has not been validated (see presets.py)")
-    pipe = Pipeline(cfg, consensus=cons, ledger=ledger, auth=auth)
+    resumed = False
+    if a.state and Path(a.state).exists():
+        try:
+            pipe = Pipeline.load(a.state, cfg, cons, ledger=ledger, auth=auth, state_path=a.state)
+        except (StateIntegrityError, StateMismatchError, ValueError) as e:
+            echo(f"cannot resume from {a.state}: {e}")
+            return 2
+        resumed = True
+        echo(f"resumed from {a.state}: phase {pipe.phase.value}, {pipe.n_windows} windows already processed, baseline version {pipe.registry.current}")
+        for sname, st in pipe.security.state.items():
+            if st.value != "ACTIVE":
+                echo(f"  sensor {sname} is still {st.value}")
+    else:
+        pipe = Pipeline(cfg, consensus=cons, ledger=ledger, auth=auth, state_path=a.state)
 
     if source is None:
         if a.port:
@@ -80,9 +97,12 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
             pass
     threading.Thread(target=commands, daemon=True).start()
 
-    pipe.start_calibration(secret)
-    echo(f"calibrating: needs {cfg.calibration.min_duration_s / 3600:.1f} h of data and {cfg.calibration.min_trusted_windows} trusted windows"
-         + (" (Ctrl+C to stop)" if a.port else ""))
+    if not resumed or pipe.phase is Phase.IDLE:
+        pipe.start_calibration(secret)
+        echo(f"calibrating: needs {cfg.calibration.min_duration_s / 3600:.1f} h of data and {cfg.calibration.min_trusted_windows} trusted windows"
+             + (" (Ctrl+C to stop)" if a.port else ""))
+    elif pipe.phase is Phase.CALIBRATION_FAILED:
+        echo("the previous calibration failed; type 'recalibrate' (admin) to try again")
     shown_cal = 0
 
     def show(o: WindowOutcome) -> None:

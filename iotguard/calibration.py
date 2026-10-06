@@ -75,6 +75,22 @@ class Calibrator:
         self._corroborated: list[bool] = []
         self.n_invalid = 0
         self.result: Optional[CalibrationResult] = None
+        self._pending_shift = False
+
+    # ---- saving and restoring: a restart during a 2-day calibration must not throw the collected data away ----------
+    def get_state(self) -> tuple[dict, Optional[np.ndarray]]:
+        """(plain data, feature matrix). Times are stored relative to the newest candidate (<= 0)."""
+        last = self._t[-1] if self._t else 0.0
+        meta = {"t_rel": [t - last for t in self._t], "bad": list(self._bad), "corroborated": [bool(c) for c in self._corroborated],
+                "n_invalid": self.n_invalid}
+        return meta, (np.vstack(self._x) if self._x else None)
+
+    def set_state(self, meta: dict, X: Optional[np.ndarray]) -> None:
+        self.reset()
+        self._t = list(meta["t_rel"])
+        self._x = [] if X is None else [row.copy() for row in X]
+        self._bad, self._corroborated, self.n_invalid = list(meta["bad"]), list(meta["corroborated"]), int(meta["n_invalid"])
+        self._pending_shift = bool(self._t)
 
     # ---- feeding -------------------------------------------------------------------------------
     def add(self, w: WindowFeatures, cons: ConsensusResult) -> Optional[CalibrationResult]:
@@ -84,6 +100,10 @@ class Calibrator:
         """
         if self.result is not None and self.result.status is not CalibrationStatus.COLLECTING:
             return None
+        if self._pending_shift:                       # first window after a restore: anchor the saved times to the new clock
+            base = w.t_start - self.window_s
+            self._t = [base + r for r in self._t]
+            self._pending_shift = False
         if not w.valid:
             self.n_invalid += 1
             return None
@@ -157,3 +177,4 @@ class Calibrator:
         self._t, self._x, self._bad, self._corroborated = [], [], [], []
         self.n_invalid = 0
         self.result = None
+        self._pending_shift = False

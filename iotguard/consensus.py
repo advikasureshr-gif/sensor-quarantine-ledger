@@ -158,6 +158,44 @@ class ConsensusEngine:
         self._bucket = 0.0                    # leaky bucket of unexplained PIR seconds
         self._light_enforced = False
         self._bucket_thr = math.inf
+        self._pending_rebase: Optional[dict] = None   # ages restored from a saved state, applied at the first sample
+
+    # ---- saving and restoring (see Pipeline.save / Pipeline.load) -----------------------------------------------
+    def get_state(self) -> dict:
+        """
+        What must survive a restart: the occupancy belief and the settings this room taught the engine. Times are
+        stored as AGES relative to the last sample, so they stay meaningful if the device's clock restarts.
+        Not saved (rebuilt within a minute): the recent-sample history and half-judged door openings.
+        """
+        ref = self._prev_t
+        age = lambda v: None if (v is None or v == -math.inf or ref is None) else ref - v
+        return {"state": self.state.value, "conf": self._conf, "exit_pending": self._exit_pending,
+                "exit_candidate": self._exit_candidate,
+                "ages": {"t_ind": age(self._t_ind), "passage_t": age(self._passage_t), "last_motion_t": age(self._last_motion_t)},
+                "calib": self._calib, "n_light_step": self._n_light_step, "n_light_nostep": self._n_light_nostep,
+                "empty_s": self._empty_s, "unexp_s": self._unexp_s, "bucket": self._bucket,
+                "light_enforced": self._light_enforced, "bucket_thr": None if math.isinf(self._bucket_thr) else self._bucket_thr}
+
+    def set_state(self, d: dict) -> None:
+        self.reset()
+        self.state = Occupancy(d["state"])
+        self._conf, self._exit_pending, self._exit_candidate = d["conf"], d["exit_pending"], d["exit_candidate"]
+        self._calib, self._n_light_step, self._n_light_nostep = d["calib"], d["n_light_step"], d["n_light_nostep"]
+        self._empty_s, self._unexp_s, self._bucket = d["empty_s"], d["unexp_s"], d["bucket"]
+        self._light_enforced = d["light_enforced"]
+        self._bucket_thr = math.inf if d["bucket_thr"] is None else d["bucket_thr"]
+        self._pending_rebase = d["ages"]
+
+    def reset_occupancy(self) -> None:
+        """Forget who is in the room (used after a long downtime), keeping what the room taught the engine."""
+        self.state, self._conf, self._exit_pending, self._exit_candidate = Occupancy.UNKNOWN, 0.0, False, False
+        self._last_motion_t, self._passage_t, self._bucket = None, -math.inf, 0.0
+
+    def _apply_rebase(self, t0: float) -> None:
+        a, self._pending_rebase = self._pending_rebase, None
+        self._t_ind = t0 - a["t_ind"] if a["t_ind"] is not None else t0
+        self._passage_t = t0 - a["passage_t"] if a["passage_t"] is not None else -math.inf
+        self._last_motion_t = t0 - a["last_motion_t"] if a["last_motion_t"] is not None else None
 
     def end_calibration(self) -> None:
         """
@@ -276,6 +314,8 @@ class ConsensusEngine:
     def evaluate(self, w: WindowFeatures) -> ConsensusResult:
         if not w.samples:
             raise ValueError("window has no samples; extract windows with keep_samples=True")
+        if self._pending_rebase is not None:
+            self._apply_rebase(w.samples[0].t)
         c = self.cfg
         n_ok = n_bad = n_step = n_nostep = n_unexplained_steps = 0
         unexplained_s = unverified_s = 0.0
@@ -428,6 +468,12 @@ class Gate:
 
     def reset(self) -> None:
         self.suspicion, self._held_run = 0.0, 0
+
+    def get_state(self) -> dict:
+        return {"suspicion": self.suspicion, "held_run": self._held_run}
+
+    def set_state(self, d: dict) -> None:
+        self.suspicion, self._held_run = float(d["suspicion"]), int(d["held_run"])
 
     def _negative_verdict(self, cons: ConsensusResult) -> tuple[Optional[Trust], str]:
         """What the contradictions alone say. (None, "") when there are none."""

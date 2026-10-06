@@ -22,9 +22,15 @@ only appropriate for simulation and development.
 
 from __future__ import annotations
 
+import hashlib
+import io
+import json
 import math
+import os
+import time
 from dataclasses import dataclass, field
 from enum import Enum
+from pathlib import Path
 from typing import Callable, Iterable, Optional
 
 import numpy as np
@@ -34,9 +40,22 @@ from .config import DEFAULT_CONFIG, Config, ConsensusConfig
 from .consensus import ConsensusEngine, ConsensusResult, Decision, Gate, Trust
 from .contract import Reading
 from .features import WindowExtractor, WindowFeatures
-from .gaussian import GaussianModel
+from .gaussian import BaselineSnapshot, GaussianModel
 from .preprocess import Preprocessor
 from .security import AdminAuth, BaselineRegistry, Ledger, SecurityEvent, SecurityManager
+
+
+class StateIntegrityError(ValueError):
+    """The saved state does not match the hash the ledger recorded when it was saved: it was altered."""
+
+
+class StateMismatchError(ValueError):
+    """The saved state was made with different settings (features, thresholds, ...) than the ones in use now."""
+
+
+def config_fingerprint(cfg: Config, consensus: ConsensusConfig) -> str:
+    """Identifies the settings a saved state depends on; a state is never loaded under different ones."""
+    return hashlib.sha256(repr((cfg.features, cfg.online_stats, cfg.anomaly, cfg.calibration, cfg.security, consensus)).encode()).hexdigest()
 
 
 class Phase(str, Enum):
@@ -86,7 +105,8 @@ class _Lite:
 class Pipeline:
     def __init__(self, cfg: Config = DEFAULT_CONFIG, consensus: Optional[ConsensusConfig] = None,
                  ledger: Optional[Ledger] = None, auth: Optional[AdminAuth] = None, naive_twin: bool = False,
-                 checkpoint_every_windows: int = 2880) -> None:
+                 checkpoint_every_windows: int = 2880, state_path=None, autosave_every_windows: int = 120,
+                 wall_clock=time.time) -> None:
         self.cfg = cfg
         self.consensus_cfg = consensus if consensus is not None else cfg.consensus
         self.ledger, self.auth = ledger, auth
@@ -107,6 +127,12 @@ class Pipeline:
         self.checkpoint_every = checkpoint_every_windows
         self._since_checkpoint = 0
         self.n_windows = 0
+        self.state_path = Path(state_path) if state_path else None
+        self.autosave_every = autosave_every_windows
+        self._wall = wall_clock
+        self._since_save = 0
+        self._last_t: Optional[float] = None
+        self._last_index: Optional[int] = None
 
     # ---- admin actions ----------------------------------------------------------------------------------
     def _authorize(self, credential: Optional[str], t: float) -> None:
@@ -148,12 +174,16 @@ class Pipeline:
     def run(self, source: Iterable[Reading], on_outcome: Optional[Callable[[WindowOutcome], None]] = None) -> list[WindowOutcome]:
         """Process a whole source (live sources run until stopped). Returns every outcome unless `on_outcome` is given."""
         results = []
-        for r in source:
-            for o in self.push(r):
-                if on_outcome:
-                    on_outcome(o)
-                else:
-                    results.append(o)
+        try:
+            for r in source:
+                for o in self.push(r):
+                    if on_outcome:
+                        on_outcome(o)
+                    else:
+                        results.append(o)
+        finally:
+            if self.state_path is not None and self._last_t is not None:
+                self.save()                       # also on Ctrl+C or a lost connection
         return results
 
     def process_window(self, w: WindowFeatures) -> WindowOutcome:
@@ -166,10 +196,12 @@ class Pipeline:
     def process(self, x: np.ndarray, cons: ConsensusResult, t: float, index: int, valid: bool = True, lite=None) -> WindowOutcome:
         o = WindowOutcome(index, t, self.phase, valid, cons, features=x)
         self.n_windows += 1
+        self._last_t, self._last_index = t, cons.index
         if self.phase is Phase.CALIBRATING:
             self._calibrate(o, lite if lite is not None else _Lite(valid, t, x, index), cons)
         elif self.phase is Phase.OPERATING and valid:
             self._operate(o, x, cons, t)
+        self._autosave()
         return o
 
     def _calibrate(self, o: WindowOutcome, w, cons: ConsensusResult) -> None:
@@ -213,3 +245,101 @@ class Pipeline:
         if self.ledger is not None and self._since_checkpoint >= self.checkpoint_every:
             self._since_checkpoint = 0
             self.registry.checkpoint(self.model, t)
+
+    def _autosave(self) -> None:
+        if self.state_path is not None:
+            self._since_save += 1
+            if self._since_save >= self.autosave_every:
+                self.save()
+
+    # ---- saving and restoring ---------------------------------------------------------------------------------
+    def save(self, path=None) -> str:
+        """
+        Write everything a restart must not lose (see the module docs of the parts) to one file, atomically, and put its
+        SHA-256 in the ledger so a later edit of the file is detectable. Returns the file's hash.
+        """
+        path = Path(path or self.state_path)
+        if path is None:
+            raise ValueError("no path to save to")
+        t_ref = 0.0 if self._last_t is None else self._last_t
+        idx_ref = 0 if self._last_index is None else self._last_index
+        versions, arrays = self.registry.get_state()
+        meta = {"format": 1, "saved_wall": self._wall(), "fingerprint": config_fingerprint(self.cfg, self.consensus_cfg),
+                "phase": self.phase.value, "n_windows": self.n_windows, "since_checkpoint": self._since_checkpoint,
+                "naive_wanted": self._naive_wanted, "registry": versions,
+                "registry_updates": {str(v): self.registry.snapshot(v).n_updates for v in self.registry._snapshots},
+                "engine": self.engine.get_state(), "gate": self.gate.get_state(),
+                "security": self.security.get_state(t_ref, idx_ref), "has_model": self.model is not None,
+                "has_naive": self.naive is not None and self.model is not None}
+        for tag, model in (("model", self.model), ("naive", self.naive if self.model is not None else None)):
+            if model is not None and model.fitted:
+                snap = model.snapshot()
+                meta[f"{tag}_names"], meta[f"{tag}_updates"] = list(snap.names), snap.n_updates
+                for f in ("mu", "sigma", "mu_cal", "sigma_cal"):
+                    arrays[f"{tag}_{f}"] = getattr(snap, f)
+        if self.calibrator is not None and self.phase is Phase.CALIBRATING:
+            cm, X = self.calibrator.get_state()
+            meta["calibrator"] = cm
+            if X is not None:
+                arrays["calib_x"] = X
+        arrays["meta_json"] = np.frombuffer(json.dumps(meta, sort_keys=True).encode(), dtype=np.uint8)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_name(path.name + ".tmp")
+        with open(tmp, "wb") as f:
+            np.savez(f, **arrays)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, path)                                   # a crash mid-save leaves the previous file intact
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        if self.ledger is not None:
+            self.ledger.append("state_saved", t_ref, sha256=digest, file=path.name)
+        self._since_save = 0
+        return digest
+
+    @classmethod
+    def load(cls, path, cfg: Config = DEFAULT_CONFIG, consensus: Optional[ConsensusConfig] = None, ledger: Optional[Ledger] = None,
+             auth: Optional[AdminAuth] = None, max_downtime_s: float = 600.0, wall_now: Optional[float] = None, **kw) -> "Pipeline":
+        """
+        Resume from a saved state. Refuses (StateIntegrityError) if the ledger recorded a different hash for the last
+        save, and (StateMismatchError) if the settings differ from those the state was made with. If the host was off
+        longer than `max_downtime_s`, the belief about who is in the room is reset (it is stale), but the baseline, the
+        room's learned settings and every sensor's quarantine are kept.
+        """
+        data = Path(path).read_bytes()
+        digest = hashlib.sha256(data).hexdigest()
+        if ledger is not None:
+            saves = ledger.events("state_saved")
+            if saves and saves[-1]["data"]["sha256"] != digest:
+                raise StateIntegrityError("the saved state does not match the hash recorded in the ledger: it was altered or is not the latest save")
+        z = np.load(io.BytesIO(data), allow_pickle=False)
+        meta = json.loads(bytes(z["meta_json"]).decode())
+        consensus_cfg = consensus if consensus is not None else cfg.consensus
+        if meta["fingerprint"] != config_fingerprint(cfg, consensus_cfg):
+            raise StateMismatchError("the saved state was made with different settings; load it with the settings it was saved under")
+        p = cls(cfg, consensus=consensus_cfg, ledger=ledger, auth=auth, naive_twin=meta["naive_wanted"], **kw)
+        arrays = {k: z[k] for k in z.files}
+        reg_names = tuple(meta["model_names"]) if meta["has_model"] else GaussianModel(cfg.online_stats, cfg.features.feature_names).names
+        p.registry.set_state(meta["registry"], {k: v for k, v in arrays.items() if k.startswith("reg")}, reg_names,
+                             {int(k): v for k, v in meta["registry_updates"].items()})
+        for tag, attr in (("model", "model"), ("naive", "naive")):
+            if meta.get(f"has_{tag}") and f"{tag}_mu" in arrays:
+                m = GaussianModel(cfg.online_stats, cfg.features.feature_names)
+                m.restore(BaselineSnapshot(tuple(meta[f"{tag}_names"]), arrays[f"{tag}_mu"], arrays[f"{tag}_sigma"],
+                                           arrays[f"{tag}_mu_cal"], arrays[f"{tag}_sigma_cal"], meta[f"{tag}_updates"]))
+                setattr(p, attr, m)
+        p.phase = Phase(meta["phase"])
+        p.n_windows, p._since_checkpoint = meta["n_windows"], meta["since_checkpoint"]
+        p.engine.set_state(meta["engine"])
+        p.gate.set_state(meta["gate"])
+        p.security.set_state(meta["security"])
+        if "calibrator" in meta:
+            p.calibrator = Calibrator(cfg.calibration, cfg.online_stats, consensus_cfg, cfg.features.feature_names, p.window_s)
+            p.calibrator.set_state(meta["calibrator"], arrays.get("calib_x"))
+        now = wall_now if wall_now is not None else p._wall()
+        downtime = max(0.0, now - meta["saved_wall"])
+        if downtime > max_downtime_s:
+            p.engine.reset_occupancy()
+            p.gate.reset()
+        if ledger is not None:
+            ledger.append("state_loaded", None, sha256=digest, downtime_s=round(downtime, 1), occupancy_reset=downtime > max_downtime_s)
+        return p
