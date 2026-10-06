@@ -54,6 +54,7 @@ class SourceStats:
     bad_lines: int = 0        # unparseable / contract-violating lines
     out_of_order: int = 0     # dropped: t went (slightly) backwards
     time_resets: int = 0      # clock restarts (e.g. ESP32 reboot) stitched over
+    reconnects: int = 0       # live sources: times the connection was re-established
     first_errors: list[str] = field(default_factory=list)  # first few messages, for debugging
 
     MAX_ERRORS_KEPT = 5
@@ -73,6 +74,8 @@ class SourceStats:
             parts.append(f"{self.out_of_order} out-of-order dropped")
         if self.time_resets:
             parts.append(f"{self.time_resets} clock reset(s) stitched")
+        if self.reconnects:
+            parts.append(f"{self.reconnects} reconnect(s)")
         return ", ".join(parts)
 
 
@@ -120,6 +123,21 @@ class Source(ABC):
             last_t = out.t
             self.stats.readings += 1
             yield out
+
+    def _parse_text(self, text: str, lineno: int) -> Optional[Reading]:
+        """
+        One line of device text -> Reading, or None. Blank lines and '#' comments are skipped silently;
+        anything unparseable is counted (and its message kept for debugging). Used by text-based sources.
+        """
+        s = text.strip()
+        if not s or s.startswith("#"):
+            self.stats.comments += 1
+            return None
+        try:
+            return parse_line(_extract_json(s))
+        except ContractError as e:
+            self.stats.note_bad(lineno, str(e))
+            return None
 
     # -- lifecycle (no-ops for sources holding no resources) -----------------
     def close(self) -> None:
@@ -204,6 +222,143 @@ class ReplaySource(Source):
                     if delay > 0:
                         time.sleep(delay)
                 yield r
+
+
+# ---------------------------------------------------------------------------
+# SerialSource: the live ESP32 over USB
+# ---------------------------------------------------------------------------
+def list_serial_ports() -> list[tuple[str, str]]:
+    """(device, description) for every serial port the computer can see. Needs pyserial."""
+    try:
+        from serial.tools import list_ports
+    except ImportError:
+        raise ImportError("pyserial is required for live input: pip install pyserial") from None
+    return [(p.device, p.description) for p in list_ports.comports()]
+
+
+def _open_pyserial(port: str, baud: int, timeout: float):
+    try:
+        import serial
+    except ImportError:
+        raise ImportError("pyserial is required for live input: pip install pyserial") from None
+    # serial_for_url accepts plain names ("COM3", "/dev/ttyUSB0") and test URLs such as "loop://"
+    ser = serial.serial_for_url(port, baudrate=baud, timeout=timeout)
+    try:
+        ser.reset_input_buffer()          # drop anything buffered before we opened the port
+    except Exception:
+        pass
+    return ser
+
+
+class SerialSource(Source):
+    """
+    Live readings from the ESP32's USB serial port (one JSON line per reading, see contract.py).
+
+    * Reassembles lines that arrive in pieces; ignores boot messages and garbage (counted as bad lines);
+      accepts '#' comments, CRLF endings and serial-monitor timestamp prefixes.
+    * Survives the board resetting (its clock restarts; the base class stitches the timeline) and a
+      cable being unplugged: it reconnects every `reconnect_wait_s` (forever by default; set
+      `max_reconnects` to give up). No data for `max_idle_s` also counts as a lost connection.
+    * `on_line(text, reading_or_None)` is called for every complete line, which is how the log recorder
+      sees exactly what the device sent. `on_event(message)` reports connect/disconnect.
+    * `stop()` ends iteration cleanly (within about `read_timeout_s`).
+    Time comes from the device (`t` = millis()/1000), never from this computer's clock.
+    """
+
+    def __init__(self, port: str, baud: int = 115200, *, read_timeout_s: float = 1.0, max_idle_s: float = 20.0,
+                 reconnect: bool = True, reconnect_wait_s: float = 2.0, max_reconnects: Optional[int] = None,
+                 opener=None, on_line=None, on_event=None, **kw) -> None:
+        super().__init__(**kw)
+        self.port, self.baud = port, baud
+        self.read_timeout_s, self.max_idle_s = read_timeout_s, max_idle_s
+        self.reconnect, self.reconnect_wait_s, self.max_reconnects = reconnect, reconnect_wait_s, max_reconnects
+        self._opener = opener or (lambda: _open_pyserial(self.port, self.baud, self.read_timeout_s))
+        self.on_line, self.on_event = on_line, on_event
+        self._stop = False
+        self._ser = None
+
+    def stop(self) -> None:
+        self._stop = True
+
+    def _event(self, msg: str) -> None:
+        if self.on_event:
+            self.on_event(msg)
+
+    def close(self) -> None:
+        self._stop = True
+        ser, self._ser = self._ser, None
+        if ser is not None:
+            try:
+                ser.close()
+            except Exception:
+                pass
+
+    def _raw(self) -> Iterator[Reading]:
+        self._stop = False
+        attempts = 0                              # consecutive failed (re)connections
+        lineno = 0
+        while not self._stop:
+            try:
+                self._ser = ser = self._opener()
+            except ImportError:
+                raise                             # missing driver: retrying cannot help
+            except Exception as e:
+                attempts += 1
+                self._event(f"cannot open {self.port}: {e}")
+                if not self.reconnect or (self.max_reconnects is not None and attempts > self.max_reconnects):
+                    raise
+                self._sleep(self.reconnect_wait_s)
+                continue
+            self._event(f"connected to {self.port}")
+            if attempts or self.stats.lines:
+                self.stats.reconnects += 1
+            buf = b""
+            last_data = time.monotonic()
+            healthy = False                       # has this connection delivered anything yet?
+            try:
+                while not self._stop:
+                    chunk = ser.readline()
+                    now = time.monotonic()
+                    if not chunk:                                    # read timed out
+                        if now - last_data > self.max_idle_s:
+                            raise TimeoutError(f"no data for {self.max_idle_s:g} s")
+                        continue
+                    last_data = now
+                    if not healthy:                                  # data arrived: the connection works, so forget past failures
+                        healthy, attempts = True, 0
+                    if not chunk.endswith(b"\n"):                    # a piece of a line: keep it
+                        buf += chunk
+                        continue
+                    data, buf = buf + chunk, b""
+                    lineno += 1
+                    self.stats.lines += 1
+                    text = data.decode("utf-8", errors="replace").strip()
+                    r = self._parse_text(text, lineno)
+                    if self.on_line:
+                        self.on_line(text, r)
+                    if r is not None:
+                        yield r
+            except OSError as e:                                     # unplugged, reset, idle timeout
+                self._event(f"lost connection: {e}")
+                if not self.reconnect:
+                    raise
+            finally:
+                try:
+                    ser.close()
+                except Exception:
+                    pass
+                self._ser = None
+            if not self._stop:
+                attempts += 1
+                if self.max_reconnects is not None and attempts > self.max_reconnects:
+                    raise ConnectionError(f"gave up on {self.port} after {self.max_reconnects} reconnect attempts")
+                self._sleep(self.reconnect_wait_s)
+
+    def _sleep(self, seconds: float) -> None:
+        """Sleep in small steps so stop() is honoured promptly."""
+        end = time.monotonic() + seconds
+        while not self._stop and time.monotonic() < end:
+            time.sleep(min(0.05, max(0.0, end - time.monotonic())))
 
 
 # ---------------------------------------------------------------------------

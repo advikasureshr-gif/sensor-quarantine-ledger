@@ -81,6 +81,7 @@ class GaussianModel:
         self.sigma_cal: Optional[np.ndarray] = None
         self._std_cal: Optional[np.ndarray] = None
         self._P: Optional[np.ndarray] = None          # inverse of Sigma_eff, cached
+        self._P_sub: dict[tuple, np.ndarray] = {}     # inverses of Sigma_eff restricted to a subset of features
         self._P_cal: Optional[np.ndarray] = None
         self.n_updates = 0
 
@@ -109,6 +110,7 @@ class GaussianModel:
 
     def _refresh(self) -> None:
         self._P = np.linalg.inv(self._eff(self.sigma))
+        self._P_sub = {}
 
     # ---- calibration -----------------------------------------------------------------------
     def fit(self, X: np.ndarray) -> None:
@@ -129,33 +131,72 @@ class GaussianModel:
         self._refresh()
 
     # ---- scoring ---------------------------------------------------------------------------
-    def score(self, x) -> float:
-        """Mahalanobis distance of one feature vector from the current baseline."""
+    def score(self, x, exclude=()) -> float:
+        """
+        Mahalanobis distance of one feature vector from the current baseline. `exclude` names features to leave
+        out (a quarantined sensor's): the score is then the distance in the remaining features' own marginal
+        distribution, so a faulty sensor cannot make healthy ones look anomalous.
+        """
         self._require_fit()
+        keep = self._keep(exclude)
         dv = self._transform(x) - self.mu
-        return float(np.sqrt(max(dv @ self._P @ dv, 0.0)))
+        if keep is not None:
+            dv = dv[list(keep)]
+        return float(np.sqrt(max(dv @ self._precision(keep) @ dv, 0.0)))
+
+    def _keep(self, exclude) -> Optional[tuple[int, ...]]:
+        """Indices of the modelled features that are NOT excluded; None if nothing is excluded."""
+        if not exclude:
+            return None
+        unknown = [n for n in exclude if n not in self.all_names]
+        if unknown:
+            raise ValueError(f"unknown features to exclude: {unknown}")
+        ex = set(exclude)
+        keep = tuple(i for i, n in enumerate(self.names) if n not in ex)
+        if not keep:
+            raise ValueError("cannot exclude every modelled feature")
+        return None if len(keep) == self.d else keep
+
+    def _precision(self, keep: Optional[tuple[int, ...]]) -> np.ndarray:
+        if keep is None:
+            return self._P
+        if keep not in self._P_sub:
+            idx = np.array(keep)
+            self._P_sub[keep] = np.linalg.inv(self._eff(self.sigma)[np.ix_(idx, idx)])
+        return self._P_sub[keep]
 
     def score_many(self, X) -> np.ndarray:
         self._require_fit()
         dv = self._transform(X) - self.mu
         return np.sqrt(np.maximum(np.einsum("ij,jk,ik->i", dv, self._P, dv), 0.0))
 
-    def contributions(self, x) -> dict[str, float]:
-        """Each feature's share of D**2 (they sum to D**2). Can be negative for correlated features."""
+    def contributions(self, x, exclude=()) -> dict[str, float]:
+        """Each (non-excluded) feature's share of D**2 (they sum to D**2). Can be negative for correlated features."""
         self._require_fit()
+        keep = self._keep(exclude)
         dv = self._transform(x) - self.mu
-        return dict(zip(self.names, (dv * (self._P @ dv)).tolist()))
+        if keep is None:
+            return dict(zip(self.names, (dv * (self._P @ dv)).tolist()))
+        dk = dv[list(keep)]
+        return dict(zip([self.names[i] for i in keep], (dk * (self._precision(keep) @ dk)).tolist()))
 
     # ---- learning ----------------------------------------------------------------------------
-    def update(self, x, alpha: float) -> bool:
+    def update(self, x, alpha: float, exclude=()) -> bool:
         """
         Learn from one window at rate `alpha` (0 = frozen: nothing changes, bit for bit).
+        `exclude` names features of a quarantined sensor: they are replaced by the baseline's own mean, so the
+        sensor cannot move the baseline (its variance shrinks very slowly, as for any window that agrees with the mean).
         Returns True if the drift cap clipped the mean.
         """
         self._require_fit()
         if not 0.0 <= alpha <= 1.0:
             raise ValueError("alpha must be in [0, 1]")
         z = self._transform(x)               # validate even when frozen
+        keep = self._keep(exclude)
+        if keep is not None and alpha > 0.0:
+            drop = [i for i in range(self.d) if i not in set(keep)]
+            z = z.copy()
+            z[drop] = self.mu[drop]
         if alpha == 0.0:
             return False
         dv = z - self.mu

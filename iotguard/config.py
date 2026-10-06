@@ -107,18 +107,41 @@ class DemoFeatureConfig(FeatureConfig):
 # ---------------------------------------------------------------------------
 @dataclass(frozen=True)
 class CalibrationConfig:
-    # Need at least this many trusted windows before mu/Sigma may be built.
+    """
+    Authenticated, screened construction of baseline v1. The baseline is never built from whatever data
+    happened to arrive: it needs enough TRUSTED windows over enough time, or calibration fails and alerts.
+
+    A candidate window is TRUSTED if (1) the consensus engine finds no contradiction in it (cross-sensor
+    validation) and (2) it is not a robust statistical outlier, unless it is corroborated by a door entry
+    (real entries look extreme but are legitimate, so they must stay in the baseline).
+    """
+    # Enough data: at least this long (should cover a full daily cycle in a real room) and this many trusted windows.
+    min_duration_s: float = 2 * 86400.0
+    min_trusted_windows: int = 1000
+    # If fewer than this share of candidate windows are trusted, the data looks contaminated or the room unstable.
+    min_trusted_fraction: float = 0.5
+    # Give up (fail and alert the admin) if the requirements are still not met after this long.
+    max_duration_s: float = 5 * 86400.0
+    # Robust outlier screening: a window is an outlier if any feature is more than this many robust standard
+    # deviations (1.4826 x MAD, never less than the model's variance floor) from the median of the other windows.
+    mad_outlier_threshold: float = 6.0
+    # Re-check the requirements every this many candidate windows while collecting.
+    check_every_windows: int = 120
+
+    def __post_init__(self) -> None:
+        if not 0.0 < self.min_trusted_fraction <= 1.0 or self.mad_outlier_threshold <= 0:
+            raise ValueError("min_trusted_fraction must be in (0, 1] and mad_outlier_threshold > 0")
+        if self.min_duration_s <= 0 or self.max_duration_s < self.min_duration_s or self.min_trusted_windows < 1:
+            raise ValueError("need 0 < min_duration_s <= max_duration_s and min_trusted_windows >= 1")
+
+
+# Short calibration for a tabletop demo (5 s windows): about 5 minutes instead of 2 days.
+@dataclass(frozen=True)
+class DemoCalibrationConfig(CalibrationConfig):
+    min_duration_s: float = 300.0
     min_trusted_windows: int = 50
-
-    # Robust screening: a candidate window is dropped before the consensus
-    # check if any feature is more than this many MADs from the running
-    # median of candidates so far (median absolute deviation, robust to
-    # outliers unlike mean/std).
-    mad_outlier_threshold: float = 3.5
-
-    # Calibration gives up (and alerts the admin) after this many candidate
-    # windows if min_trusted_windows still hasn't been reached.
-    max_candidate_windows: int = 400
+    max_duration_s: float = 1800.0
+    check_every_windows: int = 12
 
 
 # ---------------------------------------------------------------------------
@@ -379,13 +402,25 @@ class ConsensusConfig:
 # ---------------------------------------------------------------------------
 @dataclass(frozen=True)
 class SecurityConfig:
-    # Consecutive SUSPICIOUS windows before raising an alert / quarantine,
-    # per the "Persistence check" -> "Persistent" branch in the flow diagram.
+    """Persistence, alerts, per-sensor quarantine and recovery."""
+    # PERSISTENCE: this many consecutive SUSPICIOUS windows raise an alert (once per episode).
     suspicious_streak_for_alert: int = 4
 
-    # A quarantined sensor's features are excluded from mu/Sigma updates
-    # (not the whole system) until an admin clears probation.
-    probation_trusted_windows_required: int = 20
+    # QUARANTINE: a sensor is quarantined after an EPISODE of suspicion attributed to it that lasts this long.
+    # An episode continues while blamed windows are at most `episode_gap_windows` apart. It must be longer than a false
+    # alarm: on 2 simulated 21-day benign runs the longest false-alarm episode lasted 120 minutes, and a 2 h limit
+    # quarantined a healthy sensor once. 3 h leaves margin over that and still quarantines a 4 h stuck-PIR attack, but
+    # that is thin evidence (2 seeds): re-measure on real recordings.
+    quarantine_after_s: float = 10800.0
+    episode_gap_windows: int = 10
+
+    # RECOVERY: after an admin releases a sensor it is on probation and must show this many CONSECUTIVE
+    # clean windows (no contradiction attributed to it) before it influences learning again.
+    probation_windows: int = 120
+
+    def __post_init__(self) -> None:
+        if min(self.suspicious_streak_for_alert, self.episode_gap_windows, self.probation_windows) < 1 or self.quarantine_after_s <= 0:
+            raise ValueError("streak, gap and probation lengths must be >= 1 and quarantine_after_s > 0")
 
 
 # ---------------------------------------------------------------------------
@@ -404,4 +439,4 @@ class Config:
 
 
 DEFAULT_CONFIG = Config()
-DEMO_CONFIG = Config(features=DemoFeatureConfig())
+DEMO_CONFIG = Config(features=DemoFeatureConfig(), calibration=DemoCalibrationConfig())
