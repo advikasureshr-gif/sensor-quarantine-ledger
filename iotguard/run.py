@@ -19,8 +19,10 @@ from __future__ import annotations
 import argparse
 import math
 import os
+import signal
 import sys
 import threading
+import time
 from typing import Callable, Iterable, Optional
 
 from pathlib import Path
@@ -44,7 +46,24 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
     ap.add_argument("--speed", type=float, default=None, help="replay pacing (1 = real time); default: as fast as possible")
     ap.add_argument("--demo", type=float, default=None, metavar="FACTOR")
     ap.add_argument("--ledger"); ap.add_argument("--quiet", action="store_true"); ap.add_argument("--admin-env"); ap.add_argument("--state"); ap.add_argument("--naive", action="store_true")
+    ap.add_argument("--log", help="also write everything printed to this text file (each line stamped with the wall-clock time)")
     a = ap.parse_args(argv)
+
+    if a.log:
+        Path(a.log).parent.mkdir(parents=True, exist_ok=True)
+        logf = open(a.log, "a", encoding="utf-8", buffering=1)
+        plain_echo = echo
+        def echo(msg: str = "") -> None:                       # noqa: F811 - same name on purpose: every message goes to both
+            plain_echo(msg)
+            for line in str(msg).splitlines() or [""]:
+                logf.write(time.strftime("%Y-%m-%d %H:%M:%S ") + line + "\n")
+    else:
+        logf = None
+    old_term = None
+    try:
+        old_term = signal.signal(signal.SIGTERM, lambda *_: (_ for _ in ()).throw(KeyboardInterrupt()))   # kill / service stop = Ctrl+C
+    except (ValueError, OSError):
+        pass                                                   # not in the main thread (tests) or unsupported
 
     cfg, cons = demo_setup(a.demo) if a.demo else room_setup()
     ledger = Ledger(a.ledger) if a.ledger else Ledger()
@@ -143,6 +162,16 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
     for s, st in pipe.security.state.items():
         if st.value != "ACTIVE":
             echo(f"  sensor {s}: {st.value}")
+    for fault, since in pipe.watchdog.active_faults().items():
+        echo(f"  hardware fault still active: {fault} (since t={since:.0f}s)")
+    if isinstance(source, Source):
+        echo(f"  input: {source.stats.summary()}")
+    if a.state and pipe.state_path is not None:
+        echo(f"  state saved to {a.state}")
+    if old_term is not None:
+        signal.signal(signal.SIGTERM, old_term)
+    if logf is not None:
+        logf.close()
     return 0
 
 

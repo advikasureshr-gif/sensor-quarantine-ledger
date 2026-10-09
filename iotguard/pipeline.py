@@ -43,6 +43,7 @@ from .features import WindowExtractor, WindowFeatures
 from .gaussian import BaselineSnapshot, GaussianModel
 from .preprocess import Preprocessor
 from .security import AdminAuth, BaselineRegistry, Ledger, SecurityEvent, SecurityManager
+from .watchdog import HealthConfig, Watchdog
 
 
 class StateIntegrityError(ValueError):
@@ -108,7 +109,7 @@ class Pipeline:
     def __init__(self, cfg: Config = DEFAULT_CONFIG, consensus: Optional[ConsensusConfig] = None,
                  ledger: Optional[Ledger] = None, auth: Optional[AdminAuth] = None, naive_twin: bool = False,
                  checkpoint_every_windows: int = 2880, state_path=None, autosave_every_windows: int = 120,
-                 wall_clock=time.time) -> None:
+                 wall_clock=time.time, health: Optional[HealthConfig] = None) -> None:
         self.cfg = cfg
         self.consensus_cfg = consensus if consensus is not None else cfg.consensus
         self.ledger, self.auth = ledger, auth
@@ -135,6 +136,9 @@ class Pipeline:
         self._since_save = 0
         self._last_t: Optional[float] = None
         self._last_index: Optional[int] = None
+        self.watchdog = Watchdog(health if health is not None else HealthConfig())     # reports only; never changes a decision
+        self.health_events: list[SecurityEvent] = []
+        self._pending_health: list[SecurityEvent] = []
 
     # ---- admin actions ----------------------------------------------------------------------------------
     def _authorize(self, credential: Optional[str], t: float) -> None:
@@ -168,9 +172,18 @@ class Pipeline:
     # ---- streaming -----------------------------------------------------------------------------------------
     def push(self, reading: Reading) -> list[WindowOutcome]:
         """Feed one raw reading; returns an outcome for every window it completed."""
+        for h in self.watchdog.observe(reading):
+            ev = SecurityEvent(h.kind, h.t, self.n_windows, h.sensor, h.detail)
+            self.health_events.append(ev)
+            self._pending_health.append(ev)
+            if self.ledger:
+                self.ledger.append(h.kind, h.t, fault=h.fault, sensor=h.sensor, detail=h.detail)
         out = []
         for w in self.extractor.push(self.pre.process(reading)):
             out.append(self.process_window(w))
+        if self._pending_health and out:                # shown with the next finished window
+            out[0].events[:0] = self._pending_health
+            self._pending_health = []
         return out
 
     def run(self, source: Iterable[Reading], on_outcome: Optional[Callable[[WindowOutcome], None]] = None) -> list[WindowOutcome]:
