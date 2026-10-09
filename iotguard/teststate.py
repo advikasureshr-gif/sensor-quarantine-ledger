@@ -5,7 +5,7 @@ from dataclasses import replace
 import numpy as np
 import pytest
 
-from conftest import feed, key
+from iotguard.conftest import feed, key
 from iotguard.config import DEFAULT_CONFIG, OnlineStatsConfig
 from iotguard.pipeline import Phase, Pipeline, StateIntegrityError, StateMismatchError
 from iotguard.security import AdminAuth, Ledger, SensorState

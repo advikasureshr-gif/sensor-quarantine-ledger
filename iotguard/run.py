@@ -9,6 +9,7 @@ Options:  --demo FACTOR   shorten the long timers (calibration etc.) by FACTOR f
           --ledger FILE   write the tamper-evident ledger there      --quiet   print only non-TRUSTED windows and events
           --state FILE    save the whole system state there (autosaved, and on exit) and RESUME from it if it exists, so a
                           restart does not cost a calibration or clear a quarantine. Use the same --ledger so edits are detected.
+          --naive         also run an always-learning twin and print the daily baseline drift of both (the project's key comparison)
           --admin-env VAR read the admin secret from environment variable VAR (enables authentication)
 While running, type "release <sensor>" (dht, pir, door or ldr) to start probation for a quarantined sensor, or
 "recalibrate", using the admin secret from --admin-env.
@@ -16,6 +17,7 @@ While running, type "release <sensor>" (dht, pir, door or ldr) to start probatio
 from __future__ import annotations
 
 import argparse
+import math
 import os
 import sys
 import threading
@@ -41,7 +43,7 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
     ap.add_argument("--days", type=float, default=None, help="length of a simulated scenario")
     ap.add_argument("--speed", type=float, default=None, help="replay pacing (1 = real time); default: as fast as possible")
     ap.add_argument("--demo", type=float, default=None, metavar="FACTOR")
-    ap.add_argument("--ledger"); ap.add_argument("--quiet", action="store_true"); ap.add_argument("--admin-env"); ap.add_argument("--state")
+    ap.add_argument("--ledger"); ap.add_argument("--quiet", action="store_true"); ap.add_argument("--admin-env"); ap.add_argument("--state"); ap.add_argument("--naive", action="store_true")
     a = ap.parse_args(argv)
 
     cfg, cons = demo_setup(a.demo) if a.demo else room_setup()
@@ -69,7 +71,7 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
             if st.value != "ACTIVE":
                 echo(f"  sensor {sname} is still {st.value}")
     else:
-        pipe = Pipeline(cfg, consensus=cons, ledger=ledger, auth=auth, state_path=a.state)
+        pipe = Pipeline(cfg, consensus=cons, ledger=ledger, auth=auth, state_path=a.state, naive_twin=a.naive)
 
     if source is None:
         if a.port:
@@ -104,6 +106,7 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
     elif pipe.phase is Phase.CALIBRATION_FAILED:
         echo("the previous calibration failed; type 'recalibrate' (admin) to try again")
     shown_cal = 0
+    next_report = [None]
 
     def show(o: WindowOutcome) -> None:
         nonlocal shown_cal
@@ -117,6 +120,13 @@ def _main(argv: Optional[list[str]] = None, *, source: Optional[Iterable] = None
             echo(o.line())
         elif o.phase is Phase.OPERATING and o.decision is not None and not (a.quiet and o.decision.label is Trust.TRUSTED):
             echo(o.line())
+        if a.naive and o.phase is Phase.OPERATING and o.decision is not None and not math.isnan(o.divergence):
+            if next_report[0] is None:
+                next_report[0] = o.t_start + 86400.0
+            if o.t_start >= next_report[0]:
+                next_report[0] += 86400.0
+                echo(f"[day report] t={o.t_start / 86400:.1f} d  baseline drift: gated {o.drift:.2f}   always-learning twin {o.naive_drift:.2f}   "
+                     f"distance between them {o.divergence:.2f}")
 
     try:
         pipe.run(source, on_outcome=show)

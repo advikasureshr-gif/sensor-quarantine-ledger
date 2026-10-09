@@ -79,6 +79,8 @@ class WindowOutcome:
     muted: tuple[str, ...] = ()                   # sensors quarantined or on probation
     events: list[SecurityEvent] = field(default_factory=list)
     calibration: Optional[CalibrationResult] = None   # set on the window that finished (or failed) calibration
+    naive_drift: float = math.nan                 # the always-learning twin's drift (only with naive_twin=True)
+    divergence: float = math.nan                  # distance between the gated baseline and that twin (calibration covariance)
     features: Optional[np.ndarray] = None
 
     def line(self) -> str:
@@ -239,6 +241,9 @@ class Pipeline:
         self.model.update(x, alpha, exclude=muted_feats)
         if self.naive is not None:
             self.naive.update(x, self.cfg.online_stats.alpha_trusted)
+            dv = self.model.mu - self.naive.mu
+            o.naive_drift = self.naive.drift_distance()
+            o.divergence = float(math.sqrt(max(dv @ self.model._P_cal @ dv, 0.0)))
         o.score, o.decision, o.alpha, o.muted = score, decision, alpha, self.security.muted_sensors()
         o.drift = self.model.drift_distance()
         self._since_checkpoint += 1
