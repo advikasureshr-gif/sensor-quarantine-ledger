@@ -15,7 +15,7 @@
   Keep SAMPLE_PERIOD_MS in step with SamplingConfig.sample_period_s in iotguard/config.py (0.5 s).
   Only one program can hold the serial port: close the Arduino Serial Monitor before running Python.
 */
-#include <DHT.h
+#include <DHT.h>
 
 // ---- pins -----------------------------------------------------------------
 const int PIN_DHT  = 27;
