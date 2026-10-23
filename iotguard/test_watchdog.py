@@ -2,7 +2,7 @@
 and never alters a detection decision."""
 from dataclasses import replace
 
-from conftest import feed, key
+from iotguard.conftest import feed, key
 from iotguard.contract import Reading
 from iotguard.pipeline import Pipeline
 from iotguard.run import _main

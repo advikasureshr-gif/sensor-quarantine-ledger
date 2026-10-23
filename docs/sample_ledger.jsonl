@@ -1,95 +1,11 @@
-
-==============================================================================
-[1] INPUT: a recording of the real sensors, replayed as a live stream
-==============================================================================
-   file: logs/sim6d.jsonl
-   preset: room (calibration needs 2 days of data)
-
-==============================================================================
-[2] CALIBRATION: admin-authenticated; learns 'normal' from trusted windows only
-==============================================================================
-   calibration started (admin secret checked); needs 48.0 h of data and 1000 trusted windows
-
-==============================================================================
-[3] BASELINE STORED, NORMAL OPERATION BEGINS
-==============================================================================
-   READY: 5600 of 5760 windows trusted (97%) over 48.0 h; rejected: consensus contradiction 1, statistical outlier 159. baseline can be built
-   baseline version 1 recorded in the ledger (device hour 48.0)
-   ... normal operation, device hour 48
-   ... normal operation, device hour 60
-   ... normal operation, device hour 72
-   ... normal operation, device hour 84
-
-==============================================================================
-[4] ATTACK: the PIR is forced HIGH for 4.5 h (device hour 86.0); no sensor is touched
-==============================================================================
-   The room is empty and no door has opened, so motion cannot be real: it is 'motion with no entry'.
-
-==============================================================================
-[5] DETECTION at device hour 86.0: ALERT
-==============================================================================
-   4 consecutive SUSPICIOUS windows: contradiction: pir_unexplained
-   SUSPICIOUS windows freeze learning, so the attacker cannot teach the baseline a false 'normal'.
-
-==============================================================================
-[6] QUARANTINE at device hour 89.0: sensor PIR
-==============================================================================
-   suspicion attributed to the pir for 3.0 h
-   The pir is masked out of scoring and learning. The DHT, door and LDR keep working.
-
-   -- attack window over at device hour 90.5; the PIR reports real data again --
-
-==============================================================================
-[7] ADMIN RECOVERY: the quarantined PIR is released only by an authenticated admin
-==============================================================================
-   wrong secret -> REFUSED (admin authentication failed). The failed attempt is recorded in the ledger.
-   correct secret -> released by admin; on probation
-   the PIR must now show 120 clean windows (1.0 h) before it influences learning again...
-
-   RECOVERED at device hour 93.0: sensor PIR (120 consecutive clean windows)
-
-   input: 1036800 readings, 1036800 lines
-
-==============================================================================
-[8] PROVENANCE: every event above is in a hash-chained ledger
-==============================================================================
-   11 records in logs/pipeline_20261022_050053_ledger.jsonl: calibration_started x1, baseline_created x1, calibration_finished x1, baseline_checkpoint x3, alert x1, sensor_quarantined x1, auth_failed x1, sensor_probation x1, sensor_recovered x1
-   last records (each hash covers the previous one):
-     #7    sensor_probation       prev b6326e9c0d...  hash 668cfb553f...
-     #8    sensor_recovered       prev 668cfb553f...  hash 89fa00fc8f...
-     #9    baseline_checkpoint    prev 89fa00fc8f...  hash d883bad5c3...
-     #10   baseline_checkpoint    prev d883bad5c3...  hash 2a02fcb017...
-   chain check: INTACT
-
-   Tamper test: an attacker edits a copy to blame the LDR instead of the PIR (record #5):
-   -> DETECTED: the chain breaks at record #5; the edit cannot be hidden
-
-==============================================================================
-[8b] BLOCKCHAIN: the ledger batched into mined blocks and held by 3 replicas that vote
-==============================================================================
-   11 records -> 3 blocks (Merkle root per block, proof of work, each block links to the last)
-     block 0   4 records  merkle b5b5b864e1...  nonce 5368   hash 000e70506bc0...
-     block 1   4 records  merkle d2b72daae8...  nonce 4122   hash 000d768d3a52...
-     block 2   3 records  merkle 5aeff0ae22...  nonce 2641   hash 000a35067bf9...
-   chain verify: intact
-
-   Attack 1: one replica edits record #5 (blame the LDR) and nothing else
-   -> node-B's own check: FAILED at block 1 (ledger record #5 does not match its hash)
-
-   Attack 2: a skilled attacker rewrites the same record on node-B and recomputes every hash and block
-   -> node-B's own check: PASSED (a lone hash chain is fooled)
-   -> majority vote: REJECTED node-B, its block 1 differs from the other two; 3/3 blocks agreed
-   -> repaired from the majority: node-B; vote now clean
-   (replicas are simulated in one process; a real deployment would put them on separate machines)
-
-==============================================================================
-[9] SUMMARY
-==============================================================================
-   window labels            TRUSTED  UNCERTAIN  SUSPICIOUS
-   before the attack           4389        170           0
-   during the attack            180          0         360
-   after the attack            6276        144           0
-
-   attack injected into the PIR for 4.5 h; quarantined at device hour 89.0
-   recovery: completed
-   ledger: intact   final sensor states: dht ACTIVE, pir ACTIVE, door ACTIVE, ldr ACTIVE
+{"data":{},"event":"calibration_started","hash":"7d6caecd5c9c4b71587a9480bf8fb5e139d4142160d3a4c46531b95c4ca13996","prev":"0000000000000000000000000000000000000000000000000000000000000000","seq":0,"t":0.0,"wall":"2026-10-22T05:00:53"}
+{"data":{"digest":"7eaf8fd9025111ded917e51d45e40b0b642ca52d7b86fdf7e7add13d1ef80622","reason":"calibration","version":1},"event":"baseline_created","hash":"3446abf407813b6c40dd91c22d76328e2265f00f981a78836472e6dafff62d1c","prev":"7d6caecd5c9c4b71587a9480bf8fb5e139d4142160d3a4c46531b95c4ca13996","seq":1,"t":172770.0,"wall":"2026-10-22T05:01:05"}
+{"data":{"candidates":5760,"rejected":{"consensus contradiction":1,"statistical outlier":159},"span_s":172800.0,"trusted":5600,"version":1},"event":"calibration_finished","hash":"42fc629e0865c7423fce032d21777aac04188256d37bcd2785c0e5b74e529ba1","prev":"3446abf407813b6c40dd91c22d76328e2265f00f981a78836472e6dafff62d1c","seq":2,"t":172770.0,"wall":"2026-10-22T05:01:05"}
+{"data":{"digest":"447659f5e752c82b65352c199f934824bf22b3b144b41e1fefdc6d1f8b21d3ef","n_updates":2880,"version":1},"event":"baseline_checkpoint","hash":"cb6ec25e602ed3f5a5d074dbb020b20efb8ba101a82767f78c77ab8181c1602a","prev":"42fc629e0865c7423fce032d21777aac04188256d37bcd2785c0e5b74e529ba1","seq":3,"t":259170.0,"wall":"2026-10-22T05:01:12"}
+{"data":{"detail":"4 consecutive SUSPICIOUS windows: contradiction: pir_unexplained","sensor":null,"window_index":10323},"event":"alert","hash":"94444617147ed5774441094e9d1a9bb358c08285172d3c675185a6b06a975084","prev":"cb6ec25e602ed3f5a5d074dbb020b20efb8ba101a82767f78c77ab8181c1602a","seq":4,"t":309690.0,"wall":"2026-10-22T05:01:15"}
+{"data":{"detail":"suspicion attributed to the pir for 3.0 h","sensor":"pir","window_index":10679},"event":"sensor_quarantined","hash":"9d71442be89591dba376f731bce124269d2f970ed6aa3efad9d56bc5a7d6a252","prev":"94444617147ed5774441094e9d1a9bb358c08285172d3c675185a6b06a975084","seq":5,"t":320370.0,"wall":"2026-10-22T05:01:16"}
+{"data":{"failures":1},"event":"auth_failed","hash":"b6326e9c0da194a1ea0db0671cad4ffbf23b9e91914afec6db3e4ec251bd4005","prev":"9d71442be89591dba376f731bce124269d2f970ed6aa3efad9d56bc5a7d6a252","seq":6,"t":331200.0,"wall":"2026-10-22T05:01:18"}
+{"data":{"detail":"released by admin; on probation","sensor":"pir","window_index":-1},"event":"sensor_probation","hash":"668cfb553f067e32a8000b8a62243296c575d4326781a9ec0d06ec0c66eb9e8f","prev":"b6326e9c0da194a1ea0db0671cad4ffbf23b9e91914afec6db3e4ec251bd4005","seq":7,"t":331200.0,"wall":"2026-10-22T05:01:18"}
+{"data":{"detail":"120 consecutive clean windows","sensor":"pir","window_index":11160},"event":"sensor_recovered","hash":"89fa00fc8f08bf236777d23737abd4ae7b91ff943f662aafb487a74b97c9ec73","prev":"668cfb553f067e32a8000b8a62243296c575d4326781a9ec0d06ec0c66eb9e8f","seq":8,"t":334800.0,"wall":"2026-10-22T05:01:18"}
+{"data":{"digest":"b8f5d84f58535e1af48c9579aec6d00597619f0ed0c86497661bec374f7a1655","n_updates":5400,"version":1},"event":"baseline_checkpoint","hash":"d883bad5c306a233a6a105c639cba25063f37ca0642f4943bfca6f33df1f579d","prev":"89fa00fc8f08bf236777d23737abd4ae7b91ff943f662aafb487a74b97c9ec73","seq":9,"t":345570.0,"wall":"2026-10-22T05:01:19"}
+{"data":{"digest":"1d16341a523a5f1e9ff1b33fd102278ed087f6d5817e5bb6f66066c36914a343","n_updates":8280,"version":1},"event":"baseline_checkpoint","hash":"2a02fcb017dc42b01114187a0c96d1b57edf8d3d14fa8b28e3cfe407a27838be","prev":"d883bad5c306a233a6a105c639cba25063f37ca0642f4943bfca6f33df1f579d","seq":10,"t":431970.0,"wall":"2026-10-22T05:01:26"}
