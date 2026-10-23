@@ -1,55 +1,232 @@
-# online-behavioural-anomaly
+"""
+demo_pipeline.py - the WHOLE pipeline on one recording, with one sensor attacked in software and quarantined.
 
-ESP32 + DHT11 + HC-SR501 PIR + magnetic reed (door) + LDR: consensus-gated online behavioural
-anomaly detection. A Mahalanobis baseline only learns from windows that other sensors corroborate
-(TRUSTED -> full update, UNCERTAIN -> slow update, SUSPICIOUS -> freeze), so slow attacks cannot
-poison it, while genuine changes in the room are still learned.
+    python demo_pipeline.py --replay logs/room.jsonl --attack-start-h 56
+    python demo_pipeline.py --replay logs/room.jsonl --attack-start-h 14 --demo 4        (shorter calibration, unvalidated)
+    python demo_pipeline.py --make-sim logs/sim6d.jsonl                                  (a simulated stand-in recording)
+    python -m iotguard.inject --suggest logs/room.jsonl --min-start-h 50                 (find a good attack time)
 
-All validation so far is on the built-in simulator. Nothing has been validated on real hardware yet.
+What it shows, in order:
+  1 input         the recording (real ESP32 readings) replayed as a live stream
+  2 calibration   admin-authenticated; the baseline is learned from trusted windows only and stored as version 1
+  3 operation     normal windows are TRUSTED and the baseline keeps learning
+  4 attack        the PIR is forced high for hours IN SOFTWARE (no sensor is touched), while the room is empty
+  5 detection     motion with no door opening: consensus says SUSPICIOUS, learning is frozen, an ALERT is raised
+  6 quarantine    after hours of sustained suspicion the PIR alone is quarantined; the other sensors keep working
+  7 recovery      a wrong admin secret is refused; the right one starts probation; clean data restores the sensor
+  8 provenance    every step is in a hash-chained ledger; editing one record is detected
+"""
+from __future__ import annotations
 
-## Setup
-    python3 -m venv .venv && source .venv/bin/activate
-    pip install -r requirements.txt
+import argparse
+import collections
+import re
+import shutil
+import sys
+import time
+from pathlib import Path
 
-## Quick checks (run from this folder)
-    python3 -m pytest tests -q
-    python3 -m iotguard.scenarios list
+from iotguard.consensus import Trust
+from iotguard.inject import Injection, InjectSource
+from iotguard.pipeline import Phase, Pipeline
+from iotguard.presets import demo_setup, room_setup
+from iotguard.security import AdminAuth, AuthError, Ledger, SensorState
+from iotguard.sources import ReplaySource
 
-## Simulation
-    python3 -m iotguard.run --simulate normal --days 4 --quiet
-    python3 -m iotguard.run --simulate pir_stuck_night --days 5
-    python3 -m iotguard.run --simulate gradual_poison --days 7 --naive
+HERE = Path(__file__).resolve().parent
 
-## Recording / replaying real data
-    python3 -m iotguard.record --list
-    python3 -m iotguard.record --port <PORT> --out logs/room.jsonl
-    python3 -m iotguard.record --check logs/room.jsonl
-    python3 -m iotguard.run --replay logs/room.jsonl
 
-## Live hardware
-Flash `firmware/esp32_sensor_hub/esp32_sensor_hub.ino` (Arduino IDE, "ESP32 Dev Module", 115200 baud,
-Adafruit DHT library), then:
-    python3 -m iotguard.run --port <PORT> --ledger logs/ledger.jsonl --state logs/state.npz
-Add `--log logs/run.log` to keep a time-stamped text log. Ctrl+C or a kill signal stops cleanly: the state is saved and the ledger verified.
-Stdin commands while running: `release <sensor>`, `recalibrate`.
+def say(text: str = "") -> None:
+    print(text, flush=True)
 
-## Hardware watchdog
-`iotguard/watchdog.py` reports (it never changes a detection decision): a stream gap, a DHT with no valid reading for 5 min,
-an LDR value frozen at exactly one number for 10 min, or an LDR pinned at an end of the scale for 12 h. Reports appear in the
-console, the log and the ledger (`sensor_fault`, `sensor_fault_cleared`, `stream_gap`). It cannot tell a dead PIR or door from an
-empty room or a closed door, so it does not try.
 
-## Experiments
-    python3 -m iotguard.experiments compare
+def banner(n: str, title: str) -> None:
+    say("\n" + "=" * 78 + f"\n[{n}] {title}\n" + "=" * 78)
 
-## Layout
-- `iotguard/` pipeline, models, consensus, security, simulator, experiments
-- `firmware/` ESP32 sketch (not yet compiled or flashed)
-- `tests/` pytest suite
 
-## Known limits
-- Sudden, self-consistent poisoning and DHT-only drift are not caught.
-- Light-only attacks are undetected.
-- gradual_poison on seed 0 is detected late (cause not yet diagnosed).
-- The watchdog thresholds are untested on real hardware.
-- The demo preset (`presets.demo_setup`) is unvalidated.
+def make_sim(path: str, days: float, seed: int) -> int:
+    from iotguard.scenarios import make_source
+    from iotguard.sources import strip_labels, write_jsonl
+    n = write_jsonl(strip_labels(make_source("normal", seed, days=days)), path, include_labels=False)
+    say(f"wrote {n} simulated readings ({days:g} days) to {path}\n"
+        f"try:  python demo_pipeline.py --replay {path} --attack-start-h 86")
+    return 0
+
+
+def main(argv=None) -> int:
+    try:
+        sys.stdout.reconfigure(errors="replace")
+    except Exception:
+        pass
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0], formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--replay", help="recording made with iotguard.record (.jsonl)")
+    ap.add_argument("--attack-start-h", type=float, help="when the PIR attack starts, in hours since the recording began")
+    ap.add_argument("--attack-hours", type=float, default=4.5, help="attack length; quarantine needs at least ~3.2 h (default 4.5)")
+    ap.add_argument("--release-after-h", type=float, default=1.5,
+                    help="hours after the attack ends before the admin releases the sensor (its motion counters need time to drain)")
+    ap.add_argument("--demo", type=float, metavar="FACTOR", help="shorten calibration by this factor (unvalidated preset)")
+    ap.add_argument("--secret", default="demo-admin-secret", help="admin secret used for calibration and release (min 8 characters)")
+    ap.add_argument("--pause", action="store_true", help="wait for Enter at each stage so you can talk")
+    ap.add_argument("--make-sim", metavar="FILE", help="write a simulated recording to FILE and exit")
+    ap.add_argument("--sim-days", type=float, default=6.0)
+    ap.add_argument("--seed", type=int, default=0)
+    a = ap.parse_args(argv)
+
+    if a.make_sim:
+        return make_sim(a.make_sim, a.sim_days, a.seed)
+    if not a.replay or a.attack_start_h is None:
+        ap.error("--replay FILE and --attack-start-h HOURS are required (find a time with: python -m iotguard.inject --suggest FILE)")
+    if not Path(a.replay).exists():
+        ap.error(f"{a.replay} does not exist")
+
+    def wait(msg: str = "press Enter to continue") -> None:
+        if a.pause:
+            input(f"   ({msg}) ")
+
+    logs = HERE / "logs"
+    logs.mkdir(exist_ok=True)
+    stamp = time.strftime("%Y%m%d_%H%M%S")
+    ledger_path = logs / f"pipeline_{stamp}_ledger.jsonl"
+    ledger = Ledger(ledger_path)
+    auth = AdminAuth(a.secret, ledger=ledger)
+    cfg, cons = demo_setup(a.demo) if a.demo else room_setup()
+    pipe = Pipeline(cfg, consensus=cons, ledger=ledger, auth=auth, naive_twin=True)
+
+    # ---- 1 input -----------------------------------------------------------------------------------------------------
+    banner("1", "INPUT: a recording of the real sensors, replayed as a live stream")
+    replay = ReplaySource(a.replay)
+    inj = Injection("pir", a.attack_start_h, a.attack_hours, "force", 1, tag="pir_stuck_high")
+    ctx = {"atk_start": None, "atk_end": None, "released": False, "recovered": False, "cal_done": False, "last_hr": -1}
+    counts = {p: collections.Counter() for p in ("before the attack", "during the attack", "after the attack")}
+
+    def period(t: float) -> str:
+        if ctx["atk_start"] is None:
+            return "before the attack"
+        return "during the attack" if ctx["atk_end"] is None else "after the attack"
+
+    def on_change(ev: str, i: Injection, t: float) -> None:
+        if ev == "start":
+            ctx["atk_start"] = t
+            banner("4", f"ATTACK: the PIR is forced HIGH for {i.hours:g} h (device hour {t / 3600:.1f}); no sensor is touched")
+            say("   The room is empty and no door has opened, so motion cannot be real: it is 'motion with no entry'.")
+            wait("attack starting")
+        else:
+            ctx["atk_end"] = t
+            say(f"\n   -- attack window over at device hour {t / 3600:.1f}; the PIR reports real data again --")
+
+    source = InjectSource(replay, [inj], on_change=on_change)
+    say(f"   file: {a.replay}")
+    say(f"   preset: {'DEMO x%g (shortened calibration, unvalidated)' % a.demo if a.demo else 'room (calibration needs 2 days of data)'}")
+
+    # ---- 2 calibration ----------------------------------------------------------------------------------------------
+    banner("2", "CALIBRATION: admin-authenticated; learns 'normal' from trusted windows only")
+    pipe.start_calibration(a.secret)
+    say(f"   calibration started (admin secret checked); needs {cfg.calibration.min_duration_s / 3600:.1f} h of data "
+        f"and {cfg.calibration.min_trusted_windows} trusted windows")
+
+    def recover_step(o) -> None:
+        t = o.t_start
+        banner("7", "ADMIN RECOVERY: the quarantined PIR is released only by an authenticated admin")
+        try:
+            pipe.release_sensor("pir", "not-the-secret", t)
+            say("   !! a wrong secret was accepted (this should not happen)")
+        except AuthError as e:
+            say(f"   wrong secret -> REFUSED ({e}). The failed attempt is recorded in the ledger.")
+        ev = pipe.release_sensor("pir", a.secret, t)
+        ctx["released"] = True
+        say(f"   correct secret -> {ev.detail}")
+        say(f"   the PIR must now show {cfg.security.probation_windows} clean windows "
+            f"({cfg.security.probation_windows * cfg.features.window_s / 3600:.1f} h) before it influences learning again...")
+        wait("released")
+
+    def on_outcome(o) -> None:
+        hr = int(o.t_start // 3600)
+        if o.calibration is not None:
+            ctx["cal_done"] = True
+            ok = pipe.phase is Phase.OPERATING
+            banner("3", "BASELINE " + ("STORED, NORMAL OPERATION BEGINS" if ok else "FAILED"))
+            say("   " + o.calibration.summary())
+            say(f"   baseline version {pipe.registry.current} recorded in the ledger (device hour {o.t_start / 3600:.1f})")
+            wait("calibrated")
+        elif o.phase is Phase.OPERATING and hr != ctx["last_hr"] and hr % 12 == 0 and ctx["atk_start"] is None:
+            say(f"   ... normal operation, device hour {hr}")
+        ctx["last_hr"] = hr
+        if o.phase is Phase.OPERATING and o.decision is not None:
+            counts[period(o.t_start)][o.decision.label.value] += 1
+        for e in o.events:
+            if e.kind == "alert":
+                banner("5", f"DETECTION at device hour {e.t / 3600:.1f}: ALERT")
+                say(f"   {e.detail}")
+                say("   SUSPICIOUS windows freeze learning, so the attacker cannot teach the baseline a false 'normal'.")
+                wait("alert")
+            elif e.kind == "sensor_quarantined":
+                banner("6", f"QUARANTINE at device hour {e.t / 3600:.1f}: sensor {e.sensor.upper()}")
+                say(f"   {e.detail}")
+                say(f"   The {e.sensor} is masked out of scoring and learning. The DHT, door and LDR keep working.")
+                wait("quarantined")
+            elif e.kind == "sensor_recovered":
+                ctx["recovered"] = True
+                say(f"\n   RECOVERED at device hour {e.t / 3600:.1f}: sensor {e.sensor.upper()} ({e.detail})")
+            elif e.kind == "probation_failed":
+                say(f"\n   probation failed at device hour {e.t / 3600:.1f}: {e.detail}")
+        if (not ctx["released"] and ctx["atk_end"] is not None and o.t_start >= ctx["atk_end"] + a.release_after_h * 3600.0
+                and pipe.security.state["pir"] is SensorState.QUARANTINED):
+            recover_step(o)
+
+    try:
+        pipe.run(source, on_outcome=on_outcome)
+    except KeyboardInterrupt:
+        say("\n(stopped)")
+    finally:
+        source.close()
+
+    st = replay.stats
+    say(f"\n   input: {st.summary()}")
+    if not ctx["cal_done"]:
+        say("\n!! Calibration never finished: the recording is too short or too noisy for it.")
+        say("   Record longer, or try --demo 4 (calibration 4x shorter).")
+        return 1
+    if ctx["atk_start"] is None:
+        say("\n!! The recording ended before the attack time. Use a smaller --attack-start-h.")
+        return 1
+
+    # ---- 8 provenance -----------------------------------------------------------------------------------------------
+    banner("8", "PROVENANCE: every event above is in a hash-chained ledger")
+    ok, bad = ledger.verify()
+    kinds = collections.Counter(r["event"] for r in ledger.records)
+    say(f"   {len(ledger.records)} records in {ledger_path.relative_to(HERE)}: " + ", ".join(f"{k} x{v}" for k, v in kinds.items()))
+    say("   last records (each hash covers the previous one):")
+    for r in ledger.records[-4:]:
+        say(f"     #{r['seq']:<4} {r['event']:<22} prev {r['prev'][:10]}...  hash {r['hash'][:10]}...")
+    say(f"   chain check: {'INTACT' if ok else 'BROKEN at record %s' % bad}")
+    victim = next((r for r in ledger.records if r["event"] == "sensor_quarantined"), None)
+    if victim is not None:
+        tampered = ledger_path.with_name(ledger_path.stem + "_tampered.jsonl")
+        shutil.copy(ledger_path, tampered)
+        lines = tampered.read_text(encoding="utf-8").splitlines()
+        lines[victim["seq"]] = lines[victim["seq"]].replace('"sensor":"pir"', '"sensor":"ldr"')
+        tampered.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        say(f"\n   Tamper test: an attacker edits a copy to blame the LDR instead of the PIR (record #{victim['seq']}):")
+        try:
+            Ledger(tampered)
+            say("   !! the edit was NOT detected")
+        except ValueError as e:
+            m = re.search(r"first bad record: (\d+)", str(e))
+            say(f"   -> DETECTED: the chain breaks at record #{m.group(1) if m else '?'}; the edit cannot be hidden")
+
+    # ---- summary ----------------------------------------------------------------------------------------------------
+    banner("9", "SUMMARY")
+    say(f"   {'window labels':<22}{'TRUSTED':>10}{'UNCERTAIN':>11}{'SUSPICIOUS':>12}")
+    for p, c in counts.items():
+        say(f"   {p:<22}{c['TRUSTED']:>10}{c['UNCERTAIN']:>11}{c['SUSPICIOUS']:>12}")
+    q = [e for e in pipe.security.events if e.kind == "sensor_quarantined"]
+    say(f"\n   attack injected into the PIR for {a.attack_hours:g} h; "
+        + (f"quarantined at device hour {q[0].t / 3600:.1f}" if q else "NOT quarantined (the attack may be too short or the room not empty)"))
+    say(f"   recovery: {'completed' if ctx['recovered'] else 'not completed (recording ended first, or the sensor was never released)'}")
+    say(f"   ledger: {'intact' if ok else 'BROKEN'}   final sensor states: "
+        + ", ".join(f"{s} {v.value}" for s, v in pipe.security.state.items()))
+    return 0 if q else 3
+
+
+if __name__ == "__main__":
+    sys.exit(main())
