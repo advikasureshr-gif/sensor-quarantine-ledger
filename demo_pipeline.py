@@ -30,6 +30,7 @@ from iotguard.consensus import Trust
 from iotguard.inject import Injection, InjectSource
 from iotguard.pipeline import Phase, Pipeline
 from iotguard.presets import demo_setup, room_setup
+from iotguard.runexport import RunRecorder
 from iotguard.security import AdminAuth, AuthError, Ledger, SensorState
 from iotguard.sources import ReplaySource
 
@@ -67,6 +68,8 @@ def main(argv=None) -> int:
     ap.add_argument("--demo", type=float, metavar="FACTOR", help="shorten calibration by this factor (unvalidated preset)")
     ap.add_argument("--secret", default="demo-admin-secret", help="admin secret used for calibration and release (min 8 characters)")
     ap.add_argument("--pause", action="store_true", help="wait for Enter at each stage so you can talk")
+    ap.add_argument("--export-dir", metavar="DIR", help="save this run as files for the dashboard (default: exports/<timestamp>)")
+    ap.add_argument("--no-export", action="store_true", help="do not save the run's files")
     ap.add_argument("--make-sim", metavar="FILE", help="write a simulated recording to FILE and exit")
     ap.add_argument("--sim-days", type=float, default=6.0)
     ap.add_argument("--seed", type=int, default=0)
@@ -97,6 +100,7 @@ def main(argv=None) -> int:
     replay = ReplaySource(a.replay)
     inj = Injection("pir", a.attack_start_h, a.attack_hours, "force", 1, tag="pir_stuck_high")
     ctx = {"atk_start": None, "atk_end": None, "released": False, "recovered": False, "cal_done": False, "last_hr": -1}
+    rec = RunRecorder()
     counts = {p: collections.Counter() for p in ("before the attack", "during the attack", "after the attack")}
 
     def period(t: float) -> str:
@@ -107,11 +111,13 @@ def main(argv=None) -> int:
     def on_change(ev: str, i: Injection, t: float) -> None:
         if ev == "start":
             ctx["atk_start"] = t
+            rec.mark("attack_start", t, f"{i.channel} forced to {int(i.value)} for {i.hours:g} h (software only)")
             banner("4", f"ATTACK: the PIR is forced HIGH for {i.hours:g} h (device hour {t / 3600:.1f}); no sensor is touched")
             say("   The room is empty and no door has opened, so motion cannot be real: it is 'motion with no entry'.")
             wait("attack starting")
         else:
             ctx["atk_end"] = t
+            rec.mark("attack_end", t, "the sensor reports real data again")
             say(f"\n   -- attack window over at device hour {t / 3600:.1f}; the PIR reports real data again --")
 
     source = InjectSource(replay, [inj], on_change=on_change)
@@ -134,6 +140,7 @@ def main(argv=None) -> int:
             say(f"   wrong secret -> REFUSED ({e}). The failed attempt is recorded in the ledger.")
         ev = pipe.release_sensor("pir", a.secret, t)
         ctx["released"] = True
+        rec.mark("admin_release", t, "wrong secret refused, correct secret accepted")
         say(f"   correct secret -> {ev.detail}")
         say(f"   the PIR must now show {cfg.security.probation_windows} clean windows "
             f"({cfg.security.probation_windows * cfg.features.window_s / 3600:.1f} h) before it influences learning again...")
@@ -143,6 +150,9 @@ def main(argv=None) -> int:
         hr = int(o.t_start // 3600)
         if o.calibration is not None:
             ctx["cal_done"] = True
+            ctx["cal_t"] = o.t_start
+            ctx["cal_text"] = o.calibration.summary()
+            rec.mark("calibration_done", o.t_start, o.calibration.summary())
             ok = pipe.phase is Phase.OPERATING
             banner("3", "BASELINE " + ("STORED, NORMAL OPERATION BEGINS" if ok else "FAILED"))
             say("   " + o.calibration.summary())
@@ -153,7 +163,9 @@ def main(argv=None) -> int:
         ctx["last_hr"] = hr
         if o.phase is Phase.OPERATING and o.decision is not None:
             counts[period(o.t_start)][o.decision.label.value] += 1
+            rec.window(o, period(o.t_start))
         for e in o.events:
+            rec.event(e)
             if e.kind == "alert":
                 banner("5", f"DETECTION at device hour {e.t / 3600:.1f}: ALERT")
                 say(f"   {e.detail}")
@@ -253,6 +265,25 @@ def main(argv=None) -> int:
     say(f"   recovery: {'completed' if ctx['recovered'] else 'not completed (recording ended first, or the sensor was never released)'}")
     say(f"   ledger: {'intact' if ok else 'BROKEN'}   final sensor states: "
         + ", ".join(f"{s} {v.value}" for s, v in pipe.security.state.items()))
+    if not a.no_export:
+        out = Path(a.export_dir) if a.export_dir else HERE / "exports" / stamp
+        meta = {
+            "title": "demo_pipeline run", "recording": str(a.replay), "input": st.summary(),
+            "preset": f"demo x{a.demo:g}" if a.demo else "room", "demo_factor": a.demo,
+            "calibration": ctx.get("cal_text"), "calibration_end_h": round(ctx["cal_t"] / 3600.0, 3) if ctx.get("cal_t") is not None else None,
+            "attack": {"sensor": "pir", "forced_to": 1, "start_h": a.attack_start_h, "hours": a.attack_hours, "software_only": True},
+            "release_after_h": a.release_after_h, "window_s": cfg.features.window_s,
+            "threshold": cfg.anomaly.mahalanobis_threshold,
+            "counts": {k: dict(v) for k, v in counts.items()},
+            "quarantined_at_h": round(q[0].t / 3600.0, 3) if q else None, "recovered": ctx["recovered"],
+            "ledger_intact": ok, "final_states": {s_: v.value for s_, v in pipe.security.state.items()},
+            "ledger_records": len(ledger.records),
+        }
+        try:
+            saved = rec.save(out, ledger, ledger_path, meta, a.replay)
+            say(f"\n   run saved for the dashboard: {saved}")
+        except Exception as e:      # the demo itself must never fail because an export could not be written
+            say(f"\n   (run files were not saved: {e})")
     return 0 if q else 3
 
 
