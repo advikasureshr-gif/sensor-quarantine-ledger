@@ -4,7 +4,7 @@ A Streamlit dashboard that runs your teammate's **unmodified** `iotguard` engine
 engine's real decisions, scores, security events and ledger. This package is self-contained: the needed engine files are copied
 into `iotguard/` (see `iotguard/NOTICE.md`). It does not touch your original project folder.
 
-**Everything shown is simulated.** No ESP32 or physical sensor is connected; live serial / replay input is not implemented here.
+**The simulator pages are simulated.** No ESP32 or physical sensor is connected and nothing live is read. The extra page **Real Recording Run** only *loads files* saved by the project's `demo_pipeline.py` (`../exports/<run>/` or `outputs/real_runs/<run>/`); it never talks to a sensor and never runs the engine.
 
 ## Prerequisites
 * Windows 10/11, **Python 3.10 or newer** (python.org installer, tick "Add python.exe to PATH")
@@ -58,3 +58,19 @@ py -3 -m venv .venv
 
 ## Layout
 `app.py` (navigation) · `overview.py` (Security Overview) · `dashboard_service.py` (the only engine integration) · `pages/` · `components/` · `iotguard/` (vendored engine, unmodified) · `tests/` · `integration/README.md` · `outputs/` (generated runs)
+
+
+## Real Recording Run page (added)
+Shows a saved `demo_pipeline.py` run: timeline (score, learning mode, drift, masked sensors) with the attack window and events, learning-rate table, events, the ledger and its blocks with a live three-replica vote, and a summary of the raw recording. `outputs/real_runs/sample_sim_run/` is an example. Tests: `tests/test_real_run_page.py`.
+
+## Pages (current)
+- **Security Overview** - the running session (live board or demo replay): label, learning rate, sensor states, events. A quarantined sensor shows a
+  **Deal with quarantined sensor** button: admin sign-in, then *Unquarantine* or *Replace with a new sensor*; both put the sensor on probation.
+- **Live sensors (COM3)** - real readings from the ESP32 (needs `pyserial`), the engine's label for each 30 s window, the learning rate and the
+  learning curve. The baseline is first learned from a recording in `..\logs` (about 10 s). A *Software PIR attack* switch feeds the engine PIR = 1
+  without touching the sensor. The real readings are saved to `dashboard\outputs\live_logs\` (separate from your logs). Close the Arduino Serial Monitor and the recorder first: only one program can hold the port.
+- **Demo Replay** - a recording through the whole pipeline with a software PIR attack; pauses when the PIR is quarantined and waits for the admin.
+- **Attack Simulator** - the friend's simulator (open to everyone). **Saved Run** - a run saved by `demo_pipeline.py`.
+- **Admin** - ledger, calibration records, blockchain with the three-replica vote, and their downloads.
+Admin sign-in: secret from the `IOTGUARD_ADMIN_SECRET` environment variable, otherwise the demo secret `demo-admin-secret`; 3 wrong attempts lock
+sign-in for 2 minutes, and failed attempts are written to the session ledger. The older analysis pages are kept in `archive/` (not in the menu).

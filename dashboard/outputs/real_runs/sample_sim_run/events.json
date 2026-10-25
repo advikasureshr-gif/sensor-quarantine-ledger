@@ -1,0 +1,50 @@
+{
+ "events": [
+  {
+   "kind": "alert",
+   "t_h": 86.025,
+   "sensor": null,
+   "detail": "4 consecutive SUSPICIOUS windows: contradiction: pir_unexplained"
+  },
+  {
+   "kind": "sensor_quarantined",
+   "t_h": 88.991667,
+   "sensor": "pir",
+   "detail": "suspicion attributed to the pir for 3.0 h"
+  },
+  {
+   "kind": "sensor_recovered",
+   "t_h": 93.0,
+   "sensor": "pir",
+   "detail": "120 consecutive clean windows"
+  },
+  {
+   "kind": "auth_failed",
+   "t_h": 92.0,
+   "sensor": null,
+   "detail": ""
+  }
+ ],
+ "marks": [
+  {
+   "kind": "calibration_done",
+   "t_h": 47.991667,
+   "detail": "READY: 5600 of 5760 windows trusted (97%) over 48.0 h; rejected: consensus contradiction 1, statistical outlier 159. baseline can be built"
+  },
+  {
+   "kind": "attack_start",
+   "t_h": 86.0,
+   "detail": "pir forced to 1 for 4.5 h (software only)"
+  },
+  {
+   "kind": "attack_end",
+   "t_h": 90.5,
+   "detail": "the sensor reports real data again"
+  },
+  {
+   "kind": "admin_release",
+   "t_h": 92.0,
+   "detail": "wrong secret refused, correct secret accepted"
+  }
+ ]
+}

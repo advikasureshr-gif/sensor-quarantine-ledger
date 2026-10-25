@@ -1,0 +1,45 @@
+{
+ "title": "demo_pipeline run",
+ "recording": "logs/sim6d.jsonl",
+ "input": "1036800 readings, 1036800 lines",
+ "preset": "room",
+ "demo_factor": null,
+ "calibration": "READY: 5600 of 5760 windows trusted (97%) over 48.0 h; rejected: consensus contradiction 1, statistical outlier 159. baseline can be built",
+ "calibration_end_h": 47.992,
+ "attack": {
+  "sensor": "pir",
+  "forced_to": 1,
+  "start_h": 86.0,
+  "hours": 4.5,
+  "software_only": true
+ },
+ "release_after_h": 1.5,
+ "window_s": 30.0,
+ "threshold": 4.0,
+ "counts": {
+  "before the attack": {
+   "TRUSTED": 4389,
+   "UNCERTAIN": 170
+  },
+  "during the attack": {
+   "TRUSTED": 180,
+   "SUSPICIOUS": 360
+  },
+  "after the attack": {
+   "TRUSTED": 6276,
+   "UNCERTAIN": 144
+  }
+ },
+ "quarantined_at_h": 88.992,
+ "recovered": true,
+ "ledger_intact": true,
+ "final_states": {
+  "dht": "ACTIVE",
+  "pir": "ACTIVE",
+  "door": "ACTIVE",
+  "ldr": "ACTIVE"
+ },
+ "ledger_records": 11,
+ "saved": "2026-10-24T17:26:21",
+ "n_windows": 11519
+}

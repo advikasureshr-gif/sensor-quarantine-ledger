@@ -1,0 +1,63 @@
+{
+ "difficulty": 3,
+ "block_size": 4,
+ "valid": true,
+ "why": "intact",
+ "blocks": [
+  {
+   "index": 0,
+   "n_records": 4,
+   "first_seq": 0,
+   "last_seq": 3,
+   "timestamp": "2026-10-24T17:25:46",
+   "merkle": "636e117c35d1549cd5af0ca303c0323231cda8cd2f735290e39507f06bcc447e",
+   "nonce": 4550,
+   "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "00051a75755418fc0c9bbde86f6724c85bc39d1583f5cb7ca7817f2ce7388af5"
+  },
+  {
+   "index": 1,
+   "n_records": 4,
+   "first_seq": 4,
+   "last_seq": 7,
+   "timestamp": "2026-10-24T17:25:52",
+   "merkle": "f01e177312b21c86dd3284e9245de9ea370d30e12bfdd04974d7d67c5b53c22f",
+   "nonce": 2710,
+   "prev_hash": "00051a75755418fc0c9bbde86f6724c85bc39d1583f5cb7ca7817f2ce7388af5",
+   "hash": "00014278ef33c83b82d117a8de76aec18cf91c047fb55f3c07e06135e20b18b8"
+  },
+  {
+   "index": 2,
+   "n_records": 3,
+   "first_seq": 8,
+   "last_seq": 10,
+   "timestamp": "2026-10-24T17:25:59",
+   "merkle": "e44660689d47f649319a91b4fc9277c7395bbd9a00ec90bab9368763d152105f",
+   "nonce": 915,
+   "prev_hash": "00014278ef33c83b82d117a8de76aec18cf91c047fb55f3c07e06135e20b18b8",
+   "hash": "00095a7423556c33cd2399875d9c8d7a032506b0f624a1d135ce0c9ec53cf98c"
+  }
+ ],
+ "demo": {
+  "record_seq": 5,
+  "record_event": "sensor_quarantined",
+  "naive_edit": {
+   "caught_by_node_itself": true,
+   "block": 1,
+   "why": "ledger record #5 does not match its hash"
+  },
+  "skilled_rewrite": {
+   "passes_own_check": true,
+   "rejected_by_vote": true,
+   "dissenters": {
+    "node-B": 1
+   },
+   "agreed_blocks": 3,
+   "total_blocks": 3,
+   "healed": [
+    "node-B"
+   ],
+   "vote_clean_after_heal": true
+  }
+ }
+}

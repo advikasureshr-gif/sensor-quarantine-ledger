@@ -6,3 +6,5 @@ pandas>=2.0
 numpy>=1.26
 # Tests
 pytest>=8
+# Live page (reads the ESP32 on a COM port)
+pyserial>=3.5

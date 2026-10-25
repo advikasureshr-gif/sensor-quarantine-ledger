@@ -111,5 +111,3 @@ else:
         if rec.events:
             st.markdown("**Security events**")
             st.dataframe(rec.events_df, hide_index=True, use_container_width=True)
-        st.page_link("pages/3_Detection_Analysis.py", label="Open Detection Analysis →", icon="🔬")
-        st.page_link("pages/4_Experiment_Results.py", label="Compare & export runs →", icon="📊")

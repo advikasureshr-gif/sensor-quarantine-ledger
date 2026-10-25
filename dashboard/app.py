@@ -14,11 +14,11 @@ theme.sidebar_brand()
 
 nav = st.navigation([
     st.Page("overview.py", title="Security Overview", icon="🛡️", default=True),
+    st.Page("pages/7_Live_COM3.py", title="Live sensors (COM3)", icon="📡"),
+    st.Page("pages/8_Demo_Replay.py", title="Demo Replay", icon="🎬"),
     st.Page("pages/2_Attack_Simulator.py", title="Attack Simulator", icon="🎯"),
-    st.Page("pages/1_Sensor_Monitor.py", title="Sensor Monitor", icon="📡"),
-    st.Page("pages/3_Detection_Analysis.py", title="Detection Analysis", icon="🔬"),
-    st.Page("pages/4_Experiment_Results.py", title="Experiment Results", icon="📊"),
-    st.Page("pages/5_Security_Events.py", title="Security Events", icon="🚨"),
+    st.Page("pages/6_Real_Recording_Run.py", title="Saved Run", icon="📼"),
+    st.Page("pages/9_Admin.py", title="Admin", icon="🔒"),
 ])
-st.sidebar.caption("Simulator-driven. No physical hardware is connected.")
+st.sidebar.caption("Live values, replay and the simulator are open. Ledger, blocks and downloads need the admin.")
 nav.run()
