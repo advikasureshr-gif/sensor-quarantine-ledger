@@ -1,0 +1,1110 @@
+t_h,index,period,label,mode,alpha,score,drift,naive_drift,divergence,occupancy,suspicion,muted,contradictions,reason
+24.0,2880,before the attack,TRUSTED,full,0.002,1.096852,0.002194,0.002194,0.0,EMPTY,0.0,,,consistent
+24.008333,2881,before the attack,TRUSTED,full,0.002,1.094395,0.004383,0.004383,0.0,EMPTY,0.0,,,consistent
+24.016667,2882,before the attack,TRUSTED,full,0.002,1.091949,0.006568,0.006568,0.0,EMPTY,0.0,,,consistent
+24.025,2883,before the attack,TRUSTED,full,0.002,1.089514,0.008749,0.008749,0.0,EMPTY,0.0,,,consistent
+24.033333,2884,before the attack,TRUSTED,full,0.002,1.08709,0.010925,0.010925,0.0,EMPTY,0.0,,,consistent
+24.041667,2885,before the attack,TRUSTED,full,0.002,1.084678,0.013097,0.013097,0.0,EMPTY,0.0,,,consistent
+24.05,2886,before the attack,TRUSTED,full,0.002,1.082276,0.015264,0.015264,0.0,EMPTY,0.0,,,consistent
+24.058333,2887,before the attack,TRUSTED,full,0.002,1.088089,0.017444,0.017444,0.0,EMPTY,0.0,,,consistent
+24.066667,2888,before the attack,TRUSTED,full,0.002,1.09748,0.019642,0.019642,0.0,EMPTY,0.0,,,consistent
+24.075,2889,before the attack,TRUSTED,full,0.002,1.096454,0.02184,0.02184,0.0,EMPTY,0.0,,,consistent
+24.083333,2890,before the attack,TRUSTED,full,0.002,1.093999,0.024033,0.024033,0.0,EMPTY,0.0,,,consistent
+24.091667,2891,before the attack,TRUSTED,full,0.002,1.091554,0.026221,0.026221,0.0,EMPTY,0.0,,,consistent
+24.1,2892,before the attack,TRUSTED,full,0.002,1.089121,0.028405,0.028405,0.0,EMPTY,0.0,,,consistent
+24.108333,2893,before the attack,TRUSTED,full,0.002,1.079899,0.030572,0.030572,0.0,EMPTY,0.0,,,consistent
+24.116667,2894,before the attack,TRUSTED,full,0.002,1.066817,0.032712,0.032712,0.0,EMPTY,0.0,,,consistent
+24.125,2895,before the attack,TRUSTED,full,0.002,1.074838,0.034869,0.034869,0.0,EMPTY,0.0,,,consistent
+24.133333,2896,before the attack,TRUSTED,full,0.002,1.079634,0.037036,0.037036,0.0,EMPTY,0.0,,,consistent
+24.141667,2897,before the attack,TRUSTED,full,0.002,1.077255,0.039198,0.039198,0.0,EMPTY,0.0,,,consistent
+24.15,2898,before the attack,TRUSTED,full,0.002,1.074887,0.041357,0.041357,0.0,EMPTY,0.0,,,consistent
+24.158333,2899,before the attack,TRUSTED,full,0.002,1.072529,0.04351,0.04351,0.0,EMPTY,0.0,,,consistent
+24.166667,2900,before the attack,TRUSTED,full,0.002,1.071613,0.045663,0.045663,0.0,EMPTY,0.0,,,consistent
+24.175,2901,before the attack,TRUSTED,full,0.002,1.080388,0.047833,0.047833,0.0,EMPTY,0.0,,,consistent
+24.183333,2902,before the attack,TRUSTED,full,0.002,1.098189,0.05004,0.05004,0.0,EMPTY,0.0,,,consistent
+24.191667,2903,before the attack,TRUSTED,full,0.002,1.104774,0.052259,0.052259,0.0,EMPTY,0.0,,,consistent
+24.2,2904,before the attack,TRUSTED,full,0.002,1.099382,0.054469,0.054469,0.0,EMPTY,0.0,,,consistent
+24.208333,2905,before the attack,TRUSTED,full,0.002,1.101258,0.056683,0.056683,0.0,EMPTY,0.0,,,consistent
+24.216667,2906,before the attack,TRUSTED,full,0.002,1.092987,0.058881,0.058881,0.0,EMPTY,0.0,,,consistent
+24.225,2907,before the attack,TRUSTED,full,0.002,1.096338,0.061086,0.061086,0.0,EMPTY,0.0,,,consistent
+24.233333,2908,before the attack,TRUSTED,full,0.002,1.089901,0.063279,0.063279,0.0,EMPTY,0.0,,,consistent
+24.241667,2909,before the attack,TRUSTED,full,0.002,1.089645,0.065472,0.065472,0.0,EMPTY,0.0,,,consistent
+24.25,2910,before the attack,TRUSTED,full,0.002,1.08903,0.067664,0.067664,0.0,EMPTY,0.0,,,consistent
+24.258333,2911,before the attack,TRUSTED,full,0.002,1.086607,0.069852,0.069852,0.0,EMPTY,0.0,,,consistent
+24.266667,2912,before the attack,TRUSTED,full,0.002,1.084196,0.072035,0.072035,0.0,EMPTY,0.0,,,consistent
+24.275,2913,before the attack,TRUSTED,full,0.002,1.081796,0.074214,0.074214,0.0,EMPTY,0.0,,,consistent
+24.283333,2914,before the attack,TRUSTED,full,0.002,1.079407,0.076389,0.076389,0.0,EMPTY,0.0,,,consistent
+24.291667,2915,during the attack,TRUSTED,full,0.002,1.077028,0.078559,0.078559,0.0,EMPTY,0.0,,,consistent
+24.3,2916,during the attack,SUSPICIOUS,freeze,0.0,18.347198,0.078559,0.088481,0.036537,EMPTY,1.0,,pir_unexplained,contradiction: pir_unexplained
+24.308333,2917,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.110113,0.072861,EMPTY,1.98,,pir_unexplained,contradiction: pir_unexplained
+24.316667,2918,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.138025,0.109147,EMPTY,2.9404,,pir_unexplained,contradiction: pir_unexplained
+24.325,2919,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.16909,0.14537,EMPTY,3.881592,,pir_unexplained,contradiction: pir_unexplained
+24.333333,2920,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.201817,0.181524,EMPTY,4.80396,,pir_unexplained,contradiction: pir_unexplained
+24.341667,2921,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.235482,0.217607,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.35,2922,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.269705,0.253619,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.358333,2923,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.304271,0.289559,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.366667,2924,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.339054,0.325428,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.375,2925,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.373973,0.361226,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.383333,2926,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.408973,0.396952,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.391667,2927,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.444019,0.432607,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.4,2928,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.479084,0.46819,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.408333,2929,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.514151,0.503703,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.416667,2930,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.549204,0.539145,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.425,2931,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.584234,0.574516,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.433333,2932,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.619233,0.609816,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.441667,2933,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.654194,0.645045,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.45,2934,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.689113,0.680205,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.458333,2935,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.723985,0.715293,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.466667,2936,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.758807,0.750312,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.475,2937,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.793577,0.785261,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.483333,2938,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.828292,0.82014,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.491667,2939,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.862951,0.854949,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.5,2940,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.897552,0.889688,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.508333,2941,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.932095,0.924359,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.516667,2942,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,0.966577,0.958959,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.525,2943,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.000999,0.993491,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.533333,2944,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.035359,1.027953,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.541667,2945,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.069657,1.062347,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.55,2946,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.103892,1.096672,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.558333,2947,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.138064,1.130928,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.566667,2948,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.172173,1.165115,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.575,2949,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.206218,1.199235,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.583333,2950,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.240199,1.233286,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.591667,2951,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.274115,1.267269,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.6,2952,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.307968,1.301184,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.608333,2953,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.341755,1.335031,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.616667,2954,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.375479,1.36881,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.625,2955,during the attack,SUSPICIOUS,freeze,0.0,18.303359,0.078559,1.409136,1.402522,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.633333,2956,during the attack,SUSPICIOUS,freeze,0.0,18.302844,0.078559,1.442727,1.436165,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.641667,2957,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.476256,1.469742,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.65,2958,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.50972,1.503252,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.658333,2959,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.543119,1.536695,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.666667,2960,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.576452,1.570071,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.675,2961,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.609722,1.603381,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.683333,2962,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.642926,1.636624,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.691667,2963,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.676065,1.6698,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.7,2964,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.709139,1.70291,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.708333,2965,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.742149,1.735954,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.716667,2966,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.775094,1.768931,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.725,2967,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.807974,1.801843,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.733333,2968,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.840789,1.834689,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.741667,2969,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.87354,1.867469,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.75,2970,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.906227,1.900183,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.758333,2971,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.938849,1.932833,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.766667,2972,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,1.971407,1.965417,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.775,2973,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.0039,1.997935,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.783333,2974,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.036329,2.030389,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.791667,2975,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.068694,2.062778,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.8,2976,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.100995,2.095102,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.808333,2977,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.133233,2.127361,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.816667,2978,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.165406,2.159556,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.825,2979,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.197516,2.191686,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.833333,2980,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.229562,2.223753,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.841667,2981,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.261544,2.255755,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.85,2982,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.293464,2.287693,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.858333,2983,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.325319,2.319567,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.866667,2984,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.357112,2.351377,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.875,2985,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.388841,2.383124,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.883333,2986,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.420508,2.414807,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.891667,2987,during the attack,SUSPICIOUS,freeze,0.0,18.30348,0.078559,2.452111,2.446427,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.9,2988,during the attack,SUSPICIOUS,freeze,0.0,18.303672,0.078559,2.483653,2.477984,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.908333,2989,during the attack,SUSPICIOUS,freeze,0.0,18.30383,0.078559,2.515132,2.509479,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.916667,2990,during the attack,SUSPICIOUS,freeze,0.0,18.304254,0.078559,2.54655,2.540911,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.925,2991,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.577907,2.572281,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.933333,2992,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.609201,2.603588,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.941667,2993,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.640432,2.634832,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.95,2994,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.671602,2.666014,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.958333,2995,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.70271,2.697134,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.966667,2996,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.733755,2.728191,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.975,2997,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.764739,2.759187,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.983333,2998,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.795661,2.79012,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+24.991667,2999,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,2.826522,2.820991,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.0,3000,during the attack,SUSPICIOUS,freeze,0.0,18.305102,0.078559,2.857322,2.851802,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.008333,3001,during the attack,SUSPICIOUS,freeze,0.0,18.304702,0.078559,2.88806,2.882551,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.016667,3002,during the attack,SUSPICIOUS,freeze,0.0,18.305248,0.078559,2.918739,2.913239,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.025,3003,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,2.949357,2.943866,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.033333,3004,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,2.979915,2.974432,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.041667,3005,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.010411,3.004937,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.05,3006,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.040847,3.035381,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.058333,3007,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.071222,3.065764,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.066667,3008,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.101536,3.096086,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.075,3009,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.13179,3.126348,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.083333,3010,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.161984,3.156549,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.091667,3011,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.192117,3.18669,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.1,3012,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.22219,3.21677,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.108333,3013,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.252203,3.24679,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.116667,3014,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.282157,3.276751,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.125,3015,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,3.31205,3.306651,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.133333,3016,during the attack,SUSPICIOUS,freeze,0.0,18.305709,0.078559,3.341884,3.336492,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.141667,3017,during the attack,SUSPICIOUS,freeze,0.0,18.306289,0.078559,3.37166,3.366274,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.15,3018,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.401378,3.395997,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.158333,3019,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.431037,3.425661,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.166667,3020,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.460636,3.455266,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.175,3021,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.490177,3.484811,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.183333,3022,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.519658,3.514298,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.191667,3023,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.54908,3.543725,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.2,3024,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.578444,3.573094,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.208333,3025,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.607749,3.602403,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.216667,3026,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.636996,3.631655,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.225,3027,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.666184,3.660847,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.233333,3028,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.695314,3.689982,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.241667,3029,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.724385,3.719058,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.25,3030,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.753399,3.748076,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.258333,3031,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.782354,3.777036,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.266667,3032,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.811252,3.805938,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.275,3033,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.840092,3.834782,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.283333,3034,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.868875,3.863568,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.291667,3035,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,3.897599,3.892297,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.3,3036,during the attack,SUSPICIOUS,freeze,0.0,18.306687,0.078559,3.926267,3.920968,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.308333,3037,during the attack,SUSPICIOUS,freeze,0.0,18.306101,0.078559,3.954875,3.949581,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.316667,3038,during the attack,SUSPICIOUS,freeze,0.0,18.305783,0.078559,3.983426,3.978136,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.325,3039,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.011919,4.006634,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.333333,3040,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.040355,4.035074,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.341667,3041,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.068734,4.063458,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.35,3042,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.097057,4.091785,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.358333,3043,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.125323,4.120055,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.366667,3044,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.153532,4.148269,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.375,3045,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.181685,4.176427,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.383333,3046,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.209782,4.204528,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.391667,3047,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,4.237823,4.232572,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.4,3048,during the attack,SUSPICIOUS,freeze,0.0,18.305561,0.078559,4.265808,4.260561,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.408333,3049,during the attack,SUSPICIOUS,freeze,0.0,18.305211,0.078559,4.293735,4.288493,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.416667,3050,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.321606,4.316368,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.425,3051,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.34942,4.344187,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.433333,3052,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.377179,4.37195,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.441667,3053,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.404882,4.399658,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.45,3054,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.43253,4.42731,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.458333,3055,during the attack,SUSPICIOUS,freeze,0.0,18.304666,0.078559,4.460123,4.454908,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.466667,3056,during the attack,SUSPICIOUS,freeze,0.0,18.305193,0.078559,4.487663,4.482451,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.475,3057,during the attack,SUSPICIOUS,freeze,0.0,18.304992,0.078559,4.515147,4.509939,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.483333,3058,during the attack,SUSPICIOUS,freeze,0.0,18.304612,0.078559,4.542574,4.537371,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.491667,3059,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.569947,4.564748,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.5,3060,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.597266,4.59207,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.508333,3061,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.624529,4.619337,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.516667,3062,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.651738,4.64655,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.525,3063,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.678893,4.673709,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.533333,3064,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.705994,4.700813,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.541667,3065,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.73304,4.727863,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.55,3066,during the attack,SUSPICIOUS,freeze,0.0,18.304612,0.078559,4.760032,4.754859,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.558333,3067,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.786971,4.781801,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.566667,3068,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.813855,4.80869,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.575,3069,during the attack,SUSPICIOUS,freeze,0.0,18.30454,0.078559,4.840686,4.835524,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.583333,3070,during the attack,SUSPICIOUS,freeze,0.0,18.304594,0.078559,4.867463,4.862305,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.591667,3071,during the attack,SUSPICIOUS,freeze,0.0,18.304775,0.078559,4.894187,4.889032,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.6,3072,during the attack,SUSPICIOUS,freeze,0.0,18.30512,0.078559,4.920859,4.915707,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.608333,3073,during the attack,SUSPICIOUS,freeze,0.0,18.305029,0.078559,4.947477,4.942328,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.616667,3074,during the attack,SUSPICIOUS,freeze,0.0,18.30512,0.078559,4.974043,4.968897,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.625,3075,during the attack,SUSPICIOUS,freeze,0.0,18.30534,0.078559,5.000555,4.995412,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.633333,3076,during the attack,SUSPICIOUS,freeze,0.0,18.305193,0.078559,5.027015,5.021874,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.641667,3077,during the attack,SUSPICIOUS,freeze,0.0,18.305561,0.078559,5.053422,5.048284,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.65,3078,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.079777,5.074642,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.658333,3079,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.106079,5.100946,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.666667,3080,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.132329,5.127198,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.675,3081,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.158526,5.153398,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.683333,3082,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.18467,5.179545,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.691667,3083,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.210763,5.20564,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.7,3084,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.236803,5.231682,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.708333,3085,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.248479,5.243346,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.716667,3086,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.248625,5.243468,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.725,3087,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.248771,5.24359,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.733333,3088,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.248918,5.243713,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.741667,3089,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.249064,5.243836,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.75,3090,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.249211,5.243959,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.758333,3091,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.249358,5.244082,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.766667,3092,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.249505,5.244205,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.775,3093,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.249653,5.244329,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.783333,3094,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.2498,5.244453,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.791667,3095,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.249948,5.244577,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.8,3096,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.250096,5.244701,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.808333,3097,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.250244,5.244826,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.816667,3098,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.250392,5.244951,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.825,3099,during the attack,SUSPICIOUS,freeze,0.0,18.305709,0.078559,5.250541,5.245076,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.833333,3100,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.25069,5.245201,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.841667,3101,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.250839,5.245327,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.85,3102,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.250987,5.245453,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.858333,3103,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.251137,5.245578,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.866667,3104,during the attack,SUSPICIOUS,freeze,0.0,18.305691,0.078559,5.251286,5.245705,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.875,3105,during the attack,SUSPICIOUS,freeze,0.0,18.305653,0.078559,5.251436,5.245831,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.883333,3106,during the attack,SUSPICIOUS,freeze,0.0,18.305783,0.078559,5.251586,5.245958,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.891667,3107,during the attack,SUSPICIOUS,freeze,0.0,18.306365,0.078559,5.251737,5.246086,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.9,3108,during the attack,SUSPICIOUS,freeze,0.0,18.306327,0.078559,5.251889,5.246215,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.908333,3109,during the attack,SUSPICIOUS,freeze,0.0,18.306308,0.078559,5.252041,5.246343,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.916667,3110,during the attack,SUSPICIOUS,freeze,0.0,18.305989,0.078559,5.252192,5.246472,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.925,3111,during the attack,SUSPICIOUS,freeze,0.0,18.305653,0.078559,5.252343,5.246599,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.933333,3112,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.252493,5.246727,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.941667,3113,during the attack,SUSPICIOUS,freeze,0.0,18.305635,0.078559,5.252644,5.246855,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.95,3114,during the attack,SUSPICIOUS,freeze,0.0,18.306139,0.078559,5.252796,5.246984,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.958333,3115,during the attack,SUSPICIOUS,freeze,0.0,18.306687,0.078559,5.25295,5.247115,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.966667,3116,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.253104,5.247246,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.975,3117,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.253259,5.247377,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.983333,3118,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.253413,5.247509,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+25.991667,3119,during the attack,SUSPICIOUS,freeze,0.0,18.306687,0.078559,5.253568,5.24764,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.0,3120,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.253723,5.247772,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.008333,3121,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.253878,5.247904,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.016667,3122,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.254033,5.248036,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.025,3123,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.254188,5.248169,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.033333,3124,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.254344,5.248301,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.041667,3125,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.2545,5.248434,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.05,3126,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.254655,5.248567,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.058333,3127,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.254811,5.2487,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.066667,3128,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.254967,5.248834,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.075,3129,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.255123,5.248967,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.083333,3130,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.255279,5.249101,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.091667,3131,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.255436,5.249235,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.1,3132,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.255592,5.249369,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.108333,3133,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.255749,5.249503,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.116667,3134,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.255906,5.249637,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.125,3135,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.256062,5.249772,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.133333,3136,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.256219,5.249907,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.141667,3137,during the attack,SUSPICIOUS,freeze,0.0,18.307225,0.078559,5.256378,5.250042,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.15,3138,during the attack,SUSPICIOUS,freeze,0.0,18.308124,0.078559,5.256539,5.250181,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.158333,3139,during the attack,SUSPICIOUS,freeze,0.0,18.308006,0.078559,5.2567,5.250319,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.166667,3140,during the attack,SUSPICIOUS,freeze,0.0,18.308642,0.078559,5.256863,5.250459,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.175,3141,during the attack,SUSPICIOUS,freeze,0.0,18.308522,0.078559,5.257026,5.250599,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.183333,3142,during the attack,SUSPICIOUS,freeze,0.0,18.307225,0.078559,5.257185,5.250736,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.191667,3143,during the attack,SUSPICIOUS,freeze,0.0,18.306764,0.078559,5.257343,5.250871,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.2,3144,during the attack,SUSPICIOUS,freeze,0.0,18.306917,0.078559,5.257501,5.251008,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.208333,3145,during the attack,SUSPICIOUS,freeze,0.0,18.307536,0.078559,5.257662,5.251146,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.216667,3146,during the attack,SUSPICIOUS,freeze,0.0,18.307966,0.078559,5.257823,5.251285,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.225,3147,during the attack,SUSPICIOUS,freeze,0.0,18.308642,0.078559,5.257987,5.251426,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.233333,3148,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.258153,5.251569,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.241667,3149,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.258318,5.251711,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.25,3150,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.258484,5.251854,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.258333,3151,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.25865,5.251997,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.266667,3152,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.258816,5.25214,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.275,3153,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.258982,5.252284,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.283333,3154,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.259148,5.252427,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.291667,3155,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.259315,5.252571,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.3,3156,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.259481,5.252715,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.308333,3157,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.259648,5.252859,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.316667,3158,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.259814,5.253003,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.325,3159,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.259981,5.253147,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.333333,3160,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.260148,5.253292,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.341667,3161,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.260315,5.253436,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.35,3162,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.260482,5.253581,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.358333,3163,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.260649,5.253726,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.366667,3164,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.260816,5.253871,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.375,3165,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.260984,5.254016,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.383333,3166,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.261151,5.254161,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.391667,3167,during the attack,SUSPICIOUS,freeze,0.0,18.309287,0.078559,5.261319,5.254307,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.4,3168,during the attack,SUSPICIOUS,freeze,0.0,18.309613,0.078559,5.261488,5.254454,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.408333,3169,during the attack,SUSPICIOUS,freeze,0.0,18.30986,0.078559,5.261658,5.254602,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.416667,3170,during the attack,SUSPICIOUS,freeze,0.0,18.30986,0.078559,5.261829,5.254749,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.425,3171,during the attack,SUSPICIOUS,freeze,0.0,18.309287,0.078559,5.261997,5.254896,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.433333,3172,during the attack,SUSPICIOUS,freeze,0.0,18.309287,0.078559,5.262165,5.255042,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.441667,3173,during the attack,SUSPICIOUS,freeze,0.0,18.309125,0.078559,5.262333,5.255188,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.45,3174,during the attack,SUSPICIOUS,freeze,0.0,18.309287,0.078559,5.262502,5.255335,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.458333,3175,during the attack,SUSPICIOUS,freeze,0.0,18.310004,0.078559,5.262673,5.255484,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.466667,3176,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.262845,5.255634,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.475,3177,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.263018,5.255784,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.483333,3178,during the attack,SUSPICIOUS,freeze,0.0,18.309145,0.078559,5.263186,5.255931,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.491667,3179,during the attack,SUSPICIOUS,freeze,0.0,18.309511,0.078559,5.263356,5.256079,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.5,3180,during the attack,SUSPICIOUS,freeze,0.0,18.309206,0.078559,5.263525,5.256226,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.508333,3181,during the attack,SUSPICIOUS,freeze,0.0,18.309206,0.078559,5.263693,5.256373,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.516667,3182,during the attack,SUSPICIOUS,freeze,0.0,18.309226,0.078559,5.263862,5.256521,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.525,3183,during the attack,SUSPICIOUS,freeze,0.0,18.309267,0.078559,5.264032,5.256669,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.533333,3184,during the attack,SUSPICIOUS,freeze,0.0,18.30986,0.078559,5.264203,5.256818,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.541667,3185,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.264376,5.256969,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.55,3186,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.264549,5.25712,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.558333,3187,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.264722,5.257271,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.566667,3188,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.264895,5.257423,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.575,3189,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.265068,5.257574,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.583333,3190,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.265241,5.257726,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.591667,3191,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.265415,5.257877,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.6,3192,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.265588,5.258029,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.608333,3193,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.265762,5.258181,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.616667,3194,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.265935,5.258333,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.625,3195,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.266109,5.258485,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.633333,3196,during the attack,SUSPICIOUS,freeze,0.0,18.310357,0.078559,5.266282,5.258637,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.641667,3197,during the attack,SUSPICIOUS,freeze,0.0,18.310838,0.078559,5.266458,5.258791,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.65,3198,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.266636,5.258947,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.658333,3199,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.266814,5.259103,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.666667,3200,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.266992,5.259259,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.675,3201,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.26717,5.259416,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.683333,3202,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.267348,5.259572,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.691667,3203,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.267526,5.259729,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.7,3204,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.267705,5.259885,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.708333,3205,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.267883,5.260042,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.716667,3206,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.268062,5.260199,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.725,3207,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.26824,5.260356,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.733333,3208,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.268419,5.260513,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.741667,3209,during the attack,SUSPICIOUS,freeze,0.0,18.311623,0.078559,5.268597,5.26067,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.75,3210,during the attack,SUSPICIOUS,freeze,0.0,18.312378,0.078559,5.268779,5.26083,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.758333,3211,during the attack,SUSPICIOUS,freeze,0.0,18.312924,0.078559,5.268962,5.260991,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.766667,3212,during the attack,SUSPICIOUS,freeze,0.0,18.312924,0.078559,5.269145,5.261152,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.775,3213,during the attack,SUSPICIOUS,freeze,0.0,18.312924,0.078559,5.269328,5.261313,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.783333,3214,during the attack,SUSPICIOUS,freeze,0.0,18.312924,0.078559,5.269512,5.261475,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.791667,3215,during the attack,SUSPICIOUS,freeze,0.0,18.312924,0.078559,5.269695,5.261636,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.8,3216,during the attack,SUSPICIOUS,freeze,0.0,18.313012,0.078559,5.269879,5.261798,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.808333,3217,during the attack,SUSPICIOUS,freeze,0.0,18.312924,0.078559,5.270062,5.26196,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.816667,3218,during the attack,SUSPICIOUS,freeze,0.0,18.312924,0.078559,5.270246,5.262122,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.825,3219,during the attack,SUSPICIOUS,freeze,0.0,18.313012,0.078559,5.27043,5.262284,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.833333,3220,during the attack,SUSPICIOUS,freeze,0.0,18.313188,0.078559,5.270614,5.262447,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.841667,3221,during the attack,SUSPICIOUS,freeze,0.0,18.313365,0.078559,5.270799,5.26261,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.85,3222,during the attack,SUSPICIOUS,freeze,0.0,18.313078,0.078559,5.270983,5.262773,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.858333,3223,during the attack,SUSPICIOUS,freeze,0.0,18.313654,0.078559,5.27117,5.262937,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.866667,3224,during the attack,SUSPICIOUS,freeze,0.0,18.313632,0.078559,5.271356,5.263102,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.875,3225,during the attack,SUSPICIOUS,freeze,0.0,18.313521,0.078559,5.271542,5.263266,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.883333,3226,during the attack,SUSPICIOUS,freeze,0.0,18.314079,0.078559,5.27173,5.263432,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.891667,3227,during the attack,SUSPICIOUS,freeze,0.0,18.314169,0.078559,5.271918,5.263598,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.9,3228,during the attack,SUSPICIOUS,freeze,0.0,18.314259,0.078559,5.272106,5.263765,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.908333,3229,during the attack,SUSPICIOUS,freeze,0.0,18.314169,0.078559,5.272295,5.263931,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.916667,3230,during the attack,SUSPICIOUS,freeze,0.0,18.314079,0.078559,5.272483,5.264098,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.925,3231,during the attack,SUSPICIOUS,freeze,0.0,18.314259,0.078559,5.272672,5.264265,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.933333,3232,during the attack,SUSPICIOUS,freeze,0.0,18.3139,0.078559,5.272859,5.264431,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.941667,3233,during the attack,SUSPICIOUS,freeze,0.0,18.313632,0.078559,5.273046,5.264596,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.95,3234,during the attack,SUSPICIOUS,freeze,0.0,18.314259,0.078559,5.273234,5.264763,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.958333,3235,during the attack,SUSPICIOUS,freeze,0.0,18.314259,0.078559,5.273423,5.26493,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.966667,3236,during the attack,SUSPICIOUS,freeze,0.0,18.314259,0.078559,5.273612,5.265098,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.975,3237,during the attack,SUSPICIOUS,freeze,0.0,18.31378,0.078559,5.2738,5.265264,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.983333,3238,during the attack,SUSPICIOUS,freeze,0.0,18.313717,0.078559,5.273987,5.26543,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+26.991667,3239,during the attack,SUSPICIOUS,freeze,0.0,18.313087,0.078559,5.274172,5.265594,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.0,3240,during the attack,SUSPICIOUS,freeze,0.0,18.312434,0.078559,5.274355,5.265756,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.008333,3241,during the attack,SUSPICIOUS,freeze,0.0,18.311617,0.078559,5.274536,5.265917,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.016667,3242,during the attack,SUSPICIOUS,freeze,0.0,18.310143,0.078559,5.274713,5.266073,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.025,3243,during the attack,SUSPICIOUS,freeze,0.0,18.311066,0.078559,5.274893,5.266232,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.033333,3244,during the attack,SUSPICIOUS,freeze,0.0,18.312434,0.078559,5.275076,5.266395,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.041667,3245,during the attack,SUSPICIOUS,freeze,0.0,18.310433,0.078559,5.275254,5.266552,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.05,3246,during the attack,SUSPICIOUS,freeze,0.0,18.311825,0.078559,5.275436,5.266714,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.058333,3247,during the attack,SUSPICIOUS,freeze,0.0,18.312071,0.078559,5.275619,5.266876,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.066667,3248,during the attack,SUSPICIOUS,freeze,0.0,18.313035,0.078559,5.275804,5.267041,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.075,3249,during the attack,SUSPICIOUS,freeze,0.0,18.313543,0.078559,5.275991,5.267207,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.083333,3250,during the attack,SUSPICIOUS,freeze,0.0,18.31369,0.078559,5.276178,5.267374,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.091667,3251,during the attack,SUSPICIOUS,freeze,0.0,18.311664,0.078559,5.276361,5.267535,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.1,3252,during the attack,SUSPICIOUS,freeze,0.0,18.312703,0.078559,5.276545,5.2677,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.108333,3253,during the attack,SUSPICIOUS,freeze,0.0,18.312022,0.078559,5.276729,5.267862,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.116667,3254,during the attack,SUSPICIOUS,freeze,0.0,18.310914,0.078559,5.276909,5.268022,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.125,3255,during the attack,SUSPICIOUS,freeze,0.0,18.310018,0.078559,5.277086,5.268179,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.133333,3256,during the attack,SUSPICIOUS,freeze,0.0,18.309533,0.078559,5.277262,5.268334,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.141667,3257,during the attack,SUSPICIOUS,freeze,0.0,18.310251,0.078559,5.27744,5.268492,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.15,3258,during the attack,SUSPICIOUS,freeze,0.0,18.309386,0.078559,5.277615,5.268647,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.158333,3259,during the attack,SUSPICIOUS,freeze,0.0,18.309657,0.078559,5.277791,5.268803,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.166667,3260,during the attack,SUSPICIOUS,freeze,0.0,18.309133,0.078559,5.277965,5.268956,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.175,3261,during the attack,SUSPICIOUS,freeze,0.0,18.309558,0.078559,5.278141,5.269112,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.183333,3262,during the attack,SUSPICIOUS,freeze,0.0,18.310283,0.078559,5.278319,5.269271,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.191667,3263,during the attack,SUSPICIOUS,freeze,0.0,18.308021,0.078559,5.27849,5.269422,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.2,3264,during the attack,SUSPICIOUS,freeze,0.0,18.308109,0.078559,5.278661,5.269573,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.208333,3265,during the attack,SUSPICIOUS,freeze,0.0,18.307995,0.078559,5.278832,5.269724,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.216667,3266,during the attack,SUSPICIOUS,freeze,0.0,18.309558,0.078559,5.279008,5.269881,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.225,3267,during the attack,SUSPICIOUS,freeze,0.0,18.308162,0.078559,5.279179,5.270032,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.233333,3268,during the attack,SUSPICIOUS,freeze,0.0,18.307594,0.078559,5.279348,5.270182,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.241667,3269,during the attack,SUSPICIOUS,freeze,0.0,18.307896,0.078559,5.279518,5.270333,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.25,3270,during the attack,SUSPICIOUS,freeze,0.0,18.30891,0.078559,5.279692,5.270488,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.258333,3271,during the attack,SUSPICIOUS,freeze,0.0,18.308193,0.078559,5.279864,5.27064,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.266667,3272,during the attack,SUSPICIOUS,freeze,0.0,18.307698,0.078559,5.280034,5.270791,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.275,3273,during the attack,SUSPICIOUS,freeze,0.0,18.307633,0.078559,5.280204,5.270942,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.283333,3274,during the attack,SUSPICIOUS,freeze,0.0,18.308181,0.078559,5.280375,5.271095,EMPTY,5.0,,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.291667,3275,during the attack,SUSPICIOUS,freeze,0.0,18.307385,0.078559,5.280544,5.271244,EMPTY,5.0,pir,"pir_unexplained,pir_stuck","contradiction: pir_unexplained, pir_stuck"
+27.3,3276,during the attack,TRUSTED,full,0.002,1.282369,0.081054,5.280716,5.271091,EMPTY,4.9,pir,"pir_unexplained,pir_stuck",consistent
+27.308333,3277,during the attack,TRUSTED,full,0.002,1.280874,0.083549,5.280887,5.270938,EMPTY,4.802,pir,"pir_unexplained,pir_stuck",consistent
+27.316667,3278,during the attack,TRUSTED,full,0.002,1.282626,0.086043,5.281056,5.270786,EMPTY,4.70596,pir,"pir_unexplained,pir_stuck",consistent
+27.325,3279,during the attack,TRUSTED,full,0.002,1.283569,0.088536,5.281225,5.270634,EMPTY,4.611841,pir,"pir_unexplained,pir_stuck",consistent
+27.333333,3280,during the attack,TRUSTED,full,0.002,1.28006,0.09103,5.281394,5.270483,EMPTY,4.519604,pir,"pir_unexplained,pir_stuck",consistent
+27.341667,3281,during the attack,TRUSTED,full,0.002,1.272147,0.093524,5.281564,5.270333,EMPTY,4.429212,pir,"pir_unexplained,pir_stuck",consistent
+27.35,3282,during the attack,TRUSTED,full,0.002,1.264531,0.096017,5.281735,5.270183,EMPTY,4.340628,pir,"pir_unexplained,pir_stuck",consistent
+27.358333,3283,during the attack,TRUSTED,full,0.002,1.262165,0.098507,5.281906,5.270033,EMPTY,4.253815,pir,"pir_unexplained,pir_stuck",consistent
+27.366667,3284,during the attack,TRUSTED,full,0.002,1.260874,0.100997,5.282076,5.269884,EMPTY,4.168739,pir,"pir_unexplained,pir_stuck",consistent
+27.375,3285,during the attack,TRUSTED,full,0.002,1.258568,0.103485,5.282246,5.269736,EMPTY,4.085364,pir,"pir_unexplained,pir_stuck",consistent
+27.383333,3286,during the attack,TRUSTED,full,0.002,1.255213,0.10597,5.282416,5.269588,EMPTY,4.003657,pir,"pir_unexplained,pir_stuck",consistent
+27.391667,3287,during the attack,TRUSTED,full,0.002,1.256257,0.108455,5.282586,5.269441,EMPTY,3.923584,pir,"pir_unexplained,pir_stuck",consistent
+27.4,3288,during the attack,TRUSTED,full,0.002,1.252912,0.110937,5.282755,5.269295,EMPTY,3.845112,pir,"pir_unexplained,pir_stuck",consistent
+27.408333,3289,during the attack,TRUSTED,full,0.002,1.245224,0.113416,5.282925,5.269148,EMPTY,3.76821,pir,"pir_unexplained,pir_stuck",consistent
+27.416667,3290,during the attack,TRUSTED,full,0.002,1.241947,0.115892,5.283095,5.269003,EMPTY,3.692846,pir,"pir_unexplained,pir_stuck",consistent
+27.425,3291,during the attack,TRUSTED,full,0.002,1.243036,0.118367,5.283264,5.268858,EMPTY,3.618989,pir,"pir_unexplained,pir_stuck",consistent
+27.433333,3292,during the attack,TRUSTED,full,0.002,1.231335,0.120835,5.283436,5.268714,EMPTY,3.546609,pir,"pir_unexplained,pir_stuck",consistent
+27.441667,3293,during the attack,TRUSTED,full,0.002,1.236562,0.123303,5.283605,5.26857,EMPTY,3.475677,pir,"pir_unexplained,pir_stuck",consistent
+27.45,3294,during the attack,TRUSTED,full,0.002,1.233331,0.125769,5.283774,5.268426,EMPTY,3.406163,pir,"pir_unexplained,pir_stuck",consistent
+27.458333,3295,during the attack,TRUSTED,full,0.002,1.230118,0.128232,5.283944,5.268284,EMPTY,3.33804,pir,"pir_unexplained,pir_stuck",consistent
+27.466667,3296,during the attack,TRUSTED,full,0.002,1.220916,0.13068,5.284112,5.268141,EMPTY,3.271279,pir,"pir_unexplained,pir_stuck",consistent
+27.475,3297,during the attack,TRUSTED,full,0.002,1.214172,0.133118,5.284279,5.268,EMPTY,3.205853,pir,"pir_unexplained,pir_stuck",consistent
+27.483333,3298,during the attack,TRUSTED,full,0.002,1.205869,0.135542,5.284445,5.267858,EMPTY,3.141736,pir,"pir_unexplained,pir_stuck",consistent
+27.491667,3299,during the attack,TRUSTED,full,0.002,1.206808,0.137971,5.284612,5.267718,EMPTY,3.078902,pir,"pir_unexplained,pir_stuck",consistent
+27.5,3300,during the attack,TRUSTED,full,0.002,1.192534,0.140383,5.28478,5.267578,EMPTY,3.017324,pir,"pir_unexplained,pir_stuck",consistent
+27.508333,3301,during the attack,TRUSTED,full,0.002,1.19074,0.142791,5.284947,5.267438,EMPTY,2.956977,pir,"pir_unexplained,pir_stuck",consistent
+27.516667,3302,during the attack,TRUSTED,full,0.002,1.183616,0.145186,5.285112,5.267299,EMPTY,2.897838,pir,"pir_unexplained,pir_stuck",consistent
+27.525,3303,during the attack,TRUSTED,full,0.002,1.181673,0.147574,5.285276,5.26716,EMPTY,2.839881,pir,"pir_unexplained,pir_stuck",consistent
+27.533333,3304,during the attack,TRUSTED,full,0.002,1.187908,0.149976,5.285442,5.267022,EMPTY,2.783083,pir,"pir_unexplained,pir_stuck",consistent
+27.541667,3305,during the attack,TRUSTED,full,0.002,1.187508,0.152384,5.28561,5.266885,EMPTY,2.727422,pir,"pir_unexplained,pir_stuck",consistent
+27.55,3306,during the attack,TRUSTED,full,0.002,1.18438,0.154783,5.285777,5.266748,EMPTY,2.672873,pir,"pir_unexplained,pir_stuck",consistent
+27.558333,3307,during the attack,TRUSTED,full,0.002,1.173086,0.157162,5.285942,5.266611,EMPTY,2.619416,pir,"pir_unexplained,pir_stuck",consistent
+27.566667,3308,during the attack,TRUSTED,full,0.002,1.164481,0.15953,5.286107,5.266475,EMPTY,2.567027,pir,"pir_unexplained,pir_stuck",consistent
+27.575,3309,during the attack,TRUSTED,full,0.002,1.165777,0.161898,5.286271,5.26634,EMPTY,2.515687,pir,"pir_unexplained,pir_stuck",consistent
+27.583333,3310,during the attack,TRUSTED,full,0.002,1.158236,0.164255,5.286435,5.266205,EMPTY,2.465373,pir,"pir_unexplained,pir_stuck",consistent
+27.591667,3311,during the attack,TRUSTED,full,0.002,1.153448,0.166607,5.2866,5.26607,EMPTY,2.416066,pir,"pir_unexplained,pir_stuck",consistent
+27.6,3312,during the attack,TRUSTED,full,0.002,1.15576,0.16896,5.286764,5.265936,EMPTY,2.367744,pir,"pir_unexplained,pir_stuck",consistent
+27.608333,3313,during the attack,TRUSTED,full,0.002,1.152969,0.171308,5.286928,5.265803,EMPTY,2.320389,pir,"pir_unexplained,pir_stuck",consistent
+27.616667,3314,during the attack,TRUSTED,full,0.002,1.150192,0.173652,5.287091,5.26567,EMPTY,2.273982,pir,"pir_unexplained,pir_stuck",consistent
+27.625,3315,during the attack,TRUSTED,full,0.002,1.14743,0.175993,5.287255,5.265538,EMPTY,2.228502,pir,"pir_unexplained,pir_stuck",consistent
+27.633333,3316,during the attack,TRUSTED,full,0.002,1.144682,0.178329,5.287419,5.265406,EMPTY,2.183932,pir,"pir_unexplained,pir_stuck",consistent
+27.641667,3317,during the attack,TRUSTED,full,0.002,1.137882,0.180656,5.287583,5.265274,EMPTY,2.140253,pir,"pir_unexplained,pir_stuck",consistent
+27.65,3318,during the attack,TRUSTED,full,0.002,1.139246,0.182984,5.287747,5.265143,EMPTY,2.097448,pir,"pir_unexplained,pir_stuck",consistent
+27.658333,3319,during the attack,TRUSTED,full,0.002,1.13654,0.185308,5.287911,5.265013,EMPTY,2.055499,pir,"pir_unexplained,pir_stuck",consistent
+27.666667,3320,during the attack,TRUSTED,full,0.002,1.129801,0.187623,5.288075,5.264883,EMPTY,2.014389,pir,"pir_unexplained,pir_stuck",consistent
+27.675,3321,during the attack,TRUSTED,full,0.002,1.131186,0.189938,5.288239,5.264753,EMPTY,1.974102,pir,"pir_unexplained,pir_stuck",consistent
+27.683333,3322,during the attack,TRUSTED,full,0.002,1.128519,0.192249,5.288402,5.264624,EMPTY,1.93462,pir,"pir_unexplained,pir_stuck",consistent
+27.691667,3323,during the attack,TRUSTED,full,0.002,1.125866,0.194556,5.288566,5.264496,EMPTY,1.895927,pir,"pir_unexplained,pir_stuck",consistent
+27.7,3324,during the attack,TRUSTED,full,0.002,1.123226,0.196858,5.288729,5.264368,EMPTY,1.858009,pir,"pir_unexplained,pir_stuck",consistent
+27.708333,3325,during the attack,TRUSTED,full,0.002,1.116587,0.199152,5.288894,5.26424,EMPTY,1.820848,pir,"pir_unexplained,pir_stuck",consistent
+27.716667,3326,during the attack,TRUSTED,full,0.002,1.118004,0.201446,5.289057,5.264113,EMPTY,1.784431,pir,"pir_unexplained,pir_stuck",consistent
+27.725,3327,during the attack,TRUSTED,full,0.002,1.115402,0.203736,5.289221,5.263987,EMPTY,1.748743,pir,"pir_unexplained,pir_stuck",consistent
+27.733333,3328,during the attack,TRUSTED,full,0.002,1.112814,0.206022,5.289384,5.26386,EMPTY,1.713768,pir,"pir_unexplained,pir_stuck",consistent
+27.741667,3329,during the attack,TRUSTED,full,0.002,1.110238,0.208303,5.289547,5.263735,EMPTY,1.679493,pir,"pir_unexplained,pir_stuck",consistent
+27.75,3330,during the attack,TRUSTED,full,0.002,1.107674,0.210581,5.289711,5.26361,EMPTY,1.645903,pir,"pir_unexplained,pir_stuck",consistent
+27.758333,3331,during the attack,TRUSTED,full,0.002,1.105123,0.212854,5.289874,5.263485,EMPTY,1.612985,pir,"pir_unexplained,pir_stuck",consistent
+27.766667,3332,during the attack,TRUSTED,full,0.002,1.102584,0.215122,5.290037,5.263361,EMPTY,1.580725,pir,"pir_unexplained,pir_stuck",consistent
+27.775,3333,during the attack,TRUSTED,full,0.002,1.100058,0.217387,5.2902,5.263237,EMPTY,1.54911,pir,"pir_unexplained,pir_stuck",consistent
+27.783333,3334,during the attack,TRUSTED,full,0.002,1.097543,0.219647,5.290364,5.263114,EMPTY,1.518128,pir,"pir_unexplained,pir_stuck",consistent
+27.791667,3335,during the attack,TRUSTED,full,0.002,1.09504,0.221903,5.290527,5.262991,EMPTY,1.487766,pir,"pir_unexplained,pir_stuck",consistent
+27.8,3336,during the attack,TRUSTED,full,0.002,1.09255,0.224155,5.29069,5.262868,EMPTY,1.45801,pir,"pir_unexplained,pir_stuck",consistent
+27.808333,3337,during the attack,TRUSTED,full,0.002,1.090071,0.226402,5.290853,5.262746,EMPTY,1.42885,pir,"pir_unexplained,pir_stuck",consistent
+27.816667,3338,during the attack,TRUSTED,full,0.002,1.087603,0.228645,5.291016,5.262625,EMPTY,1.400273,pir,"pir_unexplained,pir_stuck",consistent
+27.825,3339,during the attack,TRUSTED,full,0.002,1.085147,0.230884,5.291179,5.262504,EMPTY,1.372268,pir,"pir_unexplained,pir_stuck",consistent
+27.833333,3340,during the attack,TRUSTED,full,0.002,1.082703,0.233119,5.291342,5.262383,EMPTY,1.344822,pir,"pir_unexplained,pir_stuck",consistent
+27.841667,3341,during the attack,TRUSTED,full,0.002,1.08027,0.23535,5.291505,5.262263,EMPTY,1.317926,pir,"pir_unexplained,pir_stuck",consistent
+27.85,3342,during the attack,TRUSTED,full,0.002,1.077848,0.237576,5.291668,5.262143,EMPTY,1.291567,pir,"pir_unexplained,pir_stuck",consistent
+27.858333,3343,during the attack,TRUSTED,full,0.002,1.075438,0.239798,5.29183,5.262024,EMPTY,1.265736,pir,"pir_unexplained,pir_stuck",consistent
+27.866667,3344,during the attack,TRUSTED,full,0.002,1.073039,0.242016,5.291993,5.261906,EMPTY,1.240421,pir,"pir_unexplained,pir_stuck",consistent
+27.875,3345,during the attack,TRUSTED,full,0.002,1.07065,0.244229,5.292156,5.261787,EMPTY,1.215613,pir,"pir_unexplained,pir_stuck",consistent
+27.883333,3346,during the attack,TRUSTED,full,0.002,1.064394,0.246433,5.292319,5.261669,EMPTY,1.191301,pir,"pir_unexplained,pir_stuck",consistent
+27.891667,3347,during the attack,TRUSTED,full,0.002,1.065923,0.248638,5.292482,5.261552,EMPTY,1.167475,pir,"pir_unexplained,pir_stuck",consistent
+27.9,3348,during the attack,TRUSTED,full,0.002,1.063567,0.250839,5.292644,5.261435,EMPTY,1.144125,pir,"pir_unexplained,pir_stuck",consistent
+27.908333,3349,during the attack,TRUSTED,full,0.002,1.061222,0.253036,5.292807,5.261318,EMPTY,1.121243,pir,"pir_unexplained,pir_stuck",consistent
+27.916667,3350,during the attack,TRUSTED,full,0.002,1.058887,0.255228,5.292969,5.261202,EMPTY,1.098818,pir,"pir_unexplained,pir_stuck",consistent
+27.925,3351,during the attack,TRUSTED,full,0.002,1.056563,0.257416,5.293132,5.261086,EMPTY,1.076841,pir,"pir_unexplained,pir_stuck",consistent
+27.933333,3352,during the attack,TRUSTED,full,0.002,1.054249,0.2596,5.293294,5.260971,EMPTY,1.055305,pir,"pir_unexplained,pir_stuck",consistent
+27.941667,3353,during the attack,TRUSTED,full,0.002,1.051946,0.26178,5.293456,5.260856,EMPTY,1.034199,pir,"pir_unexplained,pir_stuck",consistent
+27.95,3354,during the attack,TRUSTED,full,0.002,1.049653,0.263955,5.293619,5.260742,EMPTY,1.013515,pir,"pir_unexplained,pir_stuck",consistent
+27.958333,3355,during the attack,TRUSTED,full,0.002,1.04737,0.266126,5.293781,5.260628,EMPTY,0.993244,pir,"pir_unexplained,pir_stuck",consistent
+27.966667,3356,during the attack,TRUSTED,full,0.002,1.045097,0.268294,5.293943,5.260514,EMPTY,0.973379,pir,"pir_unexplained,pir_stuck",consistent
+27.975,3357,during the attack,TRUSTED,full,0.002,1.042834,0.270456,5.294105,5.260401,EMPTY,0.953912,pir,"pir_unexplained,pir_stuck",consistent
+27.983333,3358,during the attack,TRUSTED,full,0.002,1.040581,0.272615,5.294267,5.260289,EMPTY,0.934834,pir,"pir_unexplained,pir_stuck",consistent
+27.991667,3359,during the attack,TRUSTED,full,0.002,1.038338,0.27477,5.294429,5.260176,EMPTY,0.916137,pir,"pir_unexplained,pir_stuck",consistent
+28.0,3360,during the attack,TRUSTED,full,0.002,1.036104,0.27692,5.29459,5.260065,EMPTY,0.897814,pir,"pir_unexplained,pir_stuck",consistent
+28.008333,3361,during the attack,TRUSTED,full,0.002,1.033881,0.279066,5.294752,5.259953,EMPTY,0.879858,pir,"pir_unexplained,pir_stuck",consistent
+28.016667,3362,during the attack,TRUSTED,full,0.002,1.031667,0.281208,5.294914,5.259842,EMPTY,0.862261,pir,"pir_unexplained,pir_stuck",consistent
+28.025,3363,during the attack,TRUSTED,full,0.002,1.029463,0.283346,5.295076,5.259731,EMPTY,0.845015,pir,"pir_unexplained,pir_stuck",consistent
+28.033333,3364,during the attack,TRUSTED,full,0.002,1.027268,0.28548,5.295237,5.259621,EMPTY,0.828115,pir,"pir_unexplained,pir_stuck",consistent
+28.041667,3365,during the attack,TRUSTED,full,0.002,1.025082,0.287609,5.295399,5.259511,EMPTY,0.811553,pir,"pir_unexplained,pir_stuck",consistent
+28.05,3366,during the attack,TRUSTED,full,0.002,1.022906,0.289734,5.29556,5.259402,EMPTY,0.795322,pir,"pir_unexplained,pir_stuck",consistent
+28.058333,3367,during the attack,TRUSTED,full,0.002,1.020739,0.291856,5.295721,5.259293,EMPTY,0.779415,pir,"pir_unexplained,pir_stuck",consistent
+28.066667,3368,during the attack,TRUSTED,full,0.002,1.018582,0.293973,5.295883,5.259185,EMPTY,0.763827,pir,"pir_unexplained,pir_stuck",consistent
+28.075,3369,during the attack,TRUSTED,full,0.002,1.016433,0.296086,5.296044,5.259076,EMPTY,0.748551,pir,"pir_unexplained,pir_stuck",consistent
+28.083333,3370,during the attack,TRUSTED,full,0.002,1.014294,0.298194,5.296205,5.258969,EMPTY,0.73358,pir,"pir_unexplained,pir_stuck",consistent
+28.091667,3371,during the attack,TRUSTED,full,0.002,1.012163,0.300299,5.296366,5.258861,EMPTY,0.718908,pir,"pir_unexplained,pir_stuck",consistent
+28.1,3372,during the attack,TRUSTED,full,0.002,1.010042,0.3024,5.296527,5.258754,EMPTY,0.70453,pir,"pir_unexplained,pir_stuck",consistent
+28.108333,3373,during the attack,TRUSTED,full,0.002,1.007929,0.304496,5.296688,5.258648,EMPTY,0.690439,pir,"pir_unexplained,pir_stuck",consistent
+28.116667,3374,during the attack,TRUSTED,full,0.002,1.005826,0.306588,5.296849,5.258542,EMPTY,0.67663,pir,"pir_unexplained,pir_stuck",consistent
+28.125,3375,during the attack,TRUSTED,full,0.002,1.003731,0.308677,5.29701,5.258436,EMPTY,0.663098,pir,"pir_unexplained,pir_stuck",consistent
+28.133333,3376,during the attack,TRUSTED,full,0.002,1.001644,0.310761,5.29717,5.258331,EMPTY,0.649836,pir,"pir_unexplained,pir_stuck",consistent
+28.141667,3377,during the attack,TRUSTED,full,0.002,0.999566,0.312841,5.297331,5.258226,EMPTY,0.636839,pir,"pir_unexplained,pir_stuck",consistent
+28.15,3378,during the attack,TRUSTED,full,0.002,0.997497,0.314917,5.297492,5.258121,EMPTY,0.624102,pir,"pir_unexplained,pir_stuck",consistent
+28.158333,3379,during the attack,TRUSTED,full,0.002,0.995437,0.316989,5.297652,5.258017,EMPTY,0.61162,pir,"pir_unexplained,pir_stuck",consistent
+28.166667,3380,during the attack,TRUSTED,full,0.002,0.993384,0.319057,5.297812,5.257913,EMPTY,0.599388,pir,"pir_unexplained,pir_stuck",consistent
+28.175,3381,during the attack,TRUSTED,full,0.002,0.99134,0.32112,5.297973,5.25781,EMPTY,0.5874,pir,"pir_unexplained,pir_stuck",consistent
+28.183333,3382,during the attack,TRUSTED,full,0.002,0.989305,0.32318,5.298133,5.257707,EMPTY,0.575652,pir,"pir_unexplained,pir_stuck",consistent
+28.191667,3383,during the attack,TRUSTED,full,0.002,0.987278,0.325236,5.298293,5.257604,EMPTY,0.564139,pir,"pir_unexplained,pir_stuck",consistent
+28.2,3384,during the attack,TRUSTED,full,0.002,0.985258,0.327287,5.298453,5.257502,EMPTY,0.552856,pir,"pir_unexplained,pir_stuck",consistent
+28.208333,3385,during the attack,TRUSTED,full,0.002,0.983247,0.329335,5.298613,5.2574,EMPTY,0.541799,pir,"pir_unexplained,pir_stuck",consistent
+28.216667,3386,during the attack,TRUSTED,full,0.002,0.981244,0.331378,5.298773,5.257299,EMPTY,0.530963,pir,"pir_unexplained,pir_stuck",consistent
+28.225,3387,during the attack,TRUSTED,full,0.002,0.97925,0.333418,5.298933,5.257197,EMPTY,0.520344,pir,"pir_unexplained,pir_stuck",consistent
+28.233333,3388,during the attack,TRUSTED,full,0.002,0.977263,0.335454,5.299092,5.257097,EMPTY,0.509937,pir,"pir_unexplained,pir_stuck",consistent
+28.241667,3389,during the attack,TRUSTED,full,0.002,0.975284,0.337485,5.299252,5.256996,EMPTY,0.499738,pir,"pir_unexplained,pir_stuck",consistent
+28.25,3390,during the attack,TRUSTED,full,0.002,0.973312,0.339513,5.299412,5.256896,EMPTY,0.489744,pir,"pir_unexplained,pir_stuck",consistent
+28.258333,3391,during the attack,TRUSTED,full,0.002,0.971349,0.341536,5.299571,5.256797,EMPTY,0.479949,pir,"pir_unexplained,pir_stuck",consistent
+28.266667,3392,during the attack,TRUSTED,full,0.002,0.969393,0.343556,5.29973,5.256698,EMPTY,0.47035,pir,"pir_unexplained,pir_stuck",consistent
+28.275,3393,during the attack,TRUSTED,full,0.002,0.967445,0.345571,5.29989,5.256599,EMPTY,0.460943,pir,"pir_unexplained,pir_stuck",consistent
+28.283333,3394,during the attack,TRUSTED,full,0.002,0.971717,0.347596,5.30005,5.2565,EMPTY,0.451724,pir,"pir_unexplained,pir_stuck",consistent
+28.291667,3395,during the attack,TRUSTED,full,0.002,0.965101,0.349606,5.30021,5.256402,EMPTY,0.442689,pir,"pir_unexplained,pir_stuck",consistent
+28.3,3396,during the attack,TRUSTED,full,0.002,0.966275,0.35162,5.30037,5.256304,EMPTY,0.433836,pir,"pir_unexplained,pir_stuck",consistent
+28.308333,3397,during the attack,TRUSTED,full,0.002,0.967058,0.353634,5.300531,5.256207,EMPTY,0.425159,pir,"pir_unexplained,pir_stuck",consistent
+28.316667,3398,during the attack,TRUSTED,full,0.002,0.974829,0.355665,5.300695,5.25611,EMPTY,0.416656,pir,"pir_unexplained,pir_stuck",consistent
+28.325,3399,during the attack,TRUSTED,full,0.002,0.957715,0.357661,5.300854,5.256013,EMPTY,0.408323,pir,"pir_unexplained,pir_stuck",consistent
+28.333333,3400,during the attack,TRUSTED,full,0.002,0.955425,0.359652,5.301013,5.255917,EMPTY,0.400156,pir,"pir_unexplained,pir_stuck",consistent
+28.341667,3401,during the attack,TRUSTED,full,0.002,0.953531,0.361639,5.301172,5.255821,EMPTY,0.392153,pir,"pir_unexplained,pir_stuck",consistent
+28.35,3402,during the attack,TRUSTED,full,0.002,0.951256,0.363621,5.301331,5.255725,EMPTY,0.38431,pir,"pir_unexplained,pir_stuck",consistent
+28.358333,3403,during the attack,TRUSTED,full,0.002,0.951707,0.365604,5.30149,5.25563,EMPTY,0.376624,pir,"pir_unexplained,pir_stuck",consistent
+28.366667,3404,during the attack,TRUSTED,full,0.002,0.961474,0.367607,5.301653,5.255535,EMPTY,0.369091,pir,"pir_unexplained,pir_stuck",consistent
+28.375,3405,during the attack,TRUSTED,full,0.002,0.967715,0.369623,5.301818,5.255441,EMPTY,0.361709,pir,"pir_unexplained,pir_stuck",consistent
+28.383333,3406,during the attack,TRUSTED,full,0.002,0.965773,0.371636,5.301982,5.255346,EMPTY,0.354475,pir,"pir_unexplained,pir_stuck",consistent
+28.391667,3407,during the attack,TRUSTED,full,0.002,0.963838,0.373644,5.302147,5.255253,EMPTY,0.347386,pir,"pir_unexplained,pir_stuck",consistent
+28.4,3408,during the attack,TRUSTED,full,0.002,0.961911,0.375648,5.302312,5.255159,EMPTY,0.340438,pir,"pir_unexplained,pir_stuck",consistent
+28.408333,3409,during the attack,TRUSTED,full,0.002,0.959992,0.377648,5.302476,5.255066,EMPTY,0.333629,pir,"pir_unexplained,pir_stuck",consistent
+28.416667,3410,during the attack,TRUSTED,full,0.002,0.95808,0.379644,5.302641,5.254973,EMPTY,0.326957,pir,"pir_unexplained,pir_stuck",consistent
+28.425,3411,during the attack,TRUSTED,full,0.002,0.956175,0.381637,5.302805,5.254881,EMPTY,0.320418,pir,"pir_unexplained,pir_stuck",consistent
+28.433333,3412,during the attack,TRUSTED,full,0.002,0.954278,0.383625,5.302969,5.254789,EMPTY,0.314009,pir,"pir_unexplained,pir_stuck",consistent
+28.441667,3413,during the attack,TRUSTED,full,0.002,0.952388,0.38561,5.303133,5.254697,EMPTY,0.307729,pir,"pir_unexplained,pir_stuck",consistent
+28.45,3414,during the attack,TRUSTED,full,0.002,0.950506,0.38759,5.303297,5.254606,EMPTY,0.301574,pir,"pir_unexplained,pir_stuck",consistent
+28.458333,3415,during the attack,TRUSTED,full,0.002,0.94863,0.389567,5.303461,5.254514,EMPTY,0.295543,pir,"pir_unexplained,pir_stuck",consistent
+28.466667,3416,during the attack,TRUSTED,full,0.002,0.946762,0.391539,5.303625,5.254424,EMPTY,0.289632,pir,"pir_unexplained,pir_stuck",consistent
+28.475,3417,during the attack,TRUSTED,full,0.002,0.9449,0.393508,5.303789,5.254333,EMPTY,0.283839,pir,"pir_unexplained,pir_stuck",consistent
+28.483333,3418,during the attack,TRUSTED,full,0.002,0.943046,0.395473,5.303953,5.254243,EMPTY,0.278163,pir,"pir_unexplained,pir_stuck",consistent
+28.491667,3419,during the attack,TRUSTED,full,0.002,0.941199,0.397434,5.304116,5.254154,EMPTY,0.272599,pir,"pir_unexplained,pir_stuck",consistent
+28.5,3420,during the attack,TRUSTED,full,0.002,0.939359,0.399391,5.304279,5.254064,EMPTY,0.267147,pir,"pir_unexplained,pir_stuck",consistent
+28.508333,3421,during the attack,TRUSTED,full,0.002,0.937525,0.401345,5.304443,5.253975,EMPTY,0.261804,pir,"pir_unexplained,pir_stuck",consistent
+28.516667,3422,during the attack,TRUSTED,full,0.002,0.935699,0.403294,5.304606,5.253886,EMPTY,0.256568,pir,"pir_unexplained,pir_stuck",consistent
+28.525,3423,during the attack,TRUSTED,full,0.002,0.933879,0.40524,5.304769,5.253798,EMPTY,0.251437,pir,"pir_unexplained,pir_stuck",consistent
+28.533333,3424,during the attack,TRUSTED,full,0.002,0.932066,0.407181,5.304932,5.25371,EMPTY,0.246408,pir,"pir_unexplained,pir_stuck",consistent
+28.541667,3425,during the attack,TRUSTED,full,0.002,0.93026,0.409119,5.305095,5.253622,EMPTY,0.24148,pir,"pir_unexplained,pir_stuck",consistent
+28.55,3426,during the attack,TRUSTED,full,0.002,0.928461,0.411053,5.305258,5.253535,EMPTY,0.236651,pir,"pir_unexplained,pir_stuck",consistent
+28.558333,3427,during the attack,TRUSTED,full,0.002,0.926668,0.412983,5.30542,5.253448,EMPTY,0.231917,pir,"pir_unexplained,pir_stuck",consistent
+28.566667,3428,during the attack,TRUSTED,full,0.002,0.924882,0.41491,5.305583,5.253361,EMPTY,0.227279,pir,"pir_unexplained,pir_stuck",consistent
+28.575,3429,during the attack,TRUSTED,full,0.002,0.923102,0.416832,5.305745,5.253274,EMPTY,0.222734,pir,"pir_unexplained,pir_stuck",consistent
+28.583333,3430,during the attack,TRUSTED,full,0.002,0.921329,0.418751,5.305908,5.253188,EMPTY,0.218279,pir,"pir_unexplained,pir_stuck",consistent
+28.591667,3431,during the attack,TRUSTED,full,0.002,0.919562,0.420666,5.30607,5.253103,EMPTY,0.213913,pir,"pir_unexplained,pir_stuck",consistent
+28.6,3432,during the attack,TRUSTED,full,0.002,0.917802,0.422577,5.306232,5.253017,EMPTY,0.209635,pir,"pir_unexplained,pir_stuck",consistent
+28.608333,3433,during the attack,TRUSTED,full,0.002,0.916048,0.424484,5.306394,5.252932,EMPTY,0.205442,pir,"pir_unexplained,pir_stuck",consistent
+28.616667,3434,during the attack,TRUSTED,full,0.002,0.9143,0.426388,5.306556,5.252847,EMPTY,0.201333,pir,"pir_unexplained,pir_stuck",consistent
+28.625,3435,during the attack,TRUSTED,full,0.002,0.912559,0.428288,5.306718,5.252762,EMPTY,0.197307,pir,"pir_unexplained,pir_stuck",consistent
+28.633333,3436,during the attack,TRUSTED,full,0.002,0.910824,0.430184,5.306879,5.252678,EMPTY,0.193361,pir,"pir_unexplained,pir_stuck",consistent
+28.641667,3437,during the attack,TRUSTED,full,0.002,0.909095,0.432076,5.307041,5.252594,EMPTY,0.189493,pir,"pir_unexplained,pir_stuck",consistent
+28.65,3438,during the attack,TRUSTED,full,0.002,0.907373,0.433964,5.307202,5.252511,EMPTY,0.185704,pir,"pir_unexplained,pir_stuck",consistent
+28.658333,3439,during the attack,TRUSTED,full,0.002,0.905657,0.435849,5.307363,5.252427,EMPTY,0.18199,pir,"pir_unexplained,pir_stuck",consistent
+28.666667,3440,during the attack,TRUSTED,full,0.002,0.903946,0.43773,5.307525,5.252345,EMPTY,0.17835,pir,"pir_unexplained,pir_stuck",consistent
+28.675,3441,during the attack,TRUSTED,full,0.002,0.902242,0.439607,5.307686,5.252262,EMPTY,0.174783,pir,"pir_unexplained,pir_stuck",consistent
+28.683333,3442,during the attack,TRUSTED,full,0.002,0.900544,0.441481,5.307847,5.252179,EMPTY,0.171287,pir,"pir_unexplained,pir_stuck",consistent
+28.691667,3443,during the attack,TRUSTED,full,0.002,0.898852,0.443351,5.308007,5.252097,EMPTY,0.167861,pir,"pir_unexplained,pir_stuck",consistent
+28.7,3444,during the attack,TRUSTED,full,0.002,0.897166,0.445217,5.308168,5.252016,EMPTY,0.164504,pir,"pir_unexplained,pir_stuck",consistent
+28.708333,3445,during the attack,TRUSTED,full,0.002,0.895485,0.447079,5.308329,5.251934,EMPTY,0.161214,pir,"pir_unexplained,pir_stuck",consistent
+28.716667,3446,during the attack,TRUSTED,full,0.002,0.893811,0.448938,5.308489,5.251853,EMPTY,0.15799,pir,"pir_unexplained,pir_stuck",consistent
+28.725,3447,during the attack,TRUSTED,full,0.002,0.892142,0.450793,5.30865,5.251772,EMPTY,0.15483,pir,"pir_unexplained,pir_stuck",consistent
+28.733333,3448,during the attack,TRUSTED,full,0.002,0.89048,0.452644,5.30881,5.251692,EMPTY,0.151733,pir,"pir_unexplained,pir_stuck",consistent
+28.741667,3449,during the attack,TRUSTED,full,0.002,0.888823,0.454492,5.30897,5.251611,EMPTY,0.148699,pir,"pir_unexplained,pir_stuck",consistent
+28.75,3450,during the attack,TRUSTED,full,0.002,0.879399,0.45632,5.309127,5.251531,EMPTY,0.145725,pir,"pir_unexplained,pir_stuck",consistent
+28.758333,3451,during the attack,TRUSTED,full,0.002,0.868848,0.458125,5.309282,5.251452,EMPTY,0.14281,pir,"pir_unexplained,pir_stuck",consistent
+28.766667,3452,during the attack,TRUSTED,full,0.002,0.860667,0.459914,5.309434,5.251372,EMPTY,0.139954,pir,"pir_unexplained,pir_stuck",consistent
+28.775,3453,during the attack,TRUSTED,full,0.002,0.859112,0.461699,5.309587,5.251293,EMPTY,0.137155,pir,"pir_unexplained,pir_stuck",consistent
+28.783333,3454,during the attack,TRUSTED,full,0.002,0.857562,0.46348,5.309739,5.251215,EMPTY,0.134412,pir,"pir_unexplained,pir_stuck",consistent
+28.791667,3455,after the attack,TRUSTED,full,0.002,0.856017,0.465258,5.309891,5.251136,EMPTY,0.131724,pir,"pir_unexplained,pir_stuck",consistent
+28.8,3456,after the attack,TRUSTED,full,0.002,0.854478,0.467032,5.299691,5.240593,EMPTY,0.129089,pir,,consistent
+28.808333,3457,after the attack,TRUSTED,full,0.002,0.857604,0.468813,5.289514,5.230071,EMPTY,0.126507,pir,,consistent
+28.816667,3458,after the attack,TRUSTED,full,0.002,0.854504,0.470587,5.279358,5.21957,EMPTY,0.123977,pir,,consistent
+28.825,3459,after the attack,TRUSTED,full,0.002,0.85297,0.472357,5.269224,5.20909,EMPTY,0.121498,pir,,consistent
+28.833333,3460,after the attack,TRUSTED,full,0.002,0.85144,0.474123,5.259112,5.19863,EMPTY,0.119068,pir,,consistent
+28.841667,3461,after the attack,TRUSTED,full,0.002,0.855746,0.475898,5.249023,5.188192,EMPTY,0.116686,pir,,consistent
+28.85,3462,after the attack,TRUSTED,full,0.002,0.85654,0.477675,5.238957,5.177775,EMPTY,0.114353,pir,,consistent
+28.858333,3463,after the attack,TRUSTED,full,0.002,0.848387,0.479434,5.228909,5.167378,EMPTY,0.112066,pir,,consistent
+28.866667,3464,after the attack,TRUSTED,full,0.002,0.851539,0.4812,5.218885,5.157003,EMPTY,0.109824,pir,,consistent
+28.875,3465,after the attack,TRUSTED,full,0.002,0.84379,0.482949,5.20888,5.146648,EMPTY,0.107628,pir,,consistent
+28.883333,3466,after the attack,TRUSTED,full,0.002,0.843846,0.484697,5.198898,5.136314,EMPTY,0.105475,pir,,consistent
+28.891667,3467,after the attack,TRUSTED,full,0.002,0.851687,0.486462,5.188939,5.126,EMPTY,0.103366,pir,,consistent
+28.9,3468,after the attack,TRUSTED,full,0.002,0.852887,0.488229,5.179003,5.115707,EMPTY,0.101298,pir,,consistent
+28.908333,3469,after the attack,TRUSTED,full,0.002,0.853305,0.489996,5.169088,5.105435,EMPTY,0.099272,pir,,consistent
+28.916667,3470,after the attack,TRUSTED,full,0.002,0.851773,0.491759,5.159195,5.095183,EMPTY,0.097287,pir,,consistent
+28.925,3471,after the attack,TRUSTED,full,0.002,0.854925,0.493529,5.149325,5.084952,EMPTY,0.095341,pir,,consistent
+28.933333,3472,after the attack,TRUSTED,full,0.002,0.853388,0.495296,5.139476,5.074741,EMPTY,0.093434,pir,,consistent
+28.941667,3473,after the attack,TRUSTED,full,0.002,0.851856,0.497058,5.129648,5.06455,EMPTY,0.091566,pir,,consistent
+28.95,3474,after the attack,TRUSTED,full,0.002,0.850329,0.498818,5.119841,5.05438,EMPTY,0.089734,pir,,consistent
+28.958333,3475,after the attack,TRUSTED,full,0.002,0.848806,0.500573,5.110055,5.044231,EMPTY,0.08794,pir,,consistent
+28.966667,3476,after the attack,TRUSTED,full,0.002,0.847289,0.502326,5.10029,5.034101,EMPTY,0.086181,pir,,consistent
+28.975,3477,after the attack,TRUSTED,full,0.002,0.8489,0.504081,5.090547,5.023992,EMPTY,0.084457,pir,,consistent
+28.983333,3478,after the attack,TRUSTED,full,0.002,0.84582,0.505829,5.080825,5.013903,EMPTY,0.082768,pir,,consistent
+28.991667,3479,after the attack,TRUSTED,full,0.002,0.844313,0.507575,5.071123,5.003834,EMPTY,0.081113,pir,,consistent
+29.0,3480,after the attack,TRUSTED,full,0.002,0.841248,0.509313,5.061442,4.993786,EMPTY,0.079491,pir,,consistent
+29.008333,3481,after the attack,TRUSTED,full,0.002,0.840927,0.51105,5.051782,4.983757,EMPTY,0.077901,pir,,consistent
+29.016667,3482,after the attack,TRUSTED,full,0.002,0.840216,0.512786,5.042143,4.973749,EMPTY,0.076343,pir,,consistent
+29.025,3483,after the attack,TRUSTED,full,0.002,0.836773,0.514514,5.032524,4.96376,EMPTY,0.074816,pir,,consistent
+29.033333,3484,after the attack,TRUSTED,full,0.002,0.835295,0.516238,5.022926,4.953792,EMPTY,0.07332,pir,,consistent
+29.041667,3485,after the attack,TRUSTED,full,0.002,0.833821,0.517959,5.013349,4.943843,EMPTY,0.071853,pir,,consistent
+29.05,3486,after the attack,TRUSTED,full,0.002,0.836652,0.519686,5.003793,4.933915,EMPTY,0.070416,pir,,consistent
+29.058333,3487,after the attack,TRUSTED,full,0.002,0.846913,0.521433,4.994263,4.924006,EMPTY,0.069008,pir,,consistent
+29.066667,3488,after the attack,TRUSTED,full,0.002,0.850884,0.523188,4.984754,4.914117,EMPTY,0.067628,pir,,consistent
+29.075,3489,after the attack,TRUSTED,full,0.002,0.851318,0.524944,4.975267,4.904248,EMPTY,0.066275,pir,,consistent
+29.083333,3490,after the attack,TRUSTED,full,0.002,0.849792,0.526696,4.965801,4.894398,EMPTY,0.06495,pir,,consistent
+29.091667,3491,after the attack,TRUSTED,full,0.002,0.84827,0.528444,4.956355,4.884569,EMPTY,0.063651,pir,,consistent
+29.1,3492,after the attack,TRUSTED,full,0.002,0.846754,0.53019,4.946929,4.874759,EMPTY,0.062378,pir,,consistent
+29.108333,3493,after the attack,TRUSTED,full,0.002,0.845242,0.531931,4.937524,4.864968,EMPTY,0.06113,pir,,consistent
+29.116667,3494,after the attack,TRUSTED,full,0.002,0.842167,0.533666,4.928139,4.855197,EMPTY,0.059907,pir,,consistent
+29.125,3495,after the attack,TRUSTED,full,0.002,0.837534,0.535391,4.918773,4.845446,EMPTY,0.058709,pir,,consistent
+29.133333,3496,after the attack,TRUSTED,full,0.002,0.836052,0.537113,4.909427,4.835714,EMPTY,0.057535,pir,,consistent
+29.141667,3497,after the attack,TRUSTED,full,0.002,0.834575,0.538831,4.900101,4.826002,EMPTY,0.056384,pir,,consistent
+29.15,3498,after the attack,TRUSTED,full,0.002,0.826828,0.540533,4.890793,4.816309,EMPTY,0.055257,pir,,consistent
+29.158333,3499,after the attack,TRUSTED,full,0.002,0.8195,0.54222,4.881504,4.806635,EMPTY,0.054152,pir,,consistent
+29.166667,3500,after the attack,TRUSTED,full,0.002,0.814548,0.543895,4.872233,4.796981,EMPTY,0.053069,pir,,consistent
+29.175,3501,after the attack,TRUSTED,full,0.002,0.811572,0.545565,4.862981,4.787346,EMPTY,0.052007,pir,,consistent
+29.183333,3502,after the attack,TRUSTED,full,0.002,0.808604,0.547227,4.853749,4.77773,EMPTY,0.050967,pir,,consistent
+29.191667,3503,after the attack,TRUSTED,full,0.002,0.807213,0.548887,4.844538,4.768134,EMPTY,0.049948,pir,,consistent
+29.2,3504,after the attack,TRUSTED,full,0.002,0.805826,0.550543,4.835346,4.758557,EMPTY,0.048949,pir,,consistent
+29.208333,3505,after the attack,TRUSTED,full,0.002,0.804444,0.552196,4.826173,4.748999,EMPTY,0.04797,pir,,consistent
+29.216667,3506,after the attack,TRUSTED,full,0.002,0.803066,0.553845,4.817021,4.73946,EMPTY,0.04701,pir,,consistent
+29.225,3507,after the attack,TRUSTED,full,0.002,0.801692,0.555491,4.807889,4.72994,EMPTY,0.04607,pir,,consistent
+29.233333,3508,after the attack,TRUSTED,full,0.002,0.800322,0.557134,4.798776,4.720439,EMPTY,0.045149,pir,,consistent
+29.241667,3509,after the attack,TRUSTED,full,0.002,0.798956,0.558774,4.789683,4.710957,EMPTY,0.044246,pir,,consistent
+29.25,3510,after the attack,TRUSTED,full,0.002,0.797594,0.56041,4.78061,4.701494,EMPTY,0.043361,pir,,consistent
+29.258333,3511,after the attack,TRUSTED,full,0.002,0.796237,0.562043,4.771557,4.692051,EMPTY,0.042494,pir,,consistent
+29.266667,3512,after the attack,TRUSTED,full,0.002,0.794883,0.563673,4.762523,4.682625,EMPTY,0.041644,pir,,consistent
+29.275,3513,after the attack,TRUSTED,full,0.002,0.793533,0.5653,4.753509,4.673219,EMPTY,0.040811,pir,,consistent
+29.283333,3514,after the attack,TRUSTED,full,0.002,0.792188,0.566923,4.744514,4.663832,EMPTY,0.039995,pir,,consistent
+29.291667,3515,after the attack,TRUSTED,full,0.002,0.790846,0.568543,4.735539,4.654463,EMPTY,0.039195,pir,,consistent
+29.3,3516,after the attack,TRUSTED,full,0.002,0.789508,0.57016,4.726583,4.645113,EMPTY,0.038411,pir,,consistent
+29.308333,3517,after the attack,TRUSTED,full,0.002,0.788175,0.571774,4.717647,4.635782,EMPTY,0.037643,pir,,consistent
+29.316667,3518,after the attack,TRUSTED,full,0.002,0.786845,0.573384,4.708731,4.62647,EMPTY,0.03689,pir,,consistent
+29.325,3519,after the attack,TRUSTED,full,0.002,0.785519,0.574991,4.699833,4.617176,EMPTY,0.036152,pir,,consistent
+29.333333,3520,after the attack,TRUSTED,full,0.002,0.784197,0.576595,4.690955,4.607901,EMPTY,0.035429,pir,,consistent
+29.341667,3521,after the attack,TRUSTED,full,0.002,0.782879,0.578196,4.682097,4.598644,EMPTY,0.03472,pir,,consistent
+29.35,3522,after the attack,TRUSTED,full,0.002,0.78905,0.579809,4.67326,4.589406,EMPTY,0.034026,pir,,consistent
+29.358333,3523,after the attack,TRUSTED,full,0.002,0.802314,0.581449,4.664449,4.580186,EMPTY,0.033345,pir,,consistent
+29.366667,3524,after the attack,TRUSTED,full,0.002,0.80252,0.583088,4.655657,4.570985,EMPTY,0.032679,pir,,consistent
+29.375,3525,after the attack,TRUSTED,full,0.002,0.801147,0.584725,4.646884,4.561802,EMPTY,0.032025,pir,,consistent
+29.383333,3526,after the attack,TRUSTED,full,0.002,0.799777,0.586358,4.638131,4.552637,EMPTY,0.031384,pir,,consistent
+29.391667,3527,after the attack,TRUSTED,full,0.002,0.798412,0.587987,4.629397,4.543491,EMPTY,0.030757,pir,,consistent
+29.4,3528,after the attack,TRUSTED,full,0.002,0.797051,0.589614,4.620682,4.534363,EMPTY,0.030142,pir,,consistent
+29.408333,3529,after the attack,TRUSTED,full,0.002,0.795693,0.591237,4.611985,4.525253,EMPTY,0.029539,pir,,consistent
+29.416667,3530,after the attack,TRUSTED,full,0.002,0.79434,0.592857,4.603308,4.516162,EMPTY,0.028948,pir,,consistent
+29.425,3531,after the attack,TRUSTED,full,0.002,0.792991,0.594474,4.59465,4.507089,EMPTY,0.028369,pir,,consistent
+29.433333,3532,after the attack,TRUSTED,full,0.002,0.791646,0.596088,4.586011,4.498033,EMPTY,0.027802,pir,,consistent
+29.441667,3533,after the attack,TRUSTED,full,0.002,0.790305,0.597698,4.577391,4.488996,EMPTY,0.027246,pir,,consistent
+29.45,3534,after the attack,TRUSTED,full,0.002,0.793323,0.599314,4.568792,4.479977,EMPTY,0.026701,pir,,consistent
+29.458333,3535,after the attack,TRUSTED,full,0.002,0.808228,0.60096,4.560218,4.470977,EMPTY,0.026167,pir,,consistent
+29.466667,3536,after the attack,TRUSTED,full,0.002,0.810011,0.602609,4.551663,4.461994,EMPTY,0.025643,pir,,consistent
+29.475,3537,after the attack,TRUSTED,full,0.002,0.808613,0.604255,4.543128,4.453029,EMPTY,0.025131,pir,,consistent
+29.483333,3538,after the attack,TRUSTED,full,0.002,0.80722,0.605897,4.534612,4.444082,EMPTY,0.024628,pir,,consistent
+29.491667,3539,after the attack,TRUSTED,full,0.002,0.805831,0.607537,4.526114,4.435153,EMPTY,0.024135,pir,,consistent
+29.5,3540,after the attack,TRUSTED,full,0.002,0.804447,0.609173,4.517635,4.426241,EMPTY,0.023653,pir,,consistent
+29.508333,3541,after the attack,TRUSTED,full,0.002,0.803066,0.610806,4.509175,4.417348,EMPTY,0.02318,pir,,consistent
+29.516667,3542,after the attack,TRUSTED,full,0.002,0.80169,0.612435,4.500733,4.408472,EMPTY,0.022716,pir,,consistent
+29.525,3543,after the attack,TRUSTED,full,0.002,0.800317,0.614061,4.49231,4.399614,EMPTY,0.022262,pir,,consistent
+29.533333,3544,after the attack,TRUSTED,full,0.002,0.796167,0.615679,4.483905,4.390774,EMPTY,0.021816,pir,,consistent
+29.541667,3545,after the attack,TRUSTED,full,0.002,0.778125,0.617259,4.475511,4.381952,EMPTY,0.02138,pir,,consistent
+29.55,3546,after the attack,TRUSTED,full,0.002,0.777617,0.618838,4.467136,4.373147,EMPTY,0.020953,pir,,consistent
+29.558333,3547,after the attack,TRUSTED,full,0.002,0.78347,0.620428,4.458782,4.36436,EMPTY,0.020533,pir,,consistent
+29.566667,3548,after the attack,TRUSTED,full,0.002,0.792096,0.622035,4.450451,4.35559,EMPTY,0.020123,pir,,consistent
+29.575,3549,after the attack,TRUSTED,full,0.002,0.789161,0.623635,4.442138,4.346838,EMPTY,0.01972,pir,,consistent
+29.583333,3550,after the attack,TRUSTED,full,0.002,0.772311,0.625201,4.433836,4.338103,EMPTY,0.019326,pir,,consistent
+29.591667,3551,after the attack,TRUSTED,full,0.002,0.765857,0.626754,4.425551,4.329386,EMPTY,0.018939,pir,,consistent
+29.6,3552,after the attack,TRUSTED,full,0.002,0.764591,0.628303,4.417284,4.320686,EMPTY,0.018561,pir,,consistent
+29.608333,3553,after the attack,TRUSTED,full,0.002,0.763328,0.629849,4.409035,4.312004,EMPTY,0.018189,pir,,consistent
+29.616667,3554,after the attack,TRUSTED,full,0.002,0.762069,0.631392,4.400805,4.303339,EMPTY,0.017826,pir,,consistent
+29.625,3555,after the attack,TRUSTED,full,0.002,0.760813,0.632932,4.392592,4.294692,EMPTY,0.017469,pir,,consistent
+29.633333,3556,after the attack,TRUSTED,full,0.002,0.759561,0.634469,4.384398,4.286061,EMPTY,0.01712,pir,,consistent
+29.641667,3557,after the attack,TRUSTED,full,0.002,0.758312,0.636003,4.376222,4.277448,EMPTY,0.016777,pir,,consistent
+29.65,3558,after the attack,TRUSTED,full,0.002,0.757066,0.637534,4.368064,4.268852,EMPTY,0.016442,pir,,consistent
+29.658333,3559,after the attack,TRUSTED,full,0.002,0.755825,0.639062,4.359924,4.260274,EMPTY,0.016113,pir,,consistent
+29.666667,3560,after the attack,TRUSTED,full,0.002,0.754586,0.640586,4.351802,4.251712,EMPTY,0.015791,pir,,consistent
+29.675,3561,after the attack,TRUSTED,full,0.002,0.753351,0.642108,4.343698,4.243168,EMPTY,0.015475,pir,,consistent
+29.683333,3562,after the attack,TRUSTED,full,0.002,0.75212,0.643627,4.335612,4.234641,EMPTY,0.015165,pir,,consistent
+29.691667,3563,after the attack,TRUSTED,full,0.002,0.747701,0.645136,4.327542,4.22613,EMPTY,0.014862,pir,,consistent
+29.7,3564,after the attack,TRUSTED,full,0.002,0.732532,0.646614,4.319484,4.217637,EMPTY,0.014565,pir,,consistent
+29.708333,3565,after the attack,TRUSTED,full,0.002,0.735344,0.648097,4.311446,4.209161,EMPTY,0.014274,pir,,consistent
+29.716667,3566,after the attack,TRUSTED,full,0.002,0.738152,0.649585,4.303427,4.200702,EMPTY,0.013988,pir,,consistent
+29.725,3567,after the attack,TRUSTED,full,0.002,0.741353,0.651079,4.295428,4.192259,EMPTY,0.013708,pir,,consistent
+29.733333,3568,after the attack,TRUSTED,full,0.002,0.730174,0.65255,4.287443,4.183834,EMPTY,0.013434,pir,,consistent
+29.741667,3569,after the attack,TRUSTED,full,0.002,0.743786,0.654047,4.279481,4.175425,EMPTY,0.013165,pir,,consistent
+29.75,3570,after the attack,TRUSTED,full,0.002,0.742581,0.655542,4.271537,4.167033,EMPTY,0.012902,pir,,consistent
+29.758333,3571,after the attack,TRUSTED,full,0.002,0.741379,0.657034,4.263611,4.158658,EMPTY,0.012644,pir,,consistent
+29.766667,3572,after the attack,TRUSTED,full,0.002,0.74018,0.658523,4.255703,4.1503,EMPTY,0.012391,pir,,consistent
+29.775,3573,after the attack,TRUSTED,full,0.002,0.738985,0.660009,4.247812,4.141959,EMPTY,0.012143,pir,,consistent
+29.783333,3574,after the attack,TRUSTED,full,0.002,0.737793,0.661492,4.239938,4.133634,EMPTY,0.011901,pir,,consistent
+29.791667,3575,after the attack,TRUSTED,full,0.002,0.736604,0.662972,4.232082,4.125326,EMPTY,0.011663,pir,,consistent
+29.8,3576,after the attack,TRUSTED,full,0.002,0.735418,0.664449,4.224244,4.117034,EMPTY,0.011429,pir,,consistent
+29.808333,3577,after the attack,TRUSTED,full,0.002,0.734235,0.665923,4.216423,4.108759,EMPTY,0.011201,pir,,consistent
+29.816667,3578,after the attack,TRUSTED,full,0.002,0.733056,0.667394,4.208619,4.100501,EMPTY,0.010977,pir,,consistent
+29.825,3579,after the attack,TRUSTED,full,0.002,0.73188,0.668862,4.200833,4.092259,EMPTY,0.010757,pir,,consistent
+29.833333,3580,after the attack,TRUSTED,full,0.002,0.730707,0.670327,4.193064,4.084033,EMPTY,0.010542,pir,,consistent
+29.841667,3581,after the attack,TRUSTED,full,0.002,0.729537,0.671789,4.185312,4.075824,EMPTY,0.010331,pir,,consistent
+29.85,3582,after the attack,TRUSTED,full,0.002,0.72837,0.673249,4.177578,4.067632,EMPTY,0.010125,pir,,consistent
+29.858333,3583,after the attack,TRUSTED,full,0.002,0.727206,0.674705,4.169861,4.059455,EMPTY,0.009922,pir,,consistent
+29.866667,3584,after the attack,TRUSTED,full,0.002,0.726045,0.676159,4.162161,4.051295,EMPTY,0.009724,pir,,consistent
+29.875,3585,after the attack,TRUSTED,full,0.002,0.724888,0.67761,4.154479,4.043152,EMPTY,0.009529,pir,,consistent
+29.883333,3586,after the attack,TRUSTED,full,0.002,0.723733,0.679057,4.146813,4.035025,EMPTY,0.009339,pir,,consistent
+29.891667,3587,after the attack,TRUSTED,full,0.002,0.722581,0.680502,4.139165,4.026914,EMPTY,0.009152,pir,,consistent
+29.9,3588,after the attack,TRUSTED,full,0.002,0.721433,0.681944,4.131534,4.018819,EMPTY,0.008969,pir,,consistent
+29.908333,3589,after the attack,TRUSTED,full,0.002,0.720287,0.683383,4.12392,4.01074,EMPTY,0.008789,pir,,consistent
+29.916667,3590,after the attack,TRUSTED,full,0.002,0.719145,0.68482,4.116323,4.002678,EMPTY,0.008614,pir,,consistent
+29.925,3591,after the attack,TRUSTED,full,0.002,0.718005,0.686253,4.108742,3.994632,EMPTY,0.008441,pir,,consistent
+29.933333,3592,after the attack,TRUSTED,full,0.002,0.716869,0.687684,4.101179,3.986601,EMPTY,0.008272,pir,,consistent
+29.941667,3593,after the attack,TRUSTED,full,0.002,0.715735,0.689111,4.093633,3.978587,EMPTY,0.008107,pir,,consistent
+29.95,3594,after the attack,TRUSTED,full,0.002,0.714605,0.690536,4.086104,3.970589,EMPTY,0.007945,pir,,consistent
+29.958333,3595,after the attack,TRUSTED,full,0.002,0.713477,0.691958,4.078591,3.962607,EMPTY,0.007786,pir,,consistent
+29.966667,3596,after the attack,TRUSTED,full,0.002,0.712352,0.693377,4.071096,3.954641,EMPTY,0.00763,pir,,consistent
+29.975,3597,after the attack,TRUSTED,full,0.002,0.711231,0.694794,4.063617,3.946691,EMPTY,0.007478,pir,,consistent
+29.983333,3598,after the attack,TRUSTED,full,0.002,0.710112,0.696207,4.056155,3.938756,EMPTY,0.007328,pir,,consistent
+29.991667,3599,after the attack,TRUSTED,full,0.002,0.710612,0.697621,4.048711,3.930838,EMPTY,0.007182,pir,,consistent
+30.0,3600,after the attack,TRUSTED,full,0.002,0.720818,0.699055,4.041288,3.922935,EMPTY,0.007038,pir,,consistent
+30.008333,3601,after the attack,TRUSTED,full,0.002,0.724127,0.700495,4.033885,3.915048,EMPTY,0.006897,pir,,consistent
+30.016667,3602,after the attack,TRUSTED,full,0.002,0.723379,0.701932,4.026498,3.907177,EMPTY,0.006759,pir,,consistent
+30.025,3603,after the attack,TRUSTED,full,0.002,0.709671,0.703342,4.019122,3.899322,EMPTY,0.006624,pir,,consistent
+30.033333,3604,after the attack,TRUSTED,full,0.002,0.722333,0.704776,4.011769,3.891483,EMPTY,0.006492,pir,,consistent
+30.041667,3605,after the attack,TRUSTED,full,0.002,0.726458,0.706219,4.004435,3.883659,EMPTY,0.006362,pir,,consistent
+30.05,3606,after the attack,TRUSTED,full,0.002,0.725298,0.707658,3.997118,3.87585,EMPTY,0.006234,pir,,consistent
+30.058333,3607,after the attack,TRUSTED,full,0.002,0.724141,0.709094,3.989818,3.868058,EMPTY,0.00611,pir,,consistent
+30.066667,3608,after the attack,TRUSTED,full,0.002,0.722987,0.710528,3.982534,3.860281,EMPTY,0.005988,pir,,consistent
+30.075,3609,after the attack,TRUSTED,full,0.002,0.721836,0.711958,3.975266,3.852519,EMPTY,0.005868,pir,,consistent
+30.083333,3610,after the attack,TRUSTED,full,0.002,0.720688,0.713386,3.968015,3.844773,EMPTY,0.00575,pir,,consistent
+30.091667,3611,after the attack,TRUSTED,full,0.002,0.719543,0.714811,3.96078,3.837043,EMPTY,0.005635,pir,,consistent
+30.1,3612,after the attack,TRUSTED,full,0.002,0.718401,0.716233,3.953562,3.829328,EMPTY,0.005523,pir,,consistent
+30.108333,3613,after the attack,TRUSTED,full,0.002,0.717262,0.717652,3.94636,3.821628,EMPTY,0.005412,pir,,consistent
+30.116667,3614,after the attack,TRUSTED,full,0.002,0.716126,0.719069,3.939175,3.813944,EMPTY,0.005304,pir,,consistent
+30.125,3615,after the attack,TRUSTED,full,0.002,0.714993,0.720482,3.932005,3.806275,EMPTY,0.005198,pir,,consistent
+30.133333,3616,after the attack,TRUSTED,full,0.002,0.713863,0.721893,3.924852,3.798622,EMPTY,0.005094,pir,,consistent
+30.141667,3617,after the attack,TRUSTED,full,0.002,0.712736,0.723301,3.917716,3.790983,EMPTY,0.004992,pir,,consistent
+30.15,3618,after the attack,TRUSTED,full,0.002,0.711612,0.724706,3.910595,3.78336,EMPTY,0.004892,pir,,consistent
+30.158333,3619,after the attack,TRUSTED,full,0.002,0.71049,0.726108,3.903491,3.775753,EMPTY,0.004794,pir,,consistent
+30.166667,3620,after the attack,TRUSTED,full,0.002,0.709372,0.727508,3.896403,3.76816,EMPTY,0.004699,pir,,consistent
+30.175,3621,after the attack,TRUSTED,full,0.002,0.708256,0.728905,3.889331,3.760583,EMPTY,0.004605,pir,,consistent
+30.183333,3622,after the attack,TRUSTED,full,0.002,0.707144,0.730299,3.882275,3.753021,EMPTY,0.004513,pir,,consistent
+30.191667,3623,after the attack,TRUSTED,full,0.002,0.706034,0.73169,3.875235,3.745474,EMPTY,0.004422,pir,,consistent
+30.2,3624,after the attack,TRUSTED,full,0.002,0.704927,0.733078,3.868211,3.737942,EMPTY,0.004334,pir,,consistent
+30.208333,3625,after the attack,TRUSTED,full,0.002,0.703823,0.734464,3.861204,3.730425,EMPTY,0.004247,pir,,consistent
+30.216667,3626,after the attack,TRUSTED,full,0.002,0.702721,0.735847,3.854212,3.722924,EMPTY,0.004162,pir,,consistent
+30.225,3627,after the attack,TRUSTED,full,0.002,0.701623,0.737227,3.847236,3.715437,EMPTY,0.004079,pir,,consistent
+30.233333,3628,after the attack,TRUSTED,full,0.002,0.700527,0.738604,3.840276,3.707965,EMPTY,0.003997,pir,,consistent
+30.241667,3629,after the attack,TRUSTED,full,0.002,0.699434,0.739979,3.833332,3.700508,EMPTY,0.003917,pir,,consistent
+30.25,3630,after the attack,TRUSTED,full,0.002,0.698344,0.741351,3.826404,3.693066,EMPTY,0.003839,pir,,consistent
+30.258333,3631,after the attack,TRUSTED,full,0.002,0.697256,0.74272,3.819492,3.685639,EMPTY,0.003762,pir,,consistent
+30.266667,3632,after the attack,TRUSTED,full,0.002,0.696172,0.744086,3.812595,3.678227,EMPTY,0.003687,pir,,consistent
+30.275,3633,after the attack,TRUSTED,full,0.002,0.69509,0.74545,3.805715,3.670829,EMPTY,0.003613,pir,,consistent
+30.283333,3634,after the attack,TRUSTED,full,0.002,0.69401,0.746811,3.79885,3.663447,EMPTY,0.003541,pir,,consistent
+30.291667,3635,after the attack,TRUSTED,full,0.002,0.692934,0.748169,3.792001,3.656079,EMPTY,0.00347,pir,,consistent
+30.3,3636,after the attack,TRUSTED,full,0.002,0.69186,0.749525,3.785167,3.648726,EMPTY,0.003401,pir,,consistent
+30.308333,3637,after the attack,TRUSTED,full,0.002,0.690789,0.750877,3.778349,3.641387,EMPTY,0.003333,pir,,consistent
+30.316667,3638,after the attack,TRUSTED,full,0.002,0.68972,0.752227,3.771547,3.634064,EMPTY,0.003266,pir,,consistent
+30.325,3639,after the attack,TRUSTED,full,0.002,0.688654,0.753575,3.764761,3.626755,EMPTY,0.003201,pir,,consistent
+30.333333,3640,after the attack,TRUSTED,full,0.002,0.687591,0.75492,3.75799,3.61946,EMPTY,0.003137,pir,,consistent
+30.341667,3641,after the attack,TRUSTED,full,0.002,0.68653,0.756262,3.751234,3.61218,EMPTY,0.003074,pir,,consistent
+30.35,3642,after the attack,TRUSTED,full,0.002,0.685472,0.757601,3.744494,3.604915,EMPTY,0.003013,pir,,consistent
+30.358333,3643,after the attack,TRUSTED,full,0.002,0.684417,0.758938,3.73777,3.597664,EMPTY,0.002952,pir,,consistent
+30.366667,3644,after the attack,TRUSTED,full,0.002,0.683364,0.760272,3.731061,3.590428,EMPTY,0.002893,pir,,consistent
+30.375,3645,after the attack,TRUSTED,full,0.002,0.682314,0.761603,3.724368,3.583206,EMPTY,0.002835,pir,,consistent
+30.383333,3646,after the attack,TRUSTED,full,0.002,0.681266,0.762932,3.717689,3.575999,EMPTY,0.002779,pir,,consistent
+30.391667,3647,after the attack,TRUSTED,full,0.002,0.680221,0.764258,3.711027,3.568806,EMPTY,0.002723,pir,,consistent
+30.4,3648,after the attack,TRUSTED,full,0.002,0.679179,0.765581,3.704379,3.561627,EMPTY,0.002669,pir,,consistent
+30.408333,3649,after the attack,TRUSTED,full,0.002,0.678139,0.766902,3.697747,3.554463,EMPTY,0.002615,pir,,consistent
+30.416667,3650,after the attack,TRUSTED,full,0.002,0.677101,0.76822,3.691131,3.547313,EMPTY,0.002563,pir,,consistent
+30.425,3651,after the attack,TRUSTED,full,0.002,0.676067,0.769536,3.684529,3.540178,EMPTY,0.002512,pir,,consistent
+30.433333,3652,after the attack,TRUSTED,full,0.002,0.675034,0.770848,3.677943,3.533056,EMPTY,0.002462,pir,,consistent
+30.441667,3653,after the attack,TRUSTED,full,0.002,0.674004,0.772159,3.671372,3.525949,EMPTY,0.002412,pir,,consistent
+30.45,3654,after the attack,TRUSTED,full,0.002,0.672977,0.773466,3.664817,3.518857,EMPTY,0.002364,pir,,consistent
+30.458333,3655,after the attack,TRUSTED,full,0.002,0.671952,0.774771,3.658276,3.511778,EMPTY,0.002317,pir,,consistent
+30.466667,3656,after the attack,TRUSTED,full,0.002,0.67093,0.776074,3.65175,3.504713,EMPTY,0.00227,pir,,consistent
+30.475,3657,after the attack,TRUSTED,full,0.002,0.66991,0.777373,3.64524,3.497663,EMPTY,0.002225,pir,,consistent
+30.483333,3658,after the attack,TRUSTED,full,0.002,0.668892,0.778671,3.638745,3.490627,EMPTY,0.002181,pir,,consistent
+30.491667,3659,after the attack,TRUSTED,full,0.002,0.667877,0.779965,3.632265,3.483605,EMPTY,0.002137,pir,,consistent
+30.5,3660,after the attack,TRUSTED,full,0.002,0.666864,0.781257,3.6258,3.476596,EMPTY,0.002094,pir,,consistent
+30.508333,3661,after the attack,TRUSTED,full,0.002,0.665854,0.782547,3.619349,3.469602,EMPTY,0.002052,pir,,consistent
+30.516667,3662,after the attack,TRUSTED,full,0.002,0.664846,0.783834,3.612914,3.462622,EMPTY,0.002011,pir,,consistent
+30.525,3663,after the attack,TRUSTED,full,0.002,0.663841,0.785118,3.606494,3.455656,EMPTY,0.001971,pir,,consistent
+30.533333,3664,after the attack,TRUSTED,full,0.002,0.662838,0.7864,3.600089,3.448704,EMPTY,0.001932,pir,,consistent
+30.541667,3665,after the attack,TRUSTED,full,0.002,0.661837,0.787679,3.593698,3.441765,EMPTY,0.001893,pir,,consistent
+30.55,3666,after the attack,TRUSTED,full,0.002,0.660839,0.788956,3.587323,3.434841,EMPTY,0.001855,pir,,consistent
+30.558333,3667,after the attack,TRUSTED,full,0.002,0.669832,0.790249,3.580967,3.42793,EMPTY,0.001818,pir,,consistent
+30.566667,3668,after the attack,TRUSTED,full,0.002,0.67715,0.791556,3.574631,3.421033,EMPTY,0.001782,pir,,consistent
+30.575,3669,after the attack,TRUSTED,full,0.002,0.666108,0.792841,3.568305,3.41415,EMPTY,0.001746,pir,,consistent
+30.583333,3670,after the attack,TRUSTED,full,0.002,0.665099,0.794124,3.561993,3.407281,EMPTY,0.001711,pir,,consistent
+30.591667,3671,after the attack,TRUSTED,full,0.002,0.657421,0.795391,3.555692,3.400426,EMPTY,0.001677,pir,,consistent
+30.6,3672,after the attack,TRUSTED,full,0.002,0.667698,0.796677,3.549413,3.393584,EMPTY,0.001643,pir,,consistent
+30.608333,3673,after the attack,TRUSTED,full,0.002,0.678803,0.797985,3.543154,3.386756,EMPTY,0.00161,pir,,consistent
+30.616667,3674,after the attack,TRUSTED,full,0.002,0.677762,0.799289,3.536911,3.379941,EMPTY,0.001578,pir,,consistent
+30.625,3675,after the attack,TRUSTED,full,0.002,0.676724,0.800591,3.530682,3.373141,EMPTY,0.001547,pir,,consistent
+30.633333,3676,after the attack,TRUSTED,full,0.002,0.675689,0.801891,3.524467,3.366353,EMPTY,0.001516,pir,,consistent
+30.641667,3677,after the attack,TRUSTED,full,0.002,0.674656,0.803188,3.518268,3.35958,EMPTY,0.001485,pir,,consistent
+30.65,3678,after the attack,TRUSTED,full,0.002,0.673625,0.804482,3.512083,3.35282,EMPTY,0.001456,pir,,consistent
+30.658333,3679,after the attack,TRUSTED,full,0.002,0.672597,0.805774,3.505912,3.346073,EMPTY,0.001427,pir,,consistent
+30.666667,3680,after the attack,TRUSTED,full,0.002,0.671571,0.807063,3.499756,3.33934,EMPTY,0.001398,pir,,consistent
+30.675,3681,after the attack,TRUSTED,full,0.002,0.670548,0.808349,3.493615,3.33262,EMPTY,0.00137,pir,,consistent
+30.683333,3682,after the attack,TRUSTED,full,0.002,0.669528,0.809633,3.487488,3.325914,EMPTY,0.001343,pir,,consistent
+30.691667,3683,after the attack,TRUSTED,full,0.002,0.668509,0.810915,3.481375,3.319221,EMPTY,0.001316,pir,,consistent
+30.7,3684,after the attack,TRUSTED,full,0.002,0.667494,0.812194,3.475277,3.312542,EMPTY,0.00129,pir,,consistent
+30.708333,3685,after the attack,TRUSTED,full,0.002,0.66648,0.81347,3.469193,3.305876,EMPTY,0.001264,pir,,consistent
+30.716667,3686,after the attack,TRUSTED,full,0.002,0.665469,0.814744,3.463124,3.299223,EMPTY,0.001238,pir,,consistent
+30.725,3687,after the attack,TRUSTED,full,0.002,0.664461,0.816015,3.457069,3.292584,EMPTY,0.001214,pir,,consistent
+30.733333,3688,after the attack,TRUSTED,full,0.002,0.663455,0.817284,3.451028,3.285958,EMPTY,0.001189,pir,,consistent
+30.741667,3689,after the attack,TRUSTED,full,0.002,0.662451,0.81855,3.445002,3.279345,EMPTY,0.001166,pir,,consistent
+30.75,3690,after the attack,TRUSTED,full,0.002,0.66145,0.819813,3.43899,3.272745,EMPTY,0.001142,pir,,consistent
+30.758333,3691,after the attack,TRUSTED,full,0.002,0.660451,0.821075,3.432992,3.266159,EMPTY,0.001119,pir,,consistent
+30.766667,3692,after the attack,TRUSTED,full,0.002,0.659454,0.822333,3.427008,3.259586,EMPTY,0.001097,pir,,consistent
+30.775,3693,after the attack,TRUSTED,full,0.002,0.65846,0.823589,3.421039,3.253025,EMPTY,0.001075,pir,,consistent
+30.783333,3694,after the attack,TRUSTED,full,0.002,0.657468,0.824843,3.415084,3.246478,EMPTY,0.001054,pir,,consistent
+30.791667,3695,after the attack,TRUSTED,full,0.002,0.656478,0.826094,3.409143,3.239945,EMPTY,0.001033,pir,,consistent
+30.8,3696,after the attack,TRUSTED,full,0.002,0.655491,0.827342,3.403216,3.233424,EMPTY,0.001012,pir,,consistent
+30.808333,3697,after the attack,TRUSTED,full,0.002,0.654506,0.828589,3.397303,3.226916,EMPTY,0.000992,pir,,consistent
+30.816667,3698,after the attack,TRUSTED,full,0.002,0.653524,0.829832,3.391404,3.220421,EMPTY,0.000972,pir,,consistent
+30.825,3699,after the attack,TRUSTED,full,0.002,0.652543,0.831073,3.385519,3.213939,EMPTY,0.000952,pir,,consistent
+30.833333,3700,after the attack,TRUSTED,full,0.002,0.651565,0.832312,3.379648,3.207471,EMPTY,0.000933,pir,,consistent
+30.841667,3701,after the attack,TRUSTED,full,0.002,0.652283,0.833551,3.373793,3.201015,EMPTY,0.000915,pir,,consistent
+30.85,3702,after the attack,TRUSTED,full,0.002,0.649611,0.834785,3.36795,3.194572,EMPTY,0.000896,pir,,consistent
+30.858333,3703,after the attack,TRUSTED,full,0.002,0.64864,0.836016,3.362121,3.188142,EMPTY,0.000878,pir,,consistent
+30.866667,3704,after the attack,TRUSTED,full,0.002,0.647671,0.837245,3.356306,3.181724,EMPTY,0.000861,pir,,consistent
+30.875,3705,after the attack,TRUSTED,full,0.002,0.656461,0.83849,3.350511,3.17532,EMPTY,0.000844,pir,,consistent
+30.883333,3706,after the attack,TRUSTED,full,0.002,0.664393,0.839749,3.344735,3.168928,EMPTY,0.000827,pir,,consistent
+30.891667,3707,after the attack,TRUSTED,full,0.002,0.667212,0.841014,3.338975,3.16255,EMPTY,0.00081,pir,,consistent
+30.9,3708,after the attack,TRUSTED,full,0.002,0.657268,0.842259,3.333224,3.156184,EMPTY,0.000794,pir,,consistent
+30.908333,3709,after the attack,TRUSTED,full,0.002,0.652876,0.843494,3.327484,3.14983,EMPTY,0.000778,pir,,consistent
+30.916667,3710,after the attack,TRUSTED,full,0.002,0.654874,0.844733,3.32176,3.14349,EMPTY,0.000763,pir,,consistent
+30.925,3711,after the attack,TRUSTED,full,0.002,0.662832,0.845987,3.316055,3.137162,EMPTY,0.000747,pir,,consistent
+30.933333,3712,after the attack,TRUSTED,full,0.002,0.665238,0.847244,3.310366,3.130847,EMPTY,0.000732,pir,,consistent
+30.941667,3713,after the attack,TRUSTED,full,0.002,0.659112,0.84849,3.304688,3.124544,EMPTY,0.000718,pir,,consistent
+30.95,3714,after the attack,TRUSTED,full,0.002,0.650017,0.849717,3.299018,3.118254,EMPTY,0.000703,pir,,consistent
+30.958333,3715,after the attack,TRUSTED,full,0.002,0.653309,0.85095,3.293365,3.111976,EMPTY,0.000689,pir,,consistent
+30.966667,3716,after the attack,TRUSTED,full,0.002,0.661292,0.852198,3.287731,3.105712,EMPTY,0.000676,pir,,consistent
+30.975,3717,after the attack,TRUSTED,full,0.002,0.660292,0.853443,3.28211,3.099459,EMPTY,0.000662,pir,,consistent
+30.983333,3718,after the attack,TRUSTED,full,0.002,0.659294,0.854685,3.276503,3.093219,EMPTY,0.000649,pir,,consistent
+30.991667,3719,after the attack,TRUSTED,full,0.002,0.658299,0.855926,3.27091,3.086992,EMPTY,0.000636,pir,,consistent
+31.0,3720,after the attack,TRUSTED,full,0.002,0.657305,0.857163,3.26533,3.080777,EMPTY,0.000623,pir,,consistent
+31.008333,3721,after the attack,TRUSTED,full,0.002,0.656315,0.858399,3.259764,3.074574,EMPTY,0.000611,pir,,consistent
+31.016667,3722,after the attack,TRUSTED,full,0.002,0.655326,0.859631,3.254211,3.068384,EMPTY,0.000598,pir,,consistent
+31.025,3723,after the attack,TRUSTED,full,0.002,0.65434,0.860862,3.248672,3.062207,EMPTY,0.000586,pir,,consistent
+31.033333,3724,after the attack,TRUSTED,full,0.002,0.653356,0.862089,3.243146,3.056041,EMPTY,0.000575,pir,,consistent
+31.041667,3725,after the attack,TRUSTED,full,0.002,0.652374,0.863315,3.237634,3.049888,EMPTY,0.000563,pir,,consistent
+31.05,3726,after the attack,TRUSTED,full,0.002,0.651395,0.864538,3.232135,3.043748,EMPTY,0.000552,pir,,consistent
+31.058333,3727,after the attack,TRUSTED,full,0.002,0.650418,0.865758,3.22665,3.037619,EMPTY,0.000541,pir,,consistent
+31.066667,3728,after the attack,TRUSTED,full,0.002,0.649443,0.866976,3.221178,3.031503,EMPTY,0.00053,pir,,consistent
+31.075,3729,after the attack,TRUSTED,full,0.002,0.648471,0.868192,3.215719,3.025399,EMPTY,0.00052,pir,,consistent
+31.083333,3730,after the attack,TRUSTED,full,0.002,0.63762,0.869387,3.210267,3.019307,EMPTY,0.000509,pir,,consistent
+31.091667,3731,after the attack,TRUSTED,full,0.002,0.637535,0.87058,3.204829,3.013228,EMPTY,0.000499,pir,,consistent
+31.1,3732,after the attack,TRUSTED,full,0.002,0.64562,0.871789,3.19941,3.00716,EMPTY,0.000489,pir,,consistent
+31.108333,3733,after the attack,TRUSTED,full,0.002,0.644657,0.872995,3.194005,3.001105,EMPTY,0.000479,pir,,consistent
+31.116667,3734,after the attack,TRUSTED,full,0.002,0.643695,0.874199,3.188612,2.995062,EMPTY,0.00047,pir,,consistent
+31.125,3735,after the attack,TRUSTED,full,0.002,0.642736,0.8754,3.183233,2.989031,EMPTY,0.00046,pir,,consistent
+31.133333,3736,after the attack,TRUSTED,full,0.002,0.641779,0.876599,3.177867,2.983012,EMPTY,0.000451,pir,,consistent
+31.141667,3737,after the attack,TRUSTED,full,0.002,0.640824,0.877795,3.172514,2.977005,EMPTY,0.000442,pir,,consistent
+31.15,3738,after the attack,TRUSTED,full,0.002,0.639871,0.878989,3.167175,2.97101,EMPTY,0.000433,pir,,consistent
+31.158333,3739,after the attack,TRUSTED,full,0.002,0.638921,0.880181,3.161848,2.965027,EMPTY,0.000424,pir,,consistent
+31.166667,3740,after the attack,TRUSTED,full,0.002,0.637973,0.88137,3.156535,2.959056,EMPTY,0.000416,pir,,consistent
+31.175,3741,after the attack,TRUSTED,full,0.002,0.637027,0.882557,3.151234,2.953097,EMPTY,0.000408,pir,,consistent
+31.183333,3742,after the attack,TRUSTED,full,0.002,0.636083,0.883741,3.145947,2.94715,EMPTY,0.0004,pir,,consistent
+31.191667,3743,after the attack,TRUSTED,full,0.002,0.632114,0.884918,3.14067,2.941215,EMPTY,0.000392,pir,,consistent
+31.2,3744,after the attack,TRUSTED,full,0.002,0.632047,0.886094,3.135408,2.935291,EMPTY,0.000384,pir,,consistent
+31.208333,3745,after the attack,TRUSTED,full,0.002,0.633278,0.887271,3.130159,2.92938,EMPTY,0.000376,pir,,consistent
+31.216667,3746,after the attack,TRUSTED,full,0.002,0.632342,0.888446,3.124924,2.92348,EMPTY,0.000369,pir,,consistent
+31.225,3747,after the attack,TRUSTED,full,0.002,0.631409,0.889619,3.119701,2.917592,EMPTY,0.000361,pir,,consistent
+31.233333,3748,after the attack,TRUSTED,full,0.002,0.630478,0.89079,3.114492,2.911716,EMPTY,0.000354,pir,,consistent
+31.241667,3749,after the attack,TRUSTED,full,0.002,0.629548,0.891958,3.109295,2.905852,EMPTY,0.000347,pir,,consistent
+31.25,3750,after the attack,TRUSTED,full,0.002,0.628621,0.893124,3.104111,2.899999,EMPTY,0.00034,pir,,consistent
+31.258333,3751,after the attack,TRUSTED,full,0.002,0.627696,0.894287,3.09894,2.894158,EMPTY,0.000333,pir,,consistent
+31.266667,3752,after the attack,TRUSTED,full,0.002,0.626773,0.895448,3.093781,2.888329,EMPTY,0.000326,pir,,consistent
+31.275,3753,after the attack,TRUSTED,full,0.002,0.625852,0.896607,3.088636,2.882511,EMPTY,0.00032,pir,,consistent
+31.283333,3754,after the attack,TRUSTED,full,0.002,0.624933,0.897763,3.083503,2.876705,EMPTY,0.000314,pir,,consistent
+31.291667,3755,after the attack,TRUSTED,full,0.002,0.624017,0.898918,3.078383,2.870911,EMPTY,0.000307,pir,,consistent
+31.3,3756,after the attack,TRUSTED,full,0.002,0.623102,0.90007,3.073276,2.865128,EMPTY,0.000301,,,consistent
+31.308333,3757,after the attack,TRUSTED,full,0.002,0.622533,0.901219,3.068181,2.859398,EMPTY,0.000295,,,consistent
+31.316667,3758,after the attack,TRUSTED,full,0.002,0.621621,0.902366,3.063099,2.853679,EMPTY,0.000289,,,consistent
+31.325,3759,after the attack,TRUSTED,full,0.002,0.620711,0.903511,3.05803,2.847972,EMPTY,0.000283,,,consistent
+31.333333,3760,after the attack,TRUSTED,full,0.002,0.619803,0.904654,3.052973,2.842276,EMPTY,0.000278,,,consistent
+31.341667,3761,after the attack,TRUSTED,full,0.002,0.618897,0.905794,3.047929,2.836591,EMPTY,0.000272,,,consistent
+31.35,3762,after the attack,TRUSTED,full,0.002,0.617992,0.906932,3.042898,2.830918,EMPTY,0.000267,,,consistent
+31.358333,3763,after the attack,TRUSTED,full,0.002,0.61709,0.908068,3.037879,2.825256,EMPTY,0.000261,,,consistent
+31.366667,3764,after the attack,TRUSTED,full,0.002,0.61619,0.909201,3.032872,2.819606,EMPTY,0.000256,,,consistent
+31.375,3765,after the attack,TRUSTED,full,0.002,0.615292,0.910332,3.027878,2.813966,EMPTY,0.000251,,,consistent
+31.383333,3766,after the attack,TRUSTED,full,0.002,0.614396,0.911461,3.022897,2.808338,EMPTY,0.000246,,,consistent
+31.391667,3767,after the attack,TRUSTED,full,0.002,0.613502,0.912588,3.017928,2.802722,EMPTY,0.000241,,,consistent
+31.4,3768,after the attack,TRUSTED,full,0.002,0.61261,0.913712,3.012972,2.797116,EMPTY,0.000236,,,consistent
+31.408333,3769,after the attack,TRUSTED,full,0.002,0.611719,0.914835,3.008027,2.791522,EMPTY,0.000232,,,consistent
+31.416667,3770,after the attack,TRUSTED,full,0.002,0.610831,0.915955,3.003096,2.785939,EMPTY,0.000227,,,consistent
+31.425,3771,after the attack,TRUSTED,full,0.002,0.609944,0.917072,2.998176,2.780367,EMPTY,0.000222,,,consistent
+31.433333,3772,after the attack,TRUSTED,full,0.002,0.60906,0.918188,2.993269,2.774806,EMPTY,0.000218,,,consistent
+31.441667,3773,after the attack,TRUSTED,full,0.002,0.608177,0.919301,2.988375,2.769257,EMPTY,0.000214,,,consistent
+31.45,3774,after the attack,TRUSTED,full,0.002,0.607297,0.920412,2.983492,2.763718,EMPTY,0.000209,,,consistent
+31.458333,3775,after the attack,TRUSTED,full,0.002,0.606418,0.921521,2.978622,2.758191,EMPTY,0.000205,,,consistent
+31.466667,3776,after the attack,TRUSTED,full,0.002,0.605541,0.922628,2.973764,2.752675,EMPTY,0.000201,,,consistent
+31.475,3777,after the attack,TRUSTED,full,0.002,0.604666,0.923732,2.968919,2.747169,EMPTY,0.000197,,,consistent
+31.483333,3778,after the attack,TRUSTED,full,0.002,0.603793,0.924834,2.964086,2.741675,EMPTY,0.000193,,,consistent
+31.491667,3779,after the attack,TRUSTED,full,0.002,0.602921,0.925934,2.959264,2.736191,EMPTY,0.000189,,,consistent
+31.5,3780,after the attack,TRUSTED,full,0.002,0.602052,0.927032,2.954455,2.730719,EMPTY,0.000185,,,consistent
+31.508333,3781,after the attack,TRUSTED,full,0.002,0.601184,0.928128,2.949659,2.725258,EMPTY,0.000182,,,consistent
+31.516667,3782,after the attack,TRUSTED,full,0.002,0.600319,0.929221,2.944874,2.719807,EMPTY,0.000178,,,consistent
+31.525,3783,after the attack,TRUSTED,full,0.002,0.599455,0.930313,2.940101,2.714368,EMPTY,0.000175,,,consistent
+31.533333,3784,after the attack,TRUSTED,full,0.002,0.598593,0.931402,2.935341,2.708939,EMPTY,0.000171,,,consistent
+31.541667,3785,after the attack,TRUSTED,full,0.002,0.597733,0.932489,2.930592,2.703521,EMPTY,0.000168,,,consistent
+31.55,3786,after the attack,TRUSTED,full,0.002,0.596874,0.933573,2.925856,2.698114,EMPTY,0.000164,,,consistent
+31.558333,3787,after the attack,TRUSTED,full,0.002,0.596018,0.934656,2.921131,2.692718,EMPTY,0.000161,,,consistent
+31.566667,3788,after the attack,TRUSTED,full,0.002,0.595163,0.935736,2.916419,2.687332,EMPTY,0.000158,,,consistent
+31.575,3789,after the attack,TRUSTED,full,0.002,0.59431,0.936815,2.911719,2.681958,EMPTY,0.000155,,,consistent
+31.583333,3790,after the attack,TRUSTED,full,0.002,0.593459,0.937891,2.90703,2.676594,EMPTY,0.000151,,,consistent
+31.591667,3791,after the attack,TRUSTED,full,0.002,0.59261,0.938965,2.902353,2.67124,EMPTY,0.000148,,,consistent
+31.6,3792,after the attack,TRUSTED,full,0.002,0.591762,0.940037,2.897689,2.665898,EMPTY,0.000145,,,consistent
+31.608333,3793,after the attack,TRUSTED,full,0.002,0.590916,0.941106,2.893036,2.660566,EMPTY,0.000143,,,consistent
+31.616667,3794,after the attack,TRUSTED,full,0.002,0.590072,0.942174,2.888395,2.655245,EMPTY,0.00014,,,consistent
+31.625,3795,after the attack,TRUSTED,full,0.002,0.58923,0.943239,2.883766,2.649935,EMPTY,0.000137,,,consistent
+31.633333,3796,after the attack,TRUSTED,full,0.002,0.588389,0.944303,2.879149,2.644635,EMPTY,0.000134,,,consistent
+31.641667,3797,after the attack,TRUSTED,full,0.002,0.587551,0.945364,2.874543,2.639345,EMPTY,0.000132,,,consistent
+31.65,3798,after the attack,TRUSTED,full,0.002,0.586714,0.946423,2.86995,2.634067,EMPTY,0.000129,,,consistent
+31.658333,3799,after the attack,TRUSTED,full,0.002,0.585878,0.94748,2.865368,2.628799,EMPTY,0.000126,,,consistent
+31.666667,3800,after the attack,TRUSTED,full,0.002,0.585045,0.948535,2.860798,2.623541,EMPTY,0.000124,,,consistent
+31.675,3801,after the attack,TRUSTED,full,0.002,0.584213,0.949588,2.856239,2.618294,EMPTY,0.000121,,,consistent
+31.683333,3802,after the attack,TRUSTED,full,0.002,0.583383,0.950638,2.851693,2.613057,EMPTY,0.000119,,,consistent
+31.691667,3803,after the attack,TRUSTED,full,0.002,0.582555,0.951687,2.847157,2.607831,EMPTY,0.000117,,,consistent
+31.7,3804,after the attack,TRUSTED,full,0.002,0.581728,0.952733,2.842634,2.602616,EMPTY,0.000114,,,consistent
+31.708333,3805,after the attack,TRUSTED,full,0.002,0.580903,0.953777,2.838122,2.59741,EMPTY,0.000112,,,consistent
+31.716667,3806,after the attack,TRUSTED,full,0.002,0.58008,0.95482,2.833622,2.592216,EMPTY,0.00011,,,consistent
+31.725,3807,after the attack,TRUSTED,full,0.002,0.579258,0.95586,2.829133,2.587031,EMPTY,0.000107,,,consistent
+31.733333,3808,after the attack,TRUSTED,full,0.002,0.578438,0.956898,2.824656,2.581857,EMPTY,0.000105,,,consistent
+31.741667,3809,after the attack,TRUSTED,full,0.002,0.57762,0.957934,2.820191,2.576693,EMPTY,0.000103,,,consistent
+31.75,3810,after the attack,TRUSTED,full,0.002,0.576803,0.958968,2.815737,2.57154,EMPTY,0.000101,,,consistent
+31.758333,3811,after the attack,TRUSTED,full,0.002,0.575989,0.96,2.811294,2.566397,EMPTY,9.9e-05,,,consistent
+31.766667,3812,after the attack,TRUSTED,full,0.002,0.575175,0.96103,2.806863,2.561264,EMPTY,9.7e-05,,,consistent
+31.775,3813,after the attack,TRUSTED,full,0.002,0.574364,0.962058,2.802444,2.556142,EMPTY,9.5e-05,,,consistent
+31.783333,3814,after the attack,TRUSTED,full,0.002,0.573554,0.963083,2.798036,2.551029,EMPTY,9.3e-05,,,consistent
+31.791667,3815,after the attack,TRUSTED,full,0.002,0.572746,0.964107,2.793639,2.545927,EMPTY,9.1e-05,,,consistent
+31.8,3816,after the attack,TRUSTED,full,0.002,0.571939,0.965129,2.789254,2.540835,EMPTY,9e-05,,,consistent
+31.808333,3817,after the attack,TRUSTED,full,0.002,0.571134,0.966148,2.78488,2.535754,EMPTY,8.8e-05,,,consistent
+31.816667,3818,after the attack,TRUSTED,full,0.002,0.570331,0.967166,2.780517,2.530682,EMPTY,8.6e-05,,,consistent
+31.825,3819,after the attack,TRUSTED,full,0.002,0.569529,0.968182,2.776166,2.525621,EMPTY,8.4e-05,,,consistent
+31.833333,3820,after the attack,TRUSTED,full,0.002,0.568729,0.969195,2.771826,2.52057,EMPTY,8.3e-05,,,consistent
+31.841667,3821,after the attack,TRUSTED,full,0.002,0.56793,0.970207,2.767498,2.515528,EMPTY,8.1e-05,,,consistent
+31.85,3822,after the attack,TRUSTED,full,0.002,0.567133,0.971216,2.76318,2.510497,EMPTY,7.9e-05,,,consistent
+31.858333,3823,after the attack,TRUSTED,full,0.002,0.566338,0.972224,2.758874,2.505476,EMPTY,7.8e-05,,,consistent
+31.866667,3824,after the attack,TRUSTED,full,0.002,0.565544,0.973229,2.754579,2.500465,EMPTY,7.6e-05,,,consistent
+31.875,3825,after the attack,TRUSTED,full,0.002,0.564752,0.974232,2.750296,2.495464,EMPTY,7.5e-05,,,consistent
+31.883333,3826,after the attack,TRUSTED,full,0.002,0.563961,0.975234,2.746023,2.490474,EMPTY,7.3e-05,,,consistent
+31.891667,3827,after the attack,TRUSTED,full,0.002,0.563172,0.976233,2.741762,2.485493,EMPTY,7.2e-05,,,consistent
+31.9,3828,after the attack,TRUSTED,full,0.002,0.576401,0.977256,2.737522,2.480522,EMPTY,7e-05,,,consistent
+31.908333,3829,after the attack,TRUSTED,full,0.002,0.58872,0.9783,2.733303,2.475561,EMPTY,6.9e-05,,,consistent
+31.916667,3830,after the attack,TRUSTED,full,0.002,0.587879,0.979342,2.729096,2.470609,EMPTY,6.8e-05,,,consistent
+31.925,3831,after the attack,TRUSTED,full,0.002,0.587039,0.980382,2.724899,2.465668,EMPTY,6.6e-05,,,consistent
+31.933333,3832,after the attack,TRUSTED,full,0.002,0.586201,0.98142,2.720714,2.460737,EMPTY,6.5e-05,,,consistent
+31.941667,3833,after the attack,TRUSTED,full,0.002,0.585364,0.982456,2.71654,2.455815,EMPTY,6.4e-05,,,consistent
+31.95,3834,after the attack,TRUSTED,full,0.002,0.58453,0.98349,2.712377,2.450904,EMPTY,6.2e-05,,,consistent
+31.958333,3835,after the attack,TRUSTED,full,0.002,0.583697,0.984522,2.708224,2.446002,EMPTY,6.1e-05,,,consistent
+31.966667,3836,after the attack,TRUSTED,full,0.002,0.582866,0.985551,2.704083,2.44111,EMPTY,6e-05,,,consistent
+31.975,3837,after the attack,TRUSTED,full,0.002,0.582036,0.986579,2.699953,2.436228,EMPTY,5.9e-05,,,consistent
+31.983333,3838,after the attack,TRUSTED,full,0.002,0.581208,0.987604,2.695834,2.431355,EMPTY,5.7e-05,,,consistent
+31.991667,3839,after the attack,TRUSTED,full,0.002,0.580382,0.988628,2.691726,2.426493,EMPTY,5.6e-05,,,consistent
+32.0,3840,after the attack,TRUSTED,full,0.002,0.579558,0.989649,2.687629,2.42164,EMPTY,5.5e-05,,,consistent
+32.008333,3841,after the attack,TRUSTED,full,0.002,0.578735,0.990669,2.683543,2.416796,EMPTY,5.4e-05,,,consistent
+32.016667,3842,after the attack,TRUSTED,full,0.002,0.577914,0.991686,2.679467,2.411963,EMPTY,5.3e-05,,,consistent
+32.025,3843,after the attack,TRUSTED,full,0.002,0.577095,0.992702,2.675403,2.407139,EMPTY,5.2e-05,,,consistent
+32.033333,3844,after the attack,TRUSTED,full,0.002,0.576277,0.993715,2.671349,2.402325,EMPTY,5.1e-05,,,consistent
+32.041667,3845,after the attack,TRUSTED,full,0.002,0.575462,0.994726,2.667306,2.39752,EMPTY,5e-05,,,consistent
+32.05,3846,after the attack,TRUSTED,full,0.002,0.574647,0.995736,2.663274,2.392725,EMPTY,4.9e-05,,,consistent
+32.058333,3847,after the attack,TRUSTED,full,0.002,0.573835,0.996743,2.659253,2.387939,EMPTY,4.8e-05,,,consistent
+32.066667,3848,after the attack,TRUSTED,full,0.002,0.573024,0.997748,2.655243,2.383163,EMPTY,4.7e-05,,,consistent
+32.075,3849,after the attack,TRUSTED,full,0.002,0.572214,0.998752,2.651243,2.378397,EMPTY,4.6e-05,,,consistent
+32.083333,3850,after the attack,TRUSTED,full,0.002,0.571407,0.999753,2.647255,2.37364,EMPTY,4.5e-05,,,consistent
+32.091667,3851,after the attack,TRUSTED,full,0.002,0.570601,1.000752,2.643277,2.368893,EMPTY,4.4e-05,,,consistent
+32.1,3852,after the attack,TRUSTED,full,0.002,0.569796,1.001749,2.639309,2.364155,EMPTY,4.3e-05,,,consistent
+32.108333,3853,after the attack,TRUSTED,full,0.002,0.568993,1.002745,2.635352,2.359427,EMPTY,4.2e-05,,,consistent
+32.116667,3854,after the attack,TRUSTED,full,0.002,0.568192,1.003738,2.631406,2.354708,EMPTY,4.2e-05,,,consistent
+32.125,3855,after the attack,TRUSTED,full,0.002,0.567393,1.004729,2.627471,2.349999,EMPTY,4.1e-05,,,consistent
+32.133333,3856,after the attack,TRUSTED,full,0.002,0.566595,1.005719,2.623546,2.345299,EMPTY,4e-05,,,consistent
+32.141667,3857,after the attack,TRUSTED,full,0.002,0.565798,1.006706,2.619632,2.340608,EMPTY,3.9e-05,,,consistent
+32.15,3858,after the attack,TRUSTED,full,0.002,0.565004,1.007692,2.615729,2.335927,EMPTY,3.8e-05,,,consistent
+32.158333,3859,after the attack,TRUSTED,full,0.002,0.56421,1.008675,2.611836,2.331255,EMPTY,3.8e-05,,,consistent
+32.166667,3860,after the attack,TRUSTED,full,0.002,0.563419,1.009656,2.607953,2.326593,EMPTY,3.7e-05,,,consistent
+32.175,3861,after the attack,TRUSTED,full,0.002,0.562629,1.010636,2.604081,2.321939,EMPTY,3.6e-05,,,consistent
+32.183333,3862,after the attack,TRUSTED,full,0.002,0.56184,1.011614,2.60022,2.317295,EMPTY,3.5e-05,,,consistent
+32.191667,3863,after the attack,TRUSTED,full,0.002,0.561054,1.012589,2.596369,2.312661,EMPTY,3.5e-05,,,consistent
+32.2,3864,after the attack,TRUSTED,full,0.002,0.560268,1.013563,2.592528,2.308036,EMPTY,3.4e-05,,,consistent
+32.208333,3865,after the attack,TRUSTED,full,0.002,0.559485,1.014535,2.588698,2.30342,EMPTY,3.3e-05,,,consistent
+32.216667,3866,after the attack,TRUSTED,full,0.002,0.558702,1.015504,2.584879,2.298813,EMPTY,3.3e-05,,,consistent
+32.225,3867,after the attack,TRUSTED,full,0.002,0.557922,1.016472,2.58107,2.294215,EMPTY,3.2e-05,,,consistent
+32.233333,3868,after the attack,TRUSTED,full,0.002,0.557143,1.017438,2.577271,2.289627,EMPTY,3.1e-05,,,consistent
+32.241667,3869,after the attack,TRUSTED,full,0.002,0.556365,1.018402,2.573482,2.285047,EMPTY,3.1e-05,,,consistent
+32.25,3870,after the attack,TRUSTED,full,0.002,0.555589,1.019364,2.569704,2.280477,EMPTY,3e-05,,,consistent
+32.258333,3871,after the attack,TRUSTED,full,0.002,0.554815,1.020324,2.565936,2.275916,EMPTY,2.9e-05,,,consistent
+32.266667,3872,after the attack,TRUSTED,full,0.002,0.554042,1.021282,2.562179,2.271364,EMPTY,2.9e-05,,,consistent
+32.275,3873,after the attack,TRUSTED,full,0.002,0.55327,1.022239,2.558432,2.266822,EMPTY,2.8e-05,,,consistent
+32.283333,3874,after the attack,TRUSTED,full,0.002,0.5525,1.023193,2.554695,2.262288,EMPTY,2.8e-05,,,consistent
+32.291667,3875,after the attack,TRUSTED,full,0.002,0.551732,1.024146,2.550968,2.257764,EMPTY,2.7e-05,,,consistent
+32.3,3876,after the attack,TRUSTED,full,0.002,0.550965,1.025096,2.547252,2.253248,EMPTY,2.7e-05,,,consistent
+32.308333,3877,after the attack,TRUSTED,full,0.002,0.550199,1.026045,2.543546,2.248742,EMPTY,2.6e-05,,,consistent
+32.316667,3878,after the attack,TRUSTED,full,0.002,0.549435,1.026992,2.53985,2.244244,EMPTY,2.6e-05,,,consistent
+32.325,3879,after the attack,TRUSTED,full,0.002,0.548673,1.027937,2.536164,2.239756,EMPTY,2.5e-05,,,consistent
+32.333333,3880,after the attack,TRUSTED,full,0.002,0.547912,1.02888,2.532488,2.235276,EMPTY,2.5e-05,,,consistent
+32.341667,3881,after the attack,TRUSTED,full,0.002,0.550884,1.029827,2.528826,2.230805,EMPTY,2.4e-05,,,consistent
+32.35,3882,after the attack,TRUSTED,full,0.002,0.546385,1.030767,2.52517,2.226344,EMPTY,2.4e-05,,,consistent
+32.358333,3883,after the attack,TRUSTED,full,0.002,0.545628,1.031704,2.521525,2.221891,EMPTY,2.3e-05,,,consistent
+32.366667,3884,after the attack,TRUSTED,full,0.002,0.544873,1.03264,2.51789,2.217447,EMPTY,2.3e-05,,,consistent
+32.375,3885,after the attack,TRUSTED,full,0.002,0.518435,1.033529,2.514244,2.213012,EMPTY,2.2e-05,,,consistent
+32.383333,3886,after the attack,TRUSTED,full,0.002,0.5154,1.034412,2.510606,2.208586,EMPTY,2.2e-05,,,consistent
+32.391667,3887,after the attack,TRUSTED,full,0.002,0.514704,1.035293,2.506978,2.204169,EMPTY,2.1e-05,,,consistent
+32.4,3888,after the attack,TRUSTED,full,0.002,0.51401,1.036172,2.50336,2.199761,EMPTY,2.1e-05,,,consistent
+32.408333,3889,after the attack,TRUSTED,full,0.002,0.513316,1.03705,2.499751,2.195361,EMPTY,2.1e-05,,,consistent
+32.416667,3890,after the attack,TRUSTED,full,0.002,0.512624,1.037926,2.496153,2.190971,EMPTY,2e-05,,,consistent
+32.425,3891,after the attack,TRUSTED,full,0.002,0.511933,1.038801,2.492565,2.186589,EMPTY,2e-05,,,consistent
+32.433333,3892,after the attack,TRUSTED,full,0.002,0.514523,1.039679,2.488989,2.182216,EMPTY,1.9e-05,,,consistent
+32.441667,3893,after the attack,TRUSTED,full,0.002,0.538702,1.040598,2.485444,2.177851,EMPTY,1.9e-05,,,consistent
+32.45,3894,after the attack,TRUSTED,full,0.002,0.570909,1.041573,2.481935,2.173495,EMPTY,1.9e-05,,,consistent
+32.458333,3895,after the attack,TRUSTED,full,0.002,0.593695,1.042586,2.478456,2.169148,EMPTY,1.8e-05,,,consistent
+32.466667,3896,after the attack,TRUSTED,full,0.002,0.592838,1.043598,2.474987,2.16481,EMPTY,1.8e-05,,,consistent
+32.475,3897,after the attack,TRUSTED,full,0.002,0.589147,1.044602,2.471525,2.160481,EMPTY,1.7e-05,,,consistent
+32.483333,3898,after the attack,TRUSTED,full,0.002,0.542028,1.045525,2.468036,2.15616,EMPTY,1.7e-05,,,consistent
+32.491667,3899,after the attack,TRUSTED,full,0.002,0.511603,1.046395,2.464531,2.151847,EMPTY,1.7e-05,,,consistent
+32.5,3900,after the attack,TRUSTED,full,0.002,0.515622,1.047271,2.46104,2.147544,EMPTY,1.6e-05,,,consistent
+32.508333,3901,after the attack,TRUSTED,full,0.002,0.539927,1.048188,2.457579,2.143248,EMPTY,1.6e-05,,,consistent
+32.516667,3902,after the attack,TRUSTED,full,0.002,0.539182,1.049104,2.454128,2.138962,EMPTY,1.6e-05,,,consistent
+32.525,3903,after the attack,TRUSTED,full,0.002,0.529459,1.050002,2.45068,2.134684,EMPTY,1.5e-05,,,consistent
+32.533333,3904,after the attack,TRUSTED,full,0.002,0.52968,1.0509,2.447242,2.130415,EMPTY,1.5e-05,,,consistent
+32.541667,3905,after the attack,TRUSTED,full,0.002,0.573971,1.051874,2.443851,2.126154,EMPTY,1.5e-05,,,consistent
+32.55,3906,after the attack,TRUSTED,full,0.002,0.585507,1.052867,2.44048,2.121902,EMPTY,1.5e-05,,,consistent
+32.558333,3907,after the attack,TRUSTED,full,0.002,0.629418,1.053934,2.437156,2.117658,EMPTY,1.4e-05,,,consistent
+32.566667,3908,after the attack,TRUSTED,full,0.002,0.640882,1.055021,2.433853,2.113422,EMPTY,1.4e-05,,,consistent
+32.575,3909,after the attack,TRUSTED,full,0.002,0.639917,1.056105,2.430559,2.109196,EMPTY,1.4e-05,,,consistent
+32.583333,3910,after the attack,TRUSTED,full,0.002,0.663323,1.057229,2.427295,2.104977,EMPTY,1.3e-05,,,consistent
+32.591667,3911,after the attack,TRUSTED,full,0.002,0.666608,1.058357,2.424045,2.100767,EMPTY,1.3e-05,,,consistent
+32.6,3912,after the attack,TRUSTED,full,0.002,0.660317,1.059475,2.4208,2.096566,EMPTY,1.3e-05,,,consistent
+32.608333,3913,after the attack,TRUSTED,full,0.002,0.637775,1.060553,2.417547,2.092373,EMPTY,1.3e-05,,,consistent
+32.616667,3914,after the attack,TRUSTED,full,0.002,0.634904,1.061627,2.414302,2.088188,EMPTY,1.2e-05,,,consistent
+32.625,3915,after the attack,TRUSTED,full,0.002,0.633952,1.062698,2.411066,2.084011,EMPTY,1.2e-05,,,consistent
+32.633333,3916,after the attack,TRUSTED,full,0.002,0.633003,1.063767,2.40784,2.079843,EMPTY,1.2e-05,,,consistent
+32.641667,3917,after the attack,TRUSTED,full,0.002,0.624881,1.064816,2.404619,2.075684,EMPTY,1.2e-05,,,consistent
+32.65,3918,after the attack,TRUSTED,full,0.002,0.617857,1.065824,2.401393,2.071532,EMPTY,1.1e-05,,,consistent
+32.658333,3919,after the attack,TRUSTED,full,0.002,0.632662,1.066777,2.398159,2.067389,EMPTY,1.1e-05,,,consistent
+32.666667,3920,after the attack,TRUSTED,full,0.002,0.644523,1.067736,2.39494,2.063255,EMPTY,1.1e-05,,,consistent
+32.675,3921,after the attack,TRUSTED,full,0.002,0.645804,1.068678,2.391724,2.059128,EMPTY,1.1e-05,,,consistent
+32.683333,3922,after the attack,TRUSTED,full,0.002,0.641704,1.069612,2.388514,2.05501,EMPTY,1.1e-05,,,consistent
+32.691667,3923,after the attack,TRUSTED,full,0.002,0.641861,1.070547,2.385315,2.0509,EMPTY,1e-05,,,consistent
+32.7,3924,after the attack,TRUSTED,full,0.002,0.659969,1.07152,2.382146,2.046798,EMPTY,1e-05,,,consistent
+32.708333,3925,after the attack,TRUSTED,full,0.002,0.659324,1.072492,2.378986,2.042704,EMPTY,1e-05,,,consistent
+32.716667,3926,after the attack,TRUSTED,full,0.002,0.646529,1.073438,2.375824,2.038619,EMPTY,1e-05,,,consistent
+32.725,3927,after the attack,TRUSTED,full,0.002,0.642791,1.074376,2.372667,2.034542,EMPTY,1e-05,,,consistent
+32.733333,3928,after the attack,TRUSTED,full,0.002,0.642179,1.075313,2.369521,2.030473,EMPTY,9e-06,,,consistent
+32.741667,3929,after the attack,TRUSTED,full,0.002,0.633017,1.076232,2.366375,2.026412,EMPTY,9e-06,,,consistent
+32.75,3930,after the attack,TRUSTED,full,0.002,0.632036,1.077149,2.363238,2.022359,EMPTY,9e-06,,,consistent
+32.758333,3931,after the attack,TRUSTED,full,0.002,0.631057,1.078064,2.360111,2.018314,EMPTY,9e-06,,,consistent
+32.766667,3932,after the attack,TRUSTED,full,0.002,0.63008,1.078978,2.356993,2.014278,EMPTY,9e-06,,,consistent
+32.775,3933,after the attack,TRUSTED,full,0.002,0.629106,1.07989,2.353884,2.010249,EMPTY,8e-06,,,consistent
+32.783333,3934,after the attack,TRUSTED,full,0.002,0.628133,1.0808,2.350784,2.006228,EMPTY,8e-06,,,consistent
+32.791667,3935,after the attack,TRUSTED,full,0.002,0.627164,1.081708,2.347694,2.002216,EMPTY,8e-06,,,consistent
+32.8,3936,after the attack,TRUSTED,full,0.002,0.626196,1.082615,2.344613,1.998212,EMPTY,8e-06,,,consistent
+32.808333,3937,after the attack,TRUSTED,full,0.002,0.625231,1.08352,2.34154,1.994215,EMPTY,8e-06,,,consistent
+32.816667,3938,after the attack,TRUSTED,full,0.002,0.624267,1.084424,2.338477,1.990227,EMPTY,8e-06,,,consistent
+32.825,3939,after the attack,TRUSTED,full,0.002,0.623306,1.085326,2.335423,1.986246,EMPTY,7e-06,,,consistent
+32.833333,3940,after the attack,TRUSTED,full,0.002,0.622348,1.086226,2.332378,1.982274,EMPTY,7e-06,,,consistent
+32.841667,3941,after the attack,TRUSTED,full,0.002,0.621391,1.087124,2.329342,1.978309,EMPTY,7e-06,,,consistent
+32.85,3942,after the attack,TRUSTED,full,0.002,0.620437,1.088021,2.326316,1.974353,EMPTY,7e-06,,,consistent
+32.858333,3943,after the attack,TRUSTED,full,0.002,0.619485,1.088917,2.323298,1.970404,EMPTY,7e-06,,,consistent
+32.866667,3944,after the attack,TRUSTED,full,0.002,0.618535,1.08981,2.320289,1.966463,EMPTY,7e-06,,,consistent
+32.875,3945,after the attack,TRUSTED,full,0.002,0.617588,1.090702,2.317289,1.96253,EMPTY,7e-06,,,consistent
+32.883333,3946,after the attack,TRUSTED,full,0.002,0.616642,1.091592,2.314298,1.958605,EMPTY,6e-06,,,consistent
+32.891667,3947,after the attack,TRUSTED,full,0.002,0.615699,1.092481,2.311317,1.954688,EMPTY,6e-06,,,consistent
+32.9,3948,after the attack,TRUSTED,full,0.002,0.614758,1.093368,2.308344,1.950779,EMPTY,6e-06,,,consistent
+32.908333,3949,after the attack,TRUSTED,full,0.002,0.608325,1.094242,2.305374,1.946877,EMPTY,6e-06,,,consistent
+32.916667,3950,after the attack,TRUSTED,full,0.002,0.58189,1.095061,2.302384,1.942983,EMPTY,6e-06,,,consistent
+32.925,3951,after the attack,TRUSTED,full,0.002,0.587136,1.095891,2.299411,1.939097,EMPTY,6e-06,,,consistent
+32.933333,3952,after the attack,TRUSTED,full,0.002,0.564993,1.096674,2.296421,1.935219,EMPTY,6e-06,,,consistent
+32.941667,3953,after the attack,TRUSTED,full,0.002,0.564145,1.097456,2.293441,1.931349,EMPTY,6e-06,,,consistent
+32.95,3954,after the attack,TRUSTED,full,0.002,0.563299,1.098237,2.29047,1.927486,EMPTY,6e-06,,,consistent
+32.958333,3955,after the attack,TRUSTED,full,0.002,0.562454,1.099016,2.287507,1.923631,EMPTY,5e-06,,,consistent
+32.966667,3956,after the attack,TRUSTED,full,0.002,0.561612,1.099794,2.284553,1.919784,EMPTY,5e-06,,,consistent
+32.975,3957,after the attack,TRUSTED,full,0.002,0.526287,1.100494,2.281566,1.915944,EMPTY,5e-06,,,consistent
+32.983333,3958,after the attack,TRUSTED,full,0.002,0.516295,1.101172,2.278577,1.912112,EMPTY,5e-06,,,consistent
+32.991667,3959,after the attack,TRUSTED,full,0.002,0.515525,1.101848,2.275597,1.908288,EMPTY,5e-06,,,consistent
+33.0,3960,after the attack,TRUSTED,full,0.002,0.513351,1.10252,2.272624,1.904471,EMPTY,5e-06,,,consistent
+33.008333,3961,after the attack,TRUSTED,full,0.002,0.506997,1.103178,2.269652,1.900662,EMPTY,5e-06,,,consistent
+33.016667,3962,after the attack,TRUSTED,full,0.002,0.513244,1.103851,2.266697,1.896861,EMPTY,5e-06,,,consistent
+33.025,3963,after the attack,TRUSTED,full,0.002,0.50304,1.104501,2.263739,1.893067,EMPTY,5e-06,,,consistent
+33.033333,3964,after the attack,TRUSTED,full,0.002,0.490996,1.105123,2.260775,1.889281,EMPTY,5e-06,,,consistent
+33.041667,3965,after the attack,TRUSTED,full,0.002,0.490262,1.105744,2.25782,1.885503,EMPTY,4e-06,,,consistent
+33.05,3966,after the attack,TRUSTED,full,0.002,0.471344,1.10632,2.254848,1.881732,EMPTY,4e-06,,,consistent
+33.058333,3967,after the attack,TRUSTED,full,0.002,0.469025,1.10689,2.251883,1.877968,EMPTY,4e-06,,,consistent
+33.066667,3968,after the attack,TRUSTED,full,0.002,0.46832,1.10746,2.248927,1.874212,EMPTY,4e-06,,,consistent
+33.075,3969,after the attack,TRUSTED,full,0.002,0.480746,1.10806,2.245996,1.870464,EMPTY,4e-06,,,consistent
+33.083333,3970,after the attack,TRUSTED,full,0.002,0.468175,1.108631,2.243058,1.866723,EMPTY,4e-06,,,consistent
+33.091667,3971,after the attack,TRUSTED,full,0.002,0.4844,1.109242,2.240151,1.86299,EMPTY,4e-06,,,consistent
+33.1,3972,after the attack,TRUSTED,full,0.002,0.485382,1.109856,2.237254,1.859264,EMPTY,4e-06,,,consistent
+33.108333,3973,after the attack,TRUSTED,full,0.002,0.48466,1.110469,2.234366,1.855545,EMPTY,4e-06,,,consistent
+33.116667,3974,after the attack,TRUSTED,full,0.002,0.478841,1.111069,2.231479,1.851834,EMPTY,4e-06,,,consistent
+33.125,3975,after the attack,TRUSTED,full,0.002,0.467131,1.111641,2.228586,1.84813,EMPTY,4e-06,,,consistent
+33.133333,3976,after the attack,TRUSTED,full,0.002,0.462512,1.112202,2.225696,1.844434,EMPTY,4e-06,,,consistent
+33.141667,3977,after the attack,TRUSTED,full,0.002,0.461819,1.112762,2.222814,1.840745,EMPTY,3e-06,,,consistent
+33.15,3978,after the attack,TRUSTED,full,0.002,0.461128,1.113322,2.21994,1.837064,EMPTY,3e-06,,,consistent
+33.158333,3979,after the attack,TRUSTED,full,0.002,0.460439,1.11388,2.217075,1.83339,EMPTY,3e-06,,,consistent
+33.166667,3980,after the attack,TRUSTED,full,0.002,0.45975,1.114437,2.214218,1.829723,EMPTY,3e-06,,,consistent
+33.175,3981,after the attack,TRUSTED,full,0.002,0.485501,1.115057,2.211404,1.826063,EMPTY,3e-06,,,consistent
+33.183333,3982,after the attack,TRUSTED,full,0.002,0.528696,1.115772,2.208652,1.822411,EMPTY,3e-06,,,consistent
+33.191667,3983,after the attack,TRUSTED,full,0.002,0.532497,1.116496,2.205914,1.818766,EMPTY,3e-06,,,consistent
+33.2,3984,after the attack,TRUSTED,full,0.002,0.498129,1.117146,2.203144,1.815129,EMPTY,3e-06,,,consistent
+33.208333,3985,after the attack,TRUSTED,full,0.002,0.497396,1.117795,2.200382,1.811499,EMPTY,3e-06,,,consistent
+33.216667,3986,after the attack,TRUSTED,full,0.002,0.522687,1.118499,2.197659,1.807876,EMPTY,3e-06,,,consistent
+33.225,3987,after the attack,TRUSTED,full,0.002,0.538074,1.119236,2.194964,1.80426,EMPTY,3e-06,,,consistent
+33.233333,3988,after the attack,TRUSTED,full,0.002,0.540404,1.119978,2.192281,1.800651,EMPTY,3e-06,,,consistent

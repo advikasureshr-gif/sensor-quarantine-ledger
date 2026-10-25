@@ -1,0 +1,43 @@
+{
+ "title": "demo_pipeline run",
+ "recording": "logs\\room_merged.jsonl",
+ "input": "239380 readings, 239381 lines, 5 clock reset(s) stitched",
+ "preset": "demo x2",
+ "demo_factor": 2.0,
+ "calibration": "READY: 1785 of 2880 windows trusted (62%) over 24.0 h; rejected: consensus contradiction 182, statistical outlier 913. baseline can be built",
+ "calibration_end_h": 23.992,
+ "attack": {
+  "sensor": "pir",
+  "forced_to": 1,
+  "start_h": 24.3,
+  "hours": 4.5,
+  "software_only": true
+ },
+ "release_after_h": 1.5,
+ "window_s": 30.0,
+ "threshold": 4.0,
+ "counts": {
+  "before the attack": {
+   "TRUSTED": 35
+  },
+  "during the attack": {
+   "TRUSTED": 180,
+   "SUSPICIOUS": 360
+  },
+  "after the attack": {
+   "TRUSTED": 534
+  }
+ },
+ "quarantined_at_h": 27.292,
+ "recovered": true,
+ "ledger_intact": true,
+ "final_states": {
+  "dht": "ACTIVE",
+  "pir": "ACTIVE",
+  "door": "ACTIVE",
+  "ldr": "ACTIVE"
+ },
+ "ledger_records": 9,
+ "saved": "2026-10-25T16:33:40",
+ "n_windows": 1109
+}

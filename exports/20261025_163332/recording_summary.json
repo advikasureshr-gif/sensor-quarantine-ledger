@@ -1,0 +1,39 @@
+{
+ "file": "room_merged.jsonl",
+ "readings": 239380,
+ "bad_lines": 0,
+ "hours": 32.501,
+ "dht_null": 0,
+ "dht_null_pct": 0.0,
+ "pir_high_pct": 4.49,
+ "pir_triggers": 62,
+ "pir_longest_high_s": 1284.0,
+ "door_changes": 82,
+ "door_open_pct": 1.27,
+ "ldr_0_pct": 22.47,
+ "ldr_4095_pct": 77.53,
+ "ldr_other_pct": 0.01,
+ "gaps_over_5s": 0,
+ "max_gap_s": 0.0,
+ "temp_min": 23.6,
+ "temp_max": 27.9,
+ "hum_min": 53.3,
+ "hum_max": 83.9,
+ "quietest_stretches": [
+  {
+   "start_h": 19.36,
+   "end_h": 33.25,
+   "hours": 13.89
+  },
+  {
+   "start_h": 4.9,
+   "end_h": 8.84,
+   "hours": 3.95
+  },
+  {
+   "start_h": 2.65,
+   "end_h": 4.9,
+   "hours": 2.25
+  }
+ ]
+}

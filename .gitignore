@@ -220,3 +220,5 @@ __marimo__/
 # demo output
 logs/
 figs/
+dashboard/outputs/live_logs/
+dashboard/outputs/sessions/
