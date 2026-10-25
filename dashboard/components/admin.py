@@ -65,8 +65,6 @@ def login_form(key: str = "admin_login", hint: bool = True, in_dialog: bool = Fa
     with st.form(key, clear_on_submit=True):
         typed = st.text_input("Admin secret", type="password", key=f"{key}_pw")
         go = st.form_submit_button("Sign in", type="primary")
-    if hint and using_default_secret():
-        st.caption("Demo build: the admin secret is `demo-admin-secret`.")
     if go:
         ok, msg = try_sign_in(typed)
         if ok:
